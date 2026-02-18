@@ -169,4 +169,4 @@ Same output. ~3× longer.
 - Use **positioning-writer** before this — your positioning shapes all channel messaging
 - Use **landing-page-copywriter** before this — the landing page must be live before launch traffic arrives
 - Use **pricing-model-framer** before this — pricing must be decided before full launch
-- Use **cycle-reflector** → now **build-cycle** (Compound phase) — run the first build cycle the week after launch
+- Use **build-cycle** (Compound phase) — run the first build cycle the week after launch

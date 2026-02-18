@@ -1,6 +1,6 @@
 ---
 name: north-star-definer
-description: Identifies the single metric that best captures whether your product is delivering real value — not vanity metrics, not activity metrics, but the one number that, if it goes up, means everything is working. Spawns parallel agents to evaluate candidate metrics simultaneously. Produces north-star.md with your north star metric, 3 leading indicators, and a measurement plan.
+description: Identifies the single metric that best captures whether your product is delivering real value. Use when you're tracking many metrics but lack one value metric to align product decisions. Produces north-star.md with your north star metric, 3 leading indicators, and a measurement plan.
 phase: pmf
 version: 1.0.0
 ---

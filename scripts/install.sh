@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Founder Skill Pack — Universal Installer
+# Founder Skills — Universal Installer
 # Supports: pi, Claude, Codex
 # Usage: bash scripts/install.sh [agent] [phase]
 #
@@ -10,7 +10,7 @@
 #   bash scripts/install.sh codex       # Generate Codex AGENTS.md entry
 #   bash scripts/install.sh pi strategy # Install only the strategy phase for pi
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -141,7 +141,7 @@ install_codex() {
 
   local agents_file="$codex_dir/AGENTS.md"
   cat > "$agents_file" <<'AGENTS_HEADER'
-# Founder Skill Pack — Codex Integration
+# Founder Skills — Codex Integration
 
 Add this file's contents to your project's `AGENTS.md` file,
 or reference it via your Codex system prompt.
@@ -188,7 +188,7 @@ case "$AGENT" in
   pi)
     install_pi
     ;;
-  claude|claude)
+  claude)
     install_claude "$PHASE" "${2:-}"
     ;;
   codex|openai)

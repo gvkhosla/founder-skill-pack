@@ -1,12 +1,46 @@
 {
-  "name": "founder-skill-pack",
-  "version": "0.1.0",
+  "name": "founder-skills",
+  "version": "0.2.0",
   "description": "A curated collection of agent skills for non-technical founders building world-class products",
-  "scripts": {
-    "generate": "node scripts/generate-skill-data.js",
-    "dev": "npm run generate && cd marketplace && npm run dev",
-    "build": "npm run generate && cd marketplace && npm run build"
+  "bin": {
+    "founder-skills": "bin/founder-skills.js"
   },
-  "keywords": ["ai", "agents", "skills", "founders", "product", "claude", "pi"],
-  "license": "MIT"
+  "files": [
+    "bin",
+    "docs",
+    "scripts/install.sh",
+    "scripts/validate-skill-pack.js",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate-skill-pack.js",
+    "lint:shell": "bash -n scripts/install.sh",
+    "check": "npm run lint:shell && npm run validate",
+    "pack:dry-run": "npm pack --dry-run",
+    "test": "npm run check"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "skills",
+    "founders",
+    "product",
+    "claude",
+    "pi",
+    "codex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gvkhosla/founder-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gvkhosla/founder-skills/issues"
+  },
+  "homepage": "https://fskills.xyz",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
 }

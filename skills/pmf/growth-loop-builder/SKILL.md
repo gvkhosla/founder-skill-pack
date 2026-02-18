@@ -1,6 +1,6 @@
 ---
 name: growth-loop-builder
-description: Designs a self-reinforcing growth loop where each new user or action creates the conditions for the next — replacing paid acquisition with compounding organic growth. Spawns 4 parallel agents evaluating viral, content, product, and sales loops simultaneously. Produces growth-loop.md with the highest-potential loop for your product and a specific implementation plan.
+description: Designs a self-reinforcing growth loop where each new user or action creates the conditions for the next. Use when you want compounding organic growth instead of paid acquisition dependence. Produces growth-loop.md with the highest-potential loop for your product and a specific implementation plan.
 phase: pmf
 version: 1.0.0
 ---

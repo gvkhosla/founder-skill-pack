@@ -1,6 +1,6 @@
 # How to Write a Founder Skill
 
-This guide is for anyone contributing a new skill to the Founder Skill Pack. Read it completely before writing your first skill.
+This guide is for anyone contributing a new skill to Founder Skills. Read it completely before writing your first skill.
 
 ---
 
@@ -185,7 +185,7 @@ Recommend specific tools by name. "Use Supabase for your database, Clerk for aut
 Every output should be something the founder can use directly — copy they can paste, a checklist they can follow, a plan with actual weeks and actions.
 
 ### Compound skills
-These skills should surface uncomfortable truths. The `cycle-reflector` should ask "what are you avoiding looking at?" The `mpp-evaluator` should give honest scores, not encouraging ones. If a founder's product isn't at MPP, say so — with specifics.
+These skills should surface uncomfortable truths. The `build-cycle` skill should ask "what are you avoiding looking at?" The `mpp-evaluator` should give honest scores, not encouraging ones. If a founder's product isn't at MPP, say so — with specifics.
 
 ### PMF skills
 Be conservative with PMF signals. False positives are more damaging than missing the signal. Teach founders to see what's actually there, not what they want to see.

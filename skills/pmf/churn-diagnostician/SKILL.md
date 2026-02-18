@@ -1,6 +1,6 @@
 ---
 name: churn-diagnostician
-description: Investigates why users are leaving — systematically, not by asking "why did you cancel?" Spawns 3 parallel agents analyzing time-to-churn patterns, behavioral gaps, and feedback signals simultaneously. Produces churn-diagnosis.md with the root cause, confidence level, and a specific experiment to run.
+description: Investigates why users are leaving — systematically, not by asking "why did you cancel?" Use when retention drops or churn reasons feel unclear. Produces churn-diagnosis.md with the root cause, confidence level, and a specific experiment to run.
 phase: pmf
 version: 1.0.0
 ---

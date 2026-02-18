@@ -1,4 +1,4 @@
-# The Philosophy Behind the Founder Skill Pack
+# The Philosophy Behind Founder Skills
 
 ## Why This Exists
 
@@ -87,7 +87,7 @@ Ship
 Each cycle: faster, sharper, more confident.
 ```
 
-The key word is *honestly*. Most founders reflect in ways that confirm what they already believe. The `cycle-reflector` skill is designed to interrupt that — to surface the things you're avoiding looking at.
+The key word is *honestly*. Most founders reflect in ways that confirm what they already believe. The `build-cycle` skill is designed to interrupt that — to surface the things you're avoiding looking at.
 
 ---
 

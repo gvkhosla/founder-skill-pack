@@ -132,6 +132,17 @@ This is not rhetorical. It's the most important question in the cycle. Take time
 
 > **If Pattern Reader returns 3+ consecutive flat or declining cycles:** Do not continue to Phase 5. Name it: "I need to flag something. We've had [N] cycles without improving signal. That's not a reason to panic, but it is a reason to diagnose before deciding. I want to run the Failure Navigator before we choose what to do next." See [failure-modes.md](failure-modes.md).
 
+#### Sequential Fallback (Codex / OpenCode)
+
+If the agent cannot run parallel subagents, run Phase 3 in this order:
+
+1. MPP Scorer
+2. PMF Signal Analyst
+3. Pattern Reader
+4. Orchestrator synthesis
+
+Same output. ~2–3× longer.
+
 ---
 
 ### Phase 4 — Synthesis

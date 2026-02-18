@@ -117,4 +117,4 @@ The agent writes each section in order:
 - Use **positioning-writer** before this — the positioning doc feeds directly into this skill
 - Use **design-direction-setter** (Design phase) — the design brief ensures the page matches your product's visual tone
 - Use **launch-plan-builder** after this — the landing page is step one of the launch plan
-- Use **cycle-reflector** (Compound phase) after launch — to assess which copy sections are working
+- Use **build-cycle** (Compound phase) after launch — to assess which copy sections are working

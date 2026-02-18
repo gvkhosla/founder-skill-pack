@@ -100,5 +100,5 @@ For each Critical and Major issue, the agent gives the specific fix — not "imp
 
 - Use **ux-flow-designer** before building — maps the flows this skill later reviews
 - Use **design-direction-setter** before building — sets the visual standard this skill evaluates against
-- Use **cycle-reflector** (Compound phase) after testing with users — combines UX review with real usage learnings
+- Use **build-cycle** (Compound phase) after testing with users — combines UX review with real usage learnings
 - Use **mpp-evaluator** (Compound phase) — UX quality is one of the MPP criteria

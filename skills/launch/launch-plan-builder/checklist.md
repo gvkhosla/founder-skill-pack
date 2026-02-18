@@ -37,7 +37,7 @@ Run this before using `launch-plan-builder`. If you can't check everything in ea
 
 ## Pricing Readiness
 
-- [ ] `pricing.md` exists (run `pricing-model-framer` if not)
+- [ ] `pricing-model.md` exists (run `pricing-model-framer` if not)
 - [ ] The price is on the landing page or one click away
 - [ ] If paid: payment flow works and has been tested with a real card
 - [ ] If freemium: free tier limits are defined and enforced

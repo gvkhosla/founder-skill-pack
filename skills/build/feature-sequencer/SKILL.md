@@ -106,4 +106,4 @@ Each feature gets a rough estimate: hours for simple additions, days for signifi
 - Use **mvp-scoper** before this — the MVP brief is your input feature list
 - Use **stack-selector** before this — knowing your stack clarifies what's fast vs. slow to build
 - Use **integration-picker** after this — identify the third-party tools for specific features (payments, auth, email)
-- Use **cycle-reflector** (Compound phase) after your first build cycle — reflects on what the sequencing taught you
+- Use **build-cycle** (Compound phase) after your first build cycle — reflects on what the sequencing taught you

@@ -24,10 +24,10 @@ Skills in this pack are designed to work across **pi**, **Claude**, and **Codex*
 
 ```bash
 # Install all skills
-bash scripts/install.sh pi
+npx founder-skills install --agent pi
 
 # Install one phase
-bash scripts/install.sh pi strategy
+npx founder-skills install --agent pi --phase strategy
 ```
 
 Skills install to `~/.pi/agent/skills/[skill-name]/`. Global across all projects.
@@ -40,10 +40,10 @@ Skills install to `~/.pi/agent/skills/[skill-name]/`. Global across all projects
 
 ```bash
 # Install globally (all projects)
-bash scripts/install.sh claude
+npx founder-skills install --agent claude
 
 # Install to current project only
-bash scripts/install.sh claude .
+npx founder-skills install --agent claude --scope project
 ```
 
 Global skills: `~/.claude/skills/[skill-name]/`
@@ -57,14 +57,16 @@ Project skills: `.claude/skills/[skill-name]/` (takes precedence over global)
 
 ```bash
 # Generate AGENTS.md with all skill entries
-bash scripts/install.sh codex
+npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md
 ```
 
-Generates `skills/codex/AGENTS.md`. Add its contents to your project's `AGENTS.md`.
+Generates `AGENTS.founder-skills.md` (or your custom `--out` path). Add its contents to your project's `AGENTS.md`.
 
 **To invoke:** "Use the [skill-name] skill" — Codex will read the corresponding SKILL.md.
 
 **Note:** Codex runs parallel phases sequentially. Same output, ~2–3× longer time.
+
+Legacy clone-based installer remains available as `bash scripts/install.sh ...` for fully offline/manual workflows.
 
 ---
 

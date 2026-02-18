@@ -1,4 +1,4 @@
-# Multi-Agent Patterns in the Founder Skill Pack
+# Multi-Agent Patterns in Founder Skills
 
 Skills in this pack use parallel subagents wherever tasks are independent — scoring criteria, researching hypotheses, generating channel strategies. This document explains how multi-agent patterns work in each supported coding agent, and how skills are designed to take advantage of them.
 

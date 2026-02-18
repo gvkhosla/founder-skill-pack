@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founder Skill Pack — Agent skills for founders</title>
+  <title>Founder Skills — Agent skills for founders</title>
   <meta name="description" content="24 agent skills covering every phase of building a product — from idea to PMF. Works with pi, Codex, and Claude Code." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,14 +15,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Founder Skill Pack" />
+  <meta property="og:title" content="Founder Skills" />
   <meta property="og:description" content="24 agent skills for founders building world-class products." />
-  <meta property="og:url" content="https://founder-skill-pack.vercel.app" />
-  <meta property="og:image" content="https://founder-skill-pack.vercel.app/og.png" />
+  <meta property="og:url" content="https://fskills.xyz" />
+  <meta property="og:image" content="https://fskills.xyz/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://founder-skill-pack.vercel.app/og.png" />
+  <meta name="twitter:image" content="https://fskills.xyz/og.png" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -515,13 +515,13 @@
 <nav>
   <a href="/" class="nav-brand">
     <img src="/favicon.svg" alt="FS" />
-    <span>founder skill pack</span>
+    <span>founder skills</span>
   </a>
   <div class="nav-right">
     <a href="#skills" class="hide-sm">skills</a>
     <a href="#install" class="hide-sm">install</a>
     <a href="/llms.txt" class="hide-sm">for agents</a>
-    <a href="https://github.com/gvkhosla/founder-skill-pack" target="_blank" class="btn-gh">
+    <a href="https://github.com/gvkhosla/founder-skills" target="_blank" class="btn-gh">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       GitHub
     </a>
@@ -542,7 +542,7 @@
     <div class="hero-actions">
       <div class="install-box" onclick="copyCmd(this)">
         <span class="prompt">$</span>
-        <span>bash scripts/install.sh pi</span>
+        <span>npx founder-skills install --agent pi</span>
         <span class="copy-hint">click to copy</span>
       </div>
       <p class="hero-agents">
@@ -562,9 +562,9 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">01 — install</div>
-        <h3>Clone & install</h3>
+        <h3>Install</h3>
         <p>One command installs all 24 skills into your agent's skill directory.</p>
-        <code>bash scripts/install.sh pi</code>
+        <code>npx founder-skills install --agent pi</code>
       </div>
       <div class="step">
         <div class="step-num">02 — invoke</div>
@@ -645,7 +645,7 @@
       </div>
       <div class="skills-grid">
         <div class="skill"><div class="skill-name">mvp-scoper</div><div class="skill-output">→ <code>mvp-brief.md</code></div><div class="skill-invoke">"Scope my MVP"</div></div>
-        <div class="skill"><div class="skill-name">problem-validator</div><div class="skill-output">→ <code>problem-validation.md</code></div><div class="skill-invoke">"Validate my problem"</div></div>
+        <div class="skill"><div class="skill-name">problem-validator</div><div class="skill-output">→ <code>problem-validation-report.md</code></div><div class="skill-invoke">"Validate my problem"</div></div>
         <div class="skill"><div class="skill-name">customer-hypothesis</div><div class="skill-output">→ <code>customer-profile.md</code></div><div class="skill-invoke">"Define my customer"</div></div>
         <div class="skill"><div class="skill-name">assumption-mapper</div><div class="skill-output">→ <code>assumptions-map.md</code></div><div class="skill-invoke">"Map my assumptions"</div></div>
       </div>
@@ -660,7 +660,7 @@
       </div>
       <div class="skills-grid">
         <div class="skill"><div class="skill-name">ux-flow-designer</div><div class="skill-output">→ <code>user-flows.md</code></div><div class="skill-invoke">"Design my user flows"</div></div>
-        <div class="skill"><div class="skill-name">design-direction-setter</div><div class="skill-output">→ <code>design-direction.md</code></div><div class="skill-invoke">"Set my design direction"</div></div>
+        <div class="skill"><div class="skill-name">design-direction-setter</div><div class="skill-output">→ <code>design-brief.md</code></div><div class="skill-invoke">"Set my design direction"</div></div>
         <div class="skill"><div class="skill-name">ux-heuristics-reviewer</div><div class="skill-output">→ <code>ux-review.md</code></div><div class="skill-invoke">"Review my UX"</div></div>
       </div>
     </div>
@@ -674,9 +674,9 @@
       </div>
       <div class="skills-grid">
         <div class="skill"><div class="skill-name">stack-selector</div><div class="skill-output">→ <code>stack-decision.md</code></div><div class="skill-invoke">"Pick my stack"</div></div>
-        <div class="skill"><div class="skill-name">feature-sequencer</div><div class="skill-output">→ <code>feature-sequence.md</code></div><div class="skill-invoke">"Sequence my features"</div></div>
-        <div class="skill"><div class="skill-name">integration-picker</div><div class="skill-output">→ <code>integrations.md</code></div><div class="skill-invoke">"Pick my integrations"</div></div>
-        <div class="skill"><div class="skill-name">architecture-explainer</div><div class="skill-output">→ <code>architecture.md</code></div><div class="skill-invoke">"Explain my architecture"</div></div>
+        <div class="skill"><div class="skill-name">feature-sequencer</div><div class="skill-output">→ <code>build-sequence.md</code></div><div class="skill-invoke">"Sequence my features"</div></div>
+        <div class="skill"><div class="skill-name">integration-picker</div><div class="skill-output">→ <code>integrations-plan.md</code></div><div class="skill-invoke">"Pick my integrations"</div></div>
+        <div class="skill"><div class="skill-name">architecture-explainer</div><div class="skill-output">→ <code>architecture-overview.md</code></div><div class="skill-invoke">"Explain my architecture"</div></div>
       </div>
     </div>
 
@@ -689,9 +689,9 @@
       </div>
       <div class="skills-grid">
         <div class="skill"><div class="skill-name">positioning-writer</div><div class="skill-output">→ <code>positioning.md</code></div><div class="skill-invoke">"Write my positioning"</div></div>
-        <div class="skill"><div class="skill-name">landing-page-copywriter</div><div class="skill-output">→ <code>landing-page.md</code></div><div class="skill-invoke">"Write my landing page"</div></div>
+        <div class="skill"><div class="skill-name">landing-page-copywriter</div><div class="skill-output">→ <code>landing-page-copy.md</code></div><div class="skill-invoke">"Write my landing page"</div></div>
         <div class="skill"><div class="skill-name">launch-plan-builder</div><div class="skill-output">→ <code>launch-plan.md</code></div><div class="skill-invoke">"Build my launch plan"</div></div>
-        <div class="skill"><div class="skill-name">pricing-model-framer</div><div class="skill-output">→ <code>pricing.md</code></div><div class="skill-invoke">"Frame my pricing"</div></div>
+        <div class="skill"><div class="skill-name">pricing-model-framer</div><div class="skill-output">→ <code>pricing-model.md</code></div><div class="skill-invoke">"Frame my pricing"</div></div>
       </div>
     </div>
 
@@ -775,7 +775,7 @@
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
           llms.txt
         </a>
-        <a href="https://github.com/gvkhosla/founder-skill-pack" class="agent-link" target="_blank">
+        <a href="https://github.com/gvkhosla/founder-skills" class="agent-link" target="_blank">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -789,7 +789,7 @@
   <section style="padding-top: 0;">
     <p class="label">Install</p>
     <h2>Ready in 30 seconds</h2>
-    <p class="section-sub">Clone the repo, run one command. Skills install directly into your agent's skill directory.</p>
+    <p class="section-sub">No clone required. Run one command with npx and install directly into your agent's skill directory.</p>
 
     <div class="install-tabs">
       <button class="tab active" onclick="showTab('pi',this)">pi</button>
@@ -798,41 +798,29 @@
     </div>
 
     <div id="tab-pi" class="panel active">
-      <pre><span class="c"># Clone</span>
-<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
-<span class="cmd">cd founder-skill-pack</span>
-
-<span class="c"># Install all 24 skills</span>
-<span class="cmd">bash scripts/install.sh pi</span>
+      <pre><span class="c"># Install all 24 skills</span>
+<span class="cmd">npx founder-skills install --agent pi</span>
 
 <span class="c"># Or just one phase</span>
-<span class="cmd">bash scripts/install.sh pi strategy</span></pre>
+<span class="cmd">npx founder-skills install --agent pi --phase strategy</span></pre>
       <p class="panel-note">Installs to <code>~/.pi/agent/skills/</code> — available across all your projects.</p>
     </div>
 
     <div id="tab-codex" class="panel">
-      <pre><span class="c"># Clone</span>
-<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
-<span class="cmd">cd founder-skill-pack</span>
-
-<span class="c"># Generate AGENTS.md</span>
-<span class="cmd">bash scripts/install.sh codex</span>
+      <pre><span class="c"># Generate Codex skills file</span>
+<span class="cmd">npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md</span>
 
 <span class="c"># Add to your project</span>
-<span class="cmd">cat skills/codex/AGENTS.md >> your-project/AGENTS.md</span></pre>
+<span class="cmd">cat AGENTS.founder-skills.md >> your-project/AGENTS.md</span></pre>
       <p class="panel-note">Parallel phases run sequentially in Codex — same output, same quality.</p>
     </div>
 
     <div id="tab-claude" class="panel">
-      <pre><span class="c"># Clone</span>
-<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
-<span class="cmd">cd founder-skill-pack</span>
-
-<span class="c"># Install globally (all projects)</span>
-<span class="cmd">bash scripts/install.sh claude</span>
+      <pre><span class="c"># Install globally (all projects)</span>
+<span class="cmd">npx founder-skills install --agent claude</span>
 
 <span class="c"># Or project-only</span>
-<span class="cmd">bash scripts/install.sh claude .</span></pre>
+<span class="cmd">npx founder-skills install --agent claude --scope project</span></pre>
       <p class="panel-note">Global: <code>~/.claude/skills/</code> · Project: <code>.claude/skills/</code></p>
     </div>
   </section>
@@ -842,13 +830,13 @@
 <footer>
   <div class="footer-brand">
     <img src="/favicon.svg" alt="FS" />
-    founder skill pack
+    founder skills
   </div>
   <div class="footer-links">
-    <a href="https://github.com/gvkhosla/founder-skill-pack" target="_blank">GitHub</a>
+    <a href="https://github.com/gvkhosla/founder-skills" target="_blank">GitHub</a>
     <a href="/llms.txt">for agents</a>
-    <a href="https://github.com/gvkhosla/founder-skill-pack/blob/main/docs/PHILOSOPHY.md" target="_blank">philosophy</a>
-    <a href="https://github.com/gvkhosla/founder-skill-pack/blob/main/docs/AUTHORING.md" target="_blank">contribute</a>
+    <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/PHILOSOPHY.md" target="_blank">philosophy</a>
+    <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/AUTHORING.md" target="_blank">contribute</a>
   </div>
   <p class="footer-copy">MIT License · 24 skills · 6 phases · built for founders</p>
 </footer>
@@ -862,7 +850,7 @@ function showTab(name, btn) {
 }
 
 function copyCmd(el) {
-  const cmd = 'git clone https://github.com/gvkhosla/founder-skill-pack.git && cd founder-skill-pack && bash scripts/install.sh pi';
+  const cmd = 'npx founder-skills install --agent pi';
   navigator.clipboard.writeText(cmd).then(() => {
     const hint = el.querySelector('.copy-hint');
     hint.textContent = 'copied!';

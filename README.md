@@ -27,7 +27,7 @@ You don't need all 24. Start where you are.
 | Skill | What it produces | Invoke with |
 |-------|-----------------|-------------|
 | `mvp-scoper` | `mvp-brief.md` — scoped MVP with 3 must-have features | "Scope my MVP" |
-| `problem-validator` | `problem-validation.md` — evidence the problem is real | "Validate my problem" |
+| `problem-validator` | `problem-validation-report.md` — evidence the problem is real | "Validate my problem" |
 | `customer-hypothesis` | `customer-profile.md` — specific customer portrait | "Define my customer" |
 | `assumption-mapper` | `assumptions-map.md` — ranked risky bets with cheap tests | "Map my assumptions" |
 
@@ -36,7 +36,7 @@ You don't need all 24. Start where you are.
 | Skill | What it produces | Invoke with |
 |-------|-----------------|-------------|
 | `ux-flow-designer` | `user-flows.md` — 3 core flows mapped step by step | "Design my user flows" |
-| `design-direction-setter` | `design-direction.md` — visual vocabulary and moodboard brief | "Set my design direction" |
+| `design-direction-setter` | `design-brief.md` — visual vocabulary and moodboard brief | "Set my design direction" |
 | `ux-heuristics-reviewer` | `ux-review.md` — 10 heuristics scored with fixes | "Review my UX" |
 
 ### Build — Decisions, not debates
@@ -44,18 +44,18 @@ You don't need all 24. Start where you are.
 | Skill | What it produces | Invoke with |
 |-------|-----------------|-------------|
 | `stack-selector` | `stack-decision.md` — specific tech stack with rationale | "Pick my stack" |
-| `feature-sequencer` | `feature-sequence.md` — ordered build sequence | "Sequence my features" |
-| `integration-picker` | `integrations.md` — specific tools per job-to-be-done | "Pick my integrations" |
-| `architecture-explainer` | `architecture.md` — system explained in plain English | "Explain my architecture" |
+| `feature-sequencer` | `build-sequence.md` — ordered build sequence | "Sequence my features" |
+| `integration-picker` | `integrations-plan.md` — specific tools per job-to-be-done | "Pick my integrations" |
+| `architecture-explainer` | `architecture-overview.md` — system explained in plain English | "Explain my architecture" |
 
 ### Launch — Ship with confidence
 
 | Skill | What it produces | Invoke with |
 |-------|-----------------|-------------|
 | `positioning-writer` | `positioning.md` — one-liner, elevator pitch, tagline | "Write my positioning" |
-| `landing-page-copywriter` | `landing-page.md` — full landing page copy | "Write my landing page" |
+| `landing-page-copywriter` | `landing-page-copy.md` — full landing page copy | "Write my landing page" |
 | `launch-plan-builder` | `launch-plan.md` — week-by-week plan across 3 channels | "Build my launch plan" |
-| `pricing-model-framer` | `pricing.md` — pricing model with rationale | "Frame my pricing" |
+| `pricing-model-framer` | `pricing-model.md` — pricing model with rationale | "Frame my pricing" |
 
 ### Compound — The recurring ritual
 
@@ -85,36 +85,35 @@ You don't need all 24. Start where you are.
 
 ## Install
 
-```bash
-git clone https://github.com/gvkhosla/founder-skills.git
-cd founder-skills
-```
+**No clone required (recommended):**
 
-**For pi:**
 ```bash
-bash scripts/install.sh pi
-```
+# Install all skills for pi
+npx founder-skills install --agent pi
 
-**For Claude (global):**
-```bash
-bash scripts/install.sh claude
-```
+# Install all skills for Claude globally
+npx founder-skills install --agent claude
 
-**For Claude (project only):**
-```bash
-bash scripts/install.sh claude .
-```
+# Install Claude skills in current project only
+npx founder-skills install --agent claude --scope project
 
-**For Codex:**
-```bash
-bash scripts/install.sh codex
-# then add skills/codex/AGENTS.md contents to your project's AGENTS.md
+# Generate Codex AGENTS file in current directory
+npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md
 ```
 
 **Install a single phase:**
+
 ```bash
-bash scripts/install.sh pi strategy
-bash scripts/install.sh claude pmf
+npx founder-skills install --agent pi --phase strategy
+npx founder-skills install --agent claude --phase pmf
+```
+
+**Optional: clone + bash installer (legacy path):**
+
+```bash
+git clone https://github.com/gvkhosla/founder-skills.git
+cd founder-skills
+bash scripts/install.sh pi
 ```
 
 ---
@@ -193,6 +192,12 @@ Full philosophy: [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md)
 ## Contributing
 
 Read [docs/AUTHORING.md](docs/AUTHORING.md) first. Every skill must follow the 7 laws and the canonical template. Skills that produce option lists instead of recommendations won't be accepted. Skills that don't produce a concrete artifact won't be accepted.
+
+Run validation before opening a PR:
+
+```bash
+npm run check
+```
 
 Open an issue before writing a new skill — check the existing ones for overlap first.
 

@@ -36,7 +36,7 @@
         font-family="system-ui,-apple-system,sans-serif"
         font-size="72" font-weight="800"
         fill="#f0f0f0" letter-spacing="-2">
-    Founder Skill Pack
+    Founder Skills
   </text>
 
   <!-- Sub -->
@@ -95,6 +95,6 @@
   <text x="72" y="568"
         font-family="'SF Mono',monospace"
         font-size="15" fill="#2a2a2a">
-    github.com/gvkhosla/founder-skill-pack
+    github.com/gvkhosla/founder-skills
   </text>
 </svg>
