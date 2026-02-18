@@ -1,0 +1,12 @@
+{
+  "name": "founder-skill-pack",
+  "version": "0.1.0",
+  "description": "A curated collection of agent skills for non-technical founders building world-class products",
+  "scripts": {
+    "generate": "node scripts/generate-skill-data.js",
+    "dev": "npm run generate && cd marketplace && npm run dev",
+    "build": "npm run generate && cd marketplace && npm run build"
+  },
+  "keywords": ["ai", "agents", "skills", "founders", "product", "claude", "pi"],
+  "license": "MIT"
+}
