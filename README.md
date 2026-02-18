@@ -1,5 +1,7 @@
 # Founder Skill Pack
 
+![Founder Skill Pack](site/og.png)
+
 **24 agent skills for non-technical founders building world-class products.**
 
 Skills for pi, Claude Code, and Codex. Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
