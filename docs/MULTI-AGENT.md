@@ -17,7 +17,7 @@ The pattern from compound-engineering: `/compound` uses 5 parallel subagents (Co
 
 ## Agent Capability Matrix
 
-| Capability | pi | Claude Code | Codex |
+| Capability | pi | Claude | Codex |
 |-----------|-----|------------|-------|
 | Spawn parallel subagents (Task tool) | ✅ | ✅ | ⚠️ Sequential |
 | Persistent teammate teams (TeammateTool) | ✅ | ✅ | ❌ |
@@ -114,7 +114,7 @@ Spawn these agents in parallel (Task tool, run_in_background: true):
 Wait for all 5. Synthesize into mpp-scorecard.md.
 ```
 
-### Claude Code
+### Claude
 
 Use the `Task` tool with subagent types:
 
@@ -207,4 +207,4 @@ Spawn these agents simultaneously — do not run them sequentially:
 Wait for all agents to return. Then synthesize.
 ```
 
-This description works in pi, Claude Code, and as a sequential checklist in Codex/OpenCode.
+This description works in pi, Claude, and as a sequential checklist in Codex/OpenCode.

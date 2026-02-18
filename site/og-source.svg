@@ -125,7 +125,7 @@
     <text x="84"  y="508" fill="#666">pi</text>
 
     <rect x="128" y="490" width="108" height="26" rx="4" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
-    <text x="140" y="508" fill="#666">Claude Code</text>
+    <text x="140" y="508" fill="#666">Claude</text>
 
     <rect x="246" y="490" width="68" height="26" rx="4" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
     <text x="258" y="508" fill="#666">Codex</text>

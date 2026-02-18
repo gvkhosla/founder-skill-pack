@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Founder Skill Pack — Universal Installer
-# Supports: pi, Claude Code, Codex
+# Supports: pi, Claude, Codex
 # Usage: bash scripts/install.sh [agent] [phase]
 #
 # Examples:
 #   bash scripts/install.sh pi          # Install all skills for pi
-#   bash scripts/install.sh claude      # Install all skills for Claude Code (global)
-#   bash scripts/install.sh claude .    # Install all skills for Claude Code (project)
+#   bash scripts/install.sh claude      # Install all skills for Claude (global)
+#   bash scripts/install.sh claude .    # Install all skills for Claude (project)
 #   bash scripts/install.sh codex       # Generate Codex AGENTS.md entry
 #   bash scripts/install.sh pi strategy # Install only the strategy phase for pi
 
@@ -34,8 +34,8 @@ print_usage() {
   echo ""
   echo "Examples:"
   echo "  bash scripts/install.sh pi              # All skills for pi"
-  echo "  bash scripts/install.sh claude          # All skills for Claude Code (global ~/.claude/)"
-  echo "  bash scripts/install.sh claude .        # All skills for Claude Code (project .claude/)"
+  echo "  bash scripts/install.sh claude          # All skills for Claude (global ~/.claude/)"
+  echo "  bash scripts/install.sh claude .        # All skills for Claude (project .claude/)"
   echo "  bash scripts/install.sh codex           # Generate skills/codex/AGENTS.md"
   echo "  bash scripts/install.sh pi strategy     # Only Strategy phase for pi"
 }
@@ -98,10 +98,10 @@ install_claude() {
 
   if [ "$scope" = "." ] || [ "$scope" = "--local" ]; then
     claude_dir="$(pwd)/.claude/skills"
-    echo -e "${BLUE}Installing for Claude Code → .claude/skills/ (project scope)${NC}"
+    echo -e "${BLUE}Installing for Claude → .claude/skills/ (project scope)${NC}"
   else
     claude_dir="$HOME/.claude/skills"
-    echo -e "${BLUE}Installing for Claude Code → ~/.claude/skills/ (global scope)${NC}"
+    echo -e "${BLUE}Installing for Claude → ~/.claude/skills/ (global scope)${NC}"
   fi
 
   mkdir -p "$claude_dir"
@@ -125,10 +125,10 @@ install_claude() {
   done < <(get_skill_dirs "$PHASE")
 
   echo ""
-  echo -e "${GREEN}✓ $count skills installed for Claude Code${NC}"
+  echo -e "${GREEN}✓ $count skills installed for Claude${NC}"
   echo ""
   echo "To use a skill, say: 'Use the [skill-name] skill'"
-  echo "or describe what you need — Claude Code will reference the SKILL.md"
+  echo "or describe what you need — Claude will reference the SKILL.md"
 }
 
 # ─── CODEX INSTALL ───────────────────────────────────────────────────────────
@@ -188,7 +188,7 @@ case "$AGENT" in
   pi)
     install_pi
     ;;
-  claude|claude-code)
+  claude|claude)
     install_claude "$PHASE" "${2:-}"
     ;;
   codex|openai)

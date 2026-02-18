@@ -4,7 +4,7 @@
 
 **24 agent skills for non-technical founders building world-class products.**
 
-Skills for pi, Claude Code, and Codex. Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
+Skills for pi, Claude, and Codex. Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
 
 ---
 
@@ -95,12 +95,12 @@ cd founder-skill-pack
 bash scripts/install.sh pi
 ```
 
-**For Claude Code (global):**
+**For Claude (global):**
 ```bash
 bash scripts/install.sh claude
 ```
 
-**For Claude Code (project only):**
+**For Claude (project only):**
 ```bash
 bash scripts/install.sh claude .
 ```
@@ -135,7 +135,7 @@ Skills are self-contained. No internet required. No API keys. No setup beyond in
 
 ## Multi-Agent
 
-Skills with independent workstreams spawn parallel subagents. pi and Claude Code execute this natively. Codex runs the same steps sequentially (every parallelized skill includes a Sequential Fallback section).
+Skills with independent workstreams spawn parallel subagents. pi and Claude execute this natively. Codex runs the same steps sequentially (every parallelized skill includes a Sequential Fallback section).
 
 **Skills with parallel execution:**
 - `assumption-mapper` — N agents, one per assumption

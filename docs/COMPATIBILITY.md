@@ -1,12 +1,12 @@
 # Agent Compatibility Guide
 
-Skills in this pack are designed to work across **pi**, **Claude Code**, and **Codex** without modification. This document explains how, and what to expect from each agent.
+Skills in this pack are designed to work across **pi**, **Claude**, and **Codex** without modification. This document explains how, and what to expect from each agent.
 
 ---
 
 ## Compatibility Matrix
 
-| Feature | pi | Claude Code | Codex |
+| Feature | pi | Claude | Codex |
 |---------|-----|------------|-------|
 | SKILL.md format | ✅ Native | ✅ Native | ✅ Markdown read |
 | Auto-discovery by description | ✅ | ✅ | Manual |
@@ -14,7 +14,7 @@ Skills in this pack are designed to work across **pi**, **Claude Code**, and **C
 | Spawn parallel subagents | ✅ | ✅ | ⚠️ Sequential |
 | Background knowledge loading | ✅ | ✅ | ❌ |
 
-**Key rule:** Skills describe their parallel intent. pi and Claude Code execute it natively. Codex runs the same steps sequentially — same output, longer time.
+**Key rule:** Skills describe their parallel intent. pi and Claude execute it natively. Codex runs the same steps sequentially — same output, longer time.
 
 ---
 
@@ -36,7 +36,7 @@ Skills install to `~/.pi/agent/skills/[skill-name]/`. Global across all projects
 
 ---
 
-### Claude Code
+### Claude
 
 ```bash
 # Install globally (all projects)
@@ -80,7 +80,7 @@ Copy `skills/partner/founder-partner/context-template.md` to your project root a
 
 ## Parallel Execution Details
 
-### pi and Claude Code
+### pi and Claude
 
 Skills that describe parallel subagent spawning will execute in parallel — multiple independent agents run simultaneously, then the orchestrator synthesizes. This is the intended experience.
 
@@ -96,9 +96,9 @@ Codex agents read the "Sequential Fallback" section that every parallelized skil
 - Skills in `~/.pi/agent/skills/` load globally across all projects
 - `founder-partner` works best here — context loads automatically at session start
 
-### Claude Code
+### Claude
 - Project-level skills (`.claude/skills/`) take precedence over global (`~/.claude/skills/`) with the same name
-- `founder-context.md` must be in the working directory where Claude Code is running
+- `founder-context.md` must be in the working directory where Claude is running
 
 ### Codex
 - No native skill format — use AGENTS.md or system prompt injection
