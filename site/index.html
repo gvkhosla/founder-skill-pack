@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founder Skill Pack — Agent skills for founders</title>
+  <meta name="description" content="24 agent skills for non-technical founders building world-class products. Works with pi, Claude Code, and Codex." />
+  <meta property="og:title" content="Founder Skill Pack" />
+  <meta property="og:description" content="24 agent skills for non-technical founders building world-class products." />
+  <meta property="og:url" content="https://founderskillpack.vercel.app" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --surface: #111;
+      --border: #1e1e1e;
+      --muted: #444;
+      --text: #e8e8e8;
+      --dim: #888;
+      --mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+      --strategy: #818cf8;
+      --design:   #f472b6;
+      --build:    #fbbf24;
+      --launch:   #34d399;
+      --compound: #a78bfa;
+      --pmf:      #22d3ee;
+      --partner:  #fb923c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--dim);
+    }
+    .nav-logo span { color: var(--text); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--dim);
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn-github {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--dim);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-github:hover { border-color: var(--muted); color: var(--text); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--dim);
+      font-family: var(--mono);
+      margin-bottom: 2rem;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--partner);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      color: #f0f0f0;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--dim);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-install {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      position: relative;
+    }
+    .hero-install .prompt { color: var(--muted); user-select: none; }
+    .hero-install .copy-hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: var(--sans);
+      border-left: 1px solid var(--border);
+      padding-left: 0.75rem;
+    }
+
+    .hero-agents {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+    .hero-agents span {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin: 0 0.2rem;
+    }
+
+    /* ── JOURNEY ────────────────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .journey {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .journey-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 2.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .phase {
+      flex: 1;
+      min-width: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .phase:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 20px;
+      width: 1px; height: 1px;
+    }
+
+    .phase-arrow {
+      display: flex; align-items: center;
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .phase-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      border: 2px solid transparent;
+      background: var(--surface);
+    }
+    .phase-name {
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      color: var(--dim);
+      text-align: center;
+    }
+    .phase-count {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      text-align: center;
+    }
+
+    .phase[data-p=strategy] .phase-dot { border-color: var(--strategy); color: var(--strategy); }
+    .phase[data-p=design]   .phase-dot { border-color: var(--design);   color: var(--design);   }
+    .phase[data-p=build]    .phase-dot { border-color: var(--build);     color: var(--build);    }
+    .phase[data-p=launch]   .phase-dot { border-color: var(--launch);    color: var(--launch);   }
+    .phase[data-p=compound] .phase-dot { border-color: var(--compound);  color: var(--compound); }
+    .phase[data-p=pmf]      .phase-dot { border-color: var(--pmf);       color: var(--pmf);      }
+
+    .journey-connector {
+      display: flex; align-items: flex-start;
+      padding-top: 19px;
+      color: var(--muted);
+      font-size: 0.7rem;
+    }
+    .journey-connector::before { content: '→'; }
+
+    /* ── SKILLS ─────────────────────────────────────────────── */
+    .skills-section { max-width: 900px; margin: 0 auto; }
+
+    .phase-group { margin-bottom: 3rem; }
+
+    .phase-header {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-pill {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .phase-header h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .phase-header .phase-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    [data-p=strategy] .phase-pill { border-color: var(--strategy); color: var(--strategy); }
+    [data-p=design]   .phase-pill { border-color: var(--design);   color: var(--design);   }
+    [data-p=build]    .phase-pill { border-color: var(--build);     color: var(--build);    }
+    [data-p=launch]   .phase-pill { border-color: var(--launch);    color: var(--launch);   }
+    [data-p=compound] .phase-pill { border-color: var(--compound);  color: var(--compound); }
+    [data-p=pmf]      .phase-pill { border-color: var(--pmf);       color: var(--pmf);      }
+    [data-p=partner]  .phase-pill { border-color: var(--partner);   color: var(--partner);  }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      transition: border-color 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .skill-card:hover { border-color: var(--muted); }
+
+    .skill-name {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    .skill-output {
+      font-size: 0.76rem;
+      color: var(--dim);
+    }
+    .skill-output code {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .skill-invoke {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── PARTNER SPOTLIGHT ──────────────────────────────────── */
+    .partner-spot {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-spot::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--partner), var(--pmf), var(--compound));
+    }
+
+    .partner-spot h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .partner-spot p {
+      color: var(--dim);
+      font-size: 0.95rem;
+      max-width: 560px;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .partner-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+    .partner-feat {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .feat-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .feat-text { color: var(--dim); }
+
+    /* ── INSTALL ────────────────────────────────────────────── */
+    .install-section {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .install-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .install-section > p {
+      color: var(--dim);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .install-tabs {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: none;
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      transition: background 0.15s, color 0.15s;
+    }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn.active { background: #161616; color: var(--text); }
+
+    .install-panel {
+      display: none;
+      background: #0e0e0e;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .install-panel.active { display: block; }
+
+    .install-panel pre {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+    .install-panel .comment { color: var(--muted); }
+    .install-panel .cmd { color: #93c5fd; }
+
+    .install-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── STATS ──────────────────────────────────────────────── */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-top: 0.25rem;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: #333;
+    }
+
+    /* ── UTILITIES ───────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; }
+    .text-center { text-align: center; }
+
+    @media (max-width: 600px) {
+      .journey-flow { gap: 0.25rem; }
+      .journey-connector { display: none; }
+      nav { padding: 0 1rem; }
+      .hero { padding: 8rem 1.25rem 4rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .partner-spot { padding: 1.75rem; }
+      .stats { gap: 2rem; }
+      .nav-links .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">founder<span>-skill-pack</span></div>
+  <div class="nav-links">
+    <a href="#skills" class="hide-mobile">Skills</a>
+    <a href="#install" class="hide-mobile">Install</a>
+    <a href="https://github.com/gvkhosla/founder-skill-pack" target="_blank" class="btn-github">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    24 skills · 6 phases · MIT license
+  </div>
+  <h1>Agent skills for founders<br>who build world-class products</h1>
+  <p class="hero-sub">
+    From validating the idea to reading PMF signals — every phase of building, encoded as agent skills that produce real artifacts.
+  </p>
+  <div class="hero-install" onclick="copyInstall(this)">
+    <span class="prompt">$</span>
+    <span id="install-cmd">bash &lt;(curl -fsSL https://raw.githubusercontent.com/gvkhosla/founder-skill-pack/main/scripts/install.sh) pi</span>
+    <span class="copy-hint">click to copy</span>
+  </div>
+  <br/>
+  <div class="hero-agents">
+    works with
+    <span>pi</span>
+    <span>Claude Code</span>
+    <span>Codex</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">24</div>
+    <div class="stat-label">skills</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label">phases</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-label">agents supported</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">build cycles</div>
+  </div>
+</div>
+
+<!-- JOURNEY -->
+<section>
+  <div class="journey">
+    <p class="section-label">The Journey</p>
+    <h2 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:0.5rem;">One continuous path, six phases</h2>
+    <p style="color:var(--dim);font-size:0.9rem;max-width:520px;">Each phase has its own skills. Start where you are. Every skill produces a <code style="font-family:var(--mono);font-size:0.85rem;color:var(--muted)">.md</code> artifact — not advice, not a framework overview.</p>
+
+    <div class="journey-flow">
+      <div class="phase" data-p="strategy">
+        <div class="phase-dot">⬡</div>
+        <div class="phase-name">Strategy</div>
+        <div class="phase-count">4 skills</div>
+      </div>
+      <div class="journey-connector"></div>
+      <div class="phase" data-p="design">
+        <div class="phase-dot">◇</div>
+        <div class="phase-name">Design</div>
+        <div class="phase-count">3 skills</div>
+      </div>
+      <div class="journey-connector"></div>
+      <div class="phase" data-p="build">
+        <div class="phase-dot">⬟</div>
+        <div class="phase-name">Build</div>
+        <div class="phase-count">4 skills</div>
+      </div>
+      <div class="journey-connector"></div>
+      <div class="phase" data-p="launch">
+        <div class="phase-dot">▷</div>
+        <div class="phase-name">Launch</div>
+        <div class="phase-count">4 skills</div>
+      </div>
+      <div class="journey-connector"></div>
+      <div class="phase" data-p="compound">
+        <div class="phase-dot">↺</div>
+        <div class="phase-name">Compound</div>
+        <div class="phase-count">3 skills</div>
+      </div>
+      <div class="journey-connector"></div>
+      <div class="phase" data-p="pmf">
+        <div class="phase-dot">◎</div>
+        <div class="phase-name">PMF</div>
+        <div class="phase-count">5 skills</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="padding-top:2rem;">
+  <div class="skills-section">
+    <p class="section-label">All Skills</p>
+    <h2 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:2rem;">Every skill, every phase</h2>
+
+    <!-- Strategy -->
+    <div class="phase-group" data-p="strategy">
+      <div class="phase-header">
+        <span class="phase-pill">strategy</span>
+        <h3>Validate before you build</h3>
+        <span class="phase-desc hide-mobile">Is the problem real? Is the customer specific?</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">mvp-scoper</div>
+          <div class="skill-output">→ <code>mvp-brief.md</code></div>
+          <div class="skill-invoke">"Scope my MVP"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">problem-validator</div>
+          <div class="skill-output">→ <code>problem-validation.md</code></div>
+          <div class="skill-invoke">"Validate my problem"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">customer-hypothesis</div>
+          <div class="skill-output">→ <code>customer-profile.md</code></div>
+          <div class="skill-invoke">"Define my customer"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">assumption-mapper</div>
+          <div class="skill-output">→ <code>assumptions-map.md</code></div>
+          <div class="skill-invoke">"Map my assumptions"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design -->
+    <div class="phase-group" data-p="design">
+      <div class="phase-header">
+        <span class="phase-pill">design</span>
+        <h3>UX before UI</h3>
+        <span class="phase-desc hide-mobile">Flows, direction, heuristics</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">ux-flow-designer</div>
+          <div class="skill-output">→ <code>user-flows.md</code></div>
+          <div class="skill-invoke">"Design my user flows"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">design-direction-setter</div>
+          <div class="skill-output">→ <code>design-direction.md</code></div>
+          <div class="skill-invoke">"Set my design direction"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">ux-heuristics-reviewer</div>
+          <div class="skill-output">→ <code>ux-review.md</code></div>
+          <div class="skill-invoke">"Review my UX"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Build -->
+    <div class="phase-group" data-p="build">
+      <div class="phase-header">
+        <span class="phase-pill">build</span>
+        <h3>Decisions, not debates</h3>
+        <span class="phase-desc hide-mobile">Stack, sequence, integrations, architecture</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">stack-selector</div>
+          <div class="skill-output">→ <code>stack-decision.md</code></div>
+          <div class="skill-invoke">"Pick my stack"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">feature-sequencer</div>
+          <div class="skill-output">→ <code>feature-sequence.md</code></div>
+          <div class="skill-invoke">"Sequence my features"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">integration-picker</div>
+          <div class="skill-output">→ <code>integrations.md</code></div>
+          <div class="skill-invoke">"Pick my integrations"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">architecture-explainer</div>
+          <div class="skill-output">→ <code>architecture.md</code></div>
+          <div class="skill-invoke">"Explain my architecture"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Launch -->
+    <div class="phase-group" data-p="launch">
+      <div class="phase-header">
+        <span class="phase-pill">launch</span>
+        <h3>Ship with confidence</h3>
+        <span class="phase-desc hide-mobile">Positioning, copy, channels, pricing</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">positioning-writer</div>
+          <div class="skill-output">→ <code>positioning.md</code></div>
+          <div class="skill-invoke">"Write my positioning"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">landing-page-copywriter</div>
+          <div class="skill-output">→ <code>landing-page.md</code></div>
+          <div class="skill-invoke">"Write my landing page"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">launch-plan-builder</div>
+          <div class="skill-output">→ <code>launch-plan.md</code></div>
+          <div class="skill-invoke">"Build my launch plan"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">pricing-model-framer</div>
+          <div class="skill-output">→ <code>pricing.md</code></div>
+          <div class="skill-invoke">"Frame my pricing"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compound -->
+    <div class="phase-group" data-p="compound">
+      <div class="phase-header">
+        <span class="phase-pill">compound</span>
+        <h3>The recurring ritual</h3>
+        <span class="phase-desc hide-mobile">Not a one-time step. Repeat until PMF.</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">build-cycle</div>
+          <div class="skill-output">→ <code>cycles/YYYY-MM-DD.md</code></div>
+          <div class="skill-invoke">"Start a build cycle"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">mpp-evaluator</div>
+          <div class="skill-output">→ <code>mpp-scorecard.md</code></div>
+          <div class="skill-invoke">"Evaluate my MPP"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">failure-navigator</div>
+          <div class="skill-output">→ <code>diagnosis.md</code></div>
+          <div class="skill-invoke">"Help me through a failure"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PMF -->
+    <div class="phase-group" data-p="pmf">
+      <div class="phase-header">
+        <span class="phase-pill">pmf</span>
+        <h3>Find and amplify what's working</h3>
+        <span class="phase-desc hide-mobile">Signals, metrics, loops, churn</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-name">pmf-signal-reader</div>
+          <div class="skill-output">→ <code>pmf-assessment.md</code></div>
+          <div class="skill-invoke">"Read my PMF signals"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">north-star-definer</div>
+          <div class="skill-output">→ <code>north-star.md</code></div>
+          <div class="skill-invoke">"Define my north star"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">retention-loop-designer</div>
+          <div class="skill-output">→ <code>retention-loop.md</code></div>
+          <div class="skill-invoke">"Design my retention loop"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">growth-loop-builder</div>
+          <div class="skill-output">→ <code>growth-loop.md</code></div>
+          <div class="skill-invoke">"Build my growth loop"</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-name">churn-diagnostician</div>
+          <div class="skill-output">→ <code>churn-diagnosis.md</code></div>
+          <div class="skill-invoke">"Diagnose my churn"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partner -->
+    <div class="phase-group" data-p="partner">
+      <div class="phase-header">
+        <span class="phase-pill">partner</span>
+        <h3>Your co-founder in a skill</h3>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card" style="grid-column:1/-1;max-width:400px;">
+          <div class="skill-name">founder-partner</div>
+          <div class="skill-output">→ <code>founder-context.md</code> (updated)</div>
+          <div class="skill-invoke">"Partner" — reads everything before speaking</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARTNER SPOTLIGHT -->
+<section style="padding-top:1rem;">
+  <div class="partner-spot">
+    <h2>The founder-partner skill</h2>
+    <p>
+      Every other skill is reactive — you know what you need and invoke it. The founder-partner is different. It reads your full history before it speaks, makes one honest observation, then tells you what to work on next. It's the skill you open when you don't know what to open.
+    </p>
+    <div class="partner-features">
+      <div class="partner-feat">
+        <span class="feat-icon">📖</span>
+        <span class="feat-text">Reads <code style="font-family:var(--mono);font-size:0.8rem">founder-context.md</code> + last 5 build cycles before saying anything</span>
+      </div>
+      <div class="partner-feat">
+        <span class="feat-icon">🔍</span>
+        <span class="feat-text">Surfaces the thing you've been avoiding across cycles</span>
+      </div>
+      <div class="partner-feat">
+        <span class="feat-icon">→</span>
+        <span class="feat-text">Routes you to the exact skill you need right now</span>
+      </div>
+      <div class="partner-feat">
+        <span class="feat-icon">🏁</span>
+        <span class="feat-text">Tracks 13 milestones — first real user through PMF Clear</span>
+      </div>
+      <div class="partner-feat">
+        <span class="feat-icon">✏️</span>
+        <span class="feat-text">Updates context at the end of every session</span>
+      </div>
+      <div class="partner-feat">
+        <span class="feat-icon">❓</span>
+        <span class="feat-text">Asks the hard question. Every session.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="install-section">
+    <p class="section-label">Install</p>
+    <h2>Ready in 30 seconds</h2>
+    <p>Clone the repo, run one command. Skills install to your agent's skill directory.</p>
+
+    <div class="install-tabs">
+      <button class="tab-btn active" onclick="showTab('pi', this)">pi</button>
+      <button class="tab-btn" onclick="showTab('claude', this)">Claude Code</button>
+      <button class="tab-btn" onclick="showTab('codex', this)">Codex</button>
+    </div>
+
+    <div id="tab-pi" class="install-panel active">
+      <pre><span class="comment"># Clone</span>
+<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
+<span class="cmd">cd founder-skill-pack</span>
+
+<span class="comment"># Install all skills for pi</span>
+<span class="cmd">bash scripts/install.sh pi</span>
+
+<span class="comment"># Or just one phase</span>
+<span class="cmd">bash scripts/install.sh pi strategy</span></pre>
+      <p class="install-note">Skills install to <code style="font-family:var(--mono)">~/.pi/agent/skills/</code> — available globally across all projects.</p>
+    </div>
+
+    <div id="tab-claude" class="install-panel">
+      <pre><span class="comment"># Clone</span>
+<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
+<span class="cmd">cd founder-skill-pack</span>
+
+<span class="comment"># Global — available in all projects</span>
+<span class="cmd">bash scripts/install.sh claude</span>
+
+<span class="comment"># Project-only — run from your project root</span>
+<span class="cmd">bash scripts/install.sh claude .</span></pre>
+      <p class="install-note">Global: <code style="font-family:var(--mono)">~/.claude/skills/</code> · Project: <code style="font-family:var(--mono)">.claude/skills/</code></p>
+    </div>
+
+    <div id="tab-codex" class="install-panel">
+      <pre><span class="comment"># Clone</span>
+<span class="cmd">git clone https://github.com/gvkhosla/founder-skill-pack.git</span>
+<span class="cmd">cd founder-skill-pack</span>
+
+<span class="comment"># Generate AGENTS.md entries</span>
+<span class="cmd">bash scripts/install.sh codex</span>
+
+<span class="comment"># Add output to your project's AGENTS.md</span>
+<span class="cmd">cat skills/codex/AGENTS.md >> your-project/AGENTS.md</span></pre>
+      <p class="install-note">Codex runs all parallel phases sequentially. Same output, same quality — a bit slower.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">founder-skill-pack</div>
+  <div class="footer-links">
+    <a href="https://github.com/gvkhosla/founder-skill-pack" target="_blank">GitHub</a>
+    <a href="https://github.com/gvkhosla/founder-skill-pack/tree/main/docs/PHILOSOPHY.md" target="_blank">Philosophy</a>
+    <a href="https://github.com/gvkhosla/founder-skill-pack/tree/main/docs/AUTHORING.md" target="_blank">Contribute</a>
+  </div>
+  <div class="footer-copy">MIT License · Built for founders, by a founder</div>
+</footer>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.install-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function copyInstall(el) {
+    const cmd = 'git clone https://github.com/gvkhosla/founder-skill-pack.git && cd founder-skill-pack && bash scripts/install.sh pi';
+    navigator.clipboard.writeText(cmd).then(() => {
+      const hint = el.querySelector('.copy-hint');
+      hint.textContent = 'copied!';
+      setTimeout(() => hint.textContent = 'click to copy', 1800);
+    });
+  }
+</script>
+
+</body>
+</html>
