@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#080808"/>
+      <stop offset="100%" stop-color="#0e0e0e"/>
+    </linearGradient>
+    <linearGradient id="curveGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#141414" stroke-width="1">
+    <line x1="0"    y1="210" x2="1200" y2="210"/>
+    <line x1="0"    y1="420" x2="1200" y2="420"/>
+    <line x1="300"  y1="0"   x2="300"  y2="630"/>
+    <line x1="600"  y1="0"   x2="600"  y2="630"/>
+    <line x1="900"  y1="0"   x2="900"  y2="630"/>
+  </g>
+
+  <!-- Right side: large geometric exponential curve -->
+  <g filter="url(#glow)" opacity="0.9">
+    <!-- Axis lines -->
+    <line x1="620" y1="560" x2="1150" y2="560" stroke="#222" stroke-width="1.5"/>
+    <line x1="620" y1="560" x2="620"  y2="80"  stroke="#222" stroke-width="1.5"/>
+
+    <!-- The curve -->
+    <path d="M620 555 C640 554 680 545 730 520 C800 480 860 430 940 340 C1000 270 1060 170 1140 90"
+          stroke="url(#curveGrad)" stroke-width="4" fill="none"
+          stroke-linecap="round"/>
+
+    <!-- Nodes -->
+    <circle cx="620"  cy="555" r="7" fill="#f97316"/>
+    <circle cx="730"  cy="520" r="5" fill="#f97316" opacity="0.8"/>
+    <circle cx="860"  cy="430" r="5" fill="#f97316" opacity="0.8"/>
+    <circle cx="1000" cy="270" r="5" fill="#f97316" opacity="0.8"/>
+    <circle cx="1140" cy="90"  r="7" fill="#f97316"/>
+  </g>
+
+  <!-- Left: Icon mark (large) -->
+  <g transform="translate(72, 68)">
+    <rect width="56" height="56" rx="10" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
+    <line x1="10" y1="46" x2="46" y2="46" stroke="#333" stroke-width="1.2"/>
+    <line x1="10" y1="46" x2="10" y2="10" stroke="#333" stroke-width="1.2"/>
+    <path d="M10 46 C10 46 16 45 22 41 C30 35 34 27 40 18 C42 14 45 10 46 10"
+          stroke="#f97316" stroke-width="3.5" fill="none"
+          stroke-linecap="round"/>
+    <circle cx="10" cy="46" r="2.5" fill="#f97316"/>
+    <circle cx="26" cy="36" r="2.5" fill="#f97316"/>
+    <circle cx="46" cy="10" r="2.5" fill="#f97316"/>
+  </g>
+
+  <!-- Main headline -->
+  <text x="72" y="190"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-size="68" font-weight="700"
+        fill="#f0f0f0" letter-spacing="-2">
+    Founder Skill Pack
+  </text>
+
+  <!-- Subline -->
+  <text x="72" y="250"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-size="28" fill="#666" letter-spacing="-0.5">
+    24 agent skills for founders building world-class products
+  </text>
+
+  <!-- Phase pills -->
+  <g font-family="'SF Mono', 'Fira Code', monospace" font-size="16">
+    <!-- Strategy -->
+    <rect x="72"  y="310" width="116" height="34" rx="5" fill="#111" stroke="#818cf8" stroke-width="1"/>
+    <text x="90"  y="332" fill="#818cf8">strategy</text>
+
+    <!-- Design -->
+    <rect x="200" y="310" width="96"  height="34" rx="5" fill="#111" stroke="#f472b6" stroke-width="1"/>
+    <text x="216" y="332" fill="#f472b6">design</text>
+
+    <!-- Build -->
+    <rect x="308" y="310" width="82"  height="34" rx="5" fill="#111" stroke="#fbbf24" stroke-width="1"/>
+    <text x="322" y="332" fill="#fbbf24">build</text>
+
+    <!-- Launch -->
+    <rect x="402" y="310" width="94"  height="34" rx="5" fill="#111" stroke="#34d399" stroke-width="1"/>
+    <text x="418" y="332" fill="#34d399">launch</text>
+
+    <!-- Compound -->
+    <rect x="508" y="310" width="118" height="34" rx="5" fill="#111" stroke="#a78bfa" stroke-width="1"/>
+    <text x="524" y="332" fill="#a78bfa">compound</text>
+
+    <!-- PMF -->
+    <rect x="638" y="310" width="68"  height="34" rx="5" fill="#111" stroke="#22d3ee" stroke-width="1"/>
+    <text x="652" y="332" fill="#22d3ee">pmf</text>
+  </g>
+
+  <!-- Bottom stats -->
+  <g font-family="'SF Mono', 'Fira Code', monospace">
+    <text x="72"  y="430" font-size="42" font-weight="700" fill="#e8e8e8">24</text>
+    <text x="72"  y="458" font-size="14" fill="#444">skills</text>
+
+    <text x="160" y="430" font-size="42" font-weight="700" fill="#e8e8e8">6</text>
+    <text x="160" y="458" font-size="14" fill="#444">phases</text>
+
+    <text x="220" y="430" font-size="42" font-weight="700" fill="#e8e8e8">3</text>
+    <text x="220" y="458" font-size="14" fill="#444">agents</text>
+  </g>
+
+  <!-- Bottom: agent chips -->
+  <g font-family="'SF Mono', 'Fira Code', monospace" font-size="14">
+    <rect x="72"  y="490" width="46" height="26" rx="4" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
+    <text x="84"  y="508" fill="#666">pi</text>
+
+    <rect x="128" y="490" width="108" height="26" rx="4" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
+    <text x="140" y="508" fill="#666">Claude Code</text>
+
+    <rect x="246" y="490" width="68" height="26" rx="4" fill="#161616" stroke="#1e1e1e" stroke-width="1"/>
+    <text x="258" y="508" fill="#666">Codex</text>
+  </g>
+
+  <!-- URL -->
+  <text x="72" y="580"
+        font-family="'SF Mono', 'Fira Code', monospace"
+        font-size="16" fill="#333">
+    github.com/gvkhosla/founder-skill-pack
+  </text>
+
+  <!-- Top border accent -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#curveGrad)"/>
+</svg>
