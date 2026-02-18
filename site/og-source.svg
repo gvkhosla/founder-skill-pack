@@ -45,17 +45,24 @@
     <circle cx="1140" cy="90"  r="7" fill="#f97316"/>
   </g>
 
-  <!-- Left: Icon mark (large) -->
+  <!-- Left: Icon mark (large) — paint splash -->
   <g transform="translate(72, 68)">
     <rect width="56" height="56" rx="10" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-    <line x1="10" y1="46" x2="46" y2="46" stroke="#333" stroke-width="1.2"/>
-    <line x1="10" y1="46" x2="10" y2="10" stroke="#333" stroke-width="1.2"/>
-    <path d="M10 46 C10 46 16 45 22 41 C30 35 34 27 40 18 C42 14 45 10 46 10"
-          stroke="#f97316" stroke-width="3.5" fill="none"
-          stroke-linecap="round"/>
-    <circle cx="10" cy="46" r="2.5" fill="#f97316"/>
-    <circle cx="26" cy="36" r="2.5" fill="#f97316"/>
-    <circle cx="46" cy="10" r="2.5" fill="#f97316"/>
+    <g fill="#f97316" transform="scale(1.75) translate(0, 0)">
+      <path d="M16 6
+        C19 5 23 7 23 11
+        C26 10 27 13 25 15
+        C27 16 26 19 24 18
+        C24 22 21 24 18 22
+        C17 25 14 26 13 23
+        C10 24 8 21 10 19
+        C7 19 6 16 8 15
+        C6 13 7 10 10 11
+        C10 7 13 5 16 6Z"/>
+      <circle cx="26" cy="7"  r="2"/>
+      <circle cx="7"  cy="24" r="1.5"/>
+      <circle cx="27" cy="19" r="1.2"/>
+    </g>
   </g>
 
   <!-- Main headline -->
