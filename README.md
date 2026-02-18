@@ -94,15 +94,13 @@ Copy the contents of any `SKILL.md` file and paste it into your agent's context 
 
 ### Phase 5 — The Compounding Stage ✦
 
-The skills that close the gap between MVP and MPP.
+Not separate tools — a single recurring ritual, run again and again all the way to PMF.
 
 | Skill | What It Does |
 |-------|-------------|
-| `cycle-reflector` | Structured post-ship retrospective — surfaces what you're avoiding |
-| `feedback-gatherer` | Guides exactly how to get real feedback (not polite feedback) |
-| `signal-synthesizer` | Separates signal from noise in raw user feedback |
-| `mpp-evaluator` | Honest assessment of whether you've crossed the MPP threshold |
-| `iteration-prioritizer` | Picks the ONE highest-leverage improvement for the next cycle |
+| `build-cycle` | **The ritual.** Run after every ship or weekly — honest reflection, user signal, MPP/PMF assessment, one decision, permanent cycle record. Gets smarter every cycle. |
+| `mpp-evaluator` | Deep-dive MPP scoring every 3–4 cycles — five criteria, honest composite score, the one gap to close |
+| `failure-navigator` | Activated when 3+ cycles show no progress — diagnoses which of 5 failure modes is occurring and prescribes exactly what to try next |
 
 ### Phase 6 — PMF Partner ✦
 
