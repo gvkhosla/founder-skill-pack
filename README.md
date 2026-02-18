@@ -1,8 +1,8 @@
-# Founder Skill Pack
-
-![Founder Skill Pack](site/og.png)
+# Founder Skills
 
 **24 agent skills for non-technical founders building world-class products.**
+
+Site: **https://fskills.xyz**
 
 Skills for pi, Claude, and Codex. Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
 
@@ -86,8 +86,8 @@ You don't need all 24. Start where you are.
 ## Install
 
 ```bash
-git clone https://github.com/gvkhosla/founder-skill-pack.git
-cd founder-skill-pack
+git clone https://github.com/gvkhosla/founder-skills.git
+cd founder-skills
 ```
 
 **For pi:**
