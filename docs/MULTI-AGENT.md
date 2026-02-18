@@ -17,16 +17,16 @@ The pattern from compound-engineering: `/compound` uses 5 parallel subagents (Co
 
 ## Agent Capability Matrix
 
-| Capability | pi | Claude Code | Codex | OpenCode |
-|-----------|-----|------------|-------|----------|
-| Spawn parallel subagents (Task tool) | ✅ | ✅ | ⚠️ Limited | ⚠️ Limited |
-| Persistent teammate teams (TeammateTool) | ✅ | ✅ | ❌ | ❌ |
-| Named subagent types (Explore, Plan) | ✅ | ✅ | ❌ | ❌ |
-| Background execution | ✅ | ✅ | ❌ | ❌ |
-| Skill auto-discovery | ✅ | ✅ | Manual | Manual |
-| `context: fork` frontmatter | ✅ | ❌ | ❌ | ❌ |
+| Capability | pi | Claude Code | Codex |
+|-----------|-----|------------|-------|
+| Spawn parallel subagents (Task tool) | ✅ | ✅ | ⚠️ Sequential |
+| Persistent teammate teams (TeammateTool) | ✅ | ✅ | ❌ |
+| Named subagent types (Explore, Plan) | ✅ | ✅ | ❌ |
+| Background execution | ✅ | ✅ | ❌ |
+| Skill auto-discovery | ✅ | ✅ | Manual |
+| `context: fork` frontmatter | ✅ | ❌ | ❌ |
 
-**For Codex and OpenCode:** Skills describe the parallel intent. Run each agent step sequentially — same output, longer time. Consider these agents as "single-threaded mode."
+**For Codex:** Skills describe the parallel intent. Run each agent step sequentially — same output, longer time. Every parallelized skill includes a "Sequential Fallback" section for this.
 
 ---
 

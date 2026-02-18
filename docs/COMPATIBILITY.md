@@ -1,21 +1,20 @@
 # Agent Compatibility Guide
 
-Skills in this pack are designed to be **agent-agnostic** — they work across pi, Claude Code, Codex, and OpenCode without modification. This document explains how, and what to do when edge cases arise.
+Skills in this pack are designed to work across **pi**, **Claude Code**, and **Codex** without modification. This document explains how, and what to expect from each agent.
 
 ---
 
 ## Compatibility Matrix
 
-| Feature | pi | Claude Code | Codex | OpenCode |
-|---------|-----|------------|-------|----------|
-| SKILL.md format | ✅ Native | ✅ Native | ✅ Markdown read | ✅ Markdown read |
-| Auto-discovery by description | ✅ | ✅ | ⚠️ Manual | ⚠️ Manual |
-| File read (founder-context.md) | ✅ | ✅ | ✅ | ✅ |
-| Subagent invocation | ✅ | ❌ | ❌ | ❌ |
-| Background knowledge loading | ✅ | ✅ | ❌ | ❌ |
-| `context: fork` | ✅ | ❌ | ❌ | ❌ |
+| Feature | pi | Claude Code | Codex |
+|---------|-----|------------|-------|
+| SKILL.md format | ✅ Native | ✅ Native | ✅ Markdown read |
+| Auto-discovery by description | ✅ | ✅ | Manual |
+| File read (`founder-context.md`) | ✅ | ✅ | ✅ |
+| Spawn parallel subagents | ✅ | ✅ | ⚠️ Sequential |
+| Background knowledge loading | ✅ | ✅ | ❌ |
 
-**Key rule:** Skills in this pack use **none** of the features marked ❌ above. No subagent invocation. No `context: fork`. Standard markdown + file I/O only.
+**Key rule:** Skills describe their parallel intent. pi and Claude Code execute it natively. Codex runs the same steps sequentially — same output, longer time.
 
 ---
 
@@ -23,38 +22,49 @@ Skills in this pack are designed to be **agent-agnostic** — they work across p
 
 ### pi
 
-Skills go in `~/.pi/agent/skills/[skill-name]/`:
 ```bash
-# Install mvp-scoper for pi
-mkdir -p ~/.pi/agent/skills/mvp-scoper
-curl -fsSL https://raw.githubusercontent.com/[org]/founder-skill-pack/main/skills/strategy/mvp-scoper/SKILL.md \
-  -o ~/.pi/agent/skills/mvp-scoper/SKILL.md
+# Install all skills
+bash scripts/install.sh pi
+
+# Install one phase
+bash scripts/install.sh pi strategy
 ```
 
-Or use the one-line installer:
-```bash
-curl -fsSL https://founderskills.dev/install/mvp-scoper | bash
-```
+Skills install to `~/.pi/agent/skills/[skill-name]/`. Global across all projects.
+
+**To invoke:** Say the trigger phrase described in the skill's `description:` field, or `/skill [skill-name]`.
+
+---
 
 ### Claude Code
 
-Skills go in `.claude/skills/[skill-name]/` in your project root, or `~/.claude/skills/[skill-name]/` for global:
 ```bash
-# Install mvp-scoper for Claude Code (project-level)
-mkdir -p .claude/skills/mvp-scoper
-curl -fsSL https://raw.githubusercontent.com/[org]/founder-skill-pack/main/skills/strategy/mvp-scoper/SKILL.md \
-  -o .claude/skills/mvp-scoper/SKILL.md
+# Install globally (all projects)
+bash scripts/install.sh claude
+
+# Install to current project only
+bash scripts/install.sh claude .
 ```
 
-### Codex / OpenCode
+Global skills: `~/.claude/skills/[skill-name]/`
+Project skills: `.claude/skills/[skill-name]/` (takes precedence over global)
 
-These agents don't have a native skills directory. Add the SKILL.md content to your system prompt or project context file:
+**To invoke:** Say "Use the [skill-name] skill" or describe what you need.
+
+---
+
+### Codex
+
 ```bash
-# Copy SKILL.md content to your project context
-cat skills/strategy/mvp-scoper/SKILL.md >> AGENTS.md
+# Generate AGENTS.md with all skill entries
+bash scripts/install.sh codex
 ```
 
-Or manually paste the SKILL.md into the agent's context at session start.
+Generates `skills/codex/AGENTS.md`. Add its contents to your project's `AGENTS.md`.
+
+**To invoke:** "Use the [skill-name] skill" — Codex will read the corresponding SKILL.md.
+
+**Note:** Codex runs parallel phases sequentially. Same output, ~2–3× longer time.
 
 ---
 
@@ -64,69 +74,42 @@ The `founder-partner` skill reads `founder-context.md` from the project root. Th
 
 **Location:** `[your-project-root]/founder-context.md`
 
-All agents that can read files will pick this up when the `founder-partner` skill is invoked. The skill updates the file at the end of each session.
+Copy `skills/partner/founder-partner/context-template.md` to your project root as `founder-context.md` to start. The partner skill will update it at the end of every session.
 
 ---
 
-## Testing a Skill for Compatibility
+## Parallel Execution Details
 
-Before marking a skill as compatible, test it on both pi and Claude Code:
+### pi and Claude Code
 
-### Test Checklist (per agent)
+Skills that describe parallel subagent spawning will execute in parallel — multiple independent agents run simultaneously, then the orchestrator synthesizes. This is the intended experience.
 
-- [ ] Skill auto-triggers on the described invocation phrase
-- [ ] All process steps complete without agent-specific errors
-- [ ] Output artifact (`[filename].md`) is created in the working directory
-- [ ] `founder-context.md` is read correctly (for partner skills)
-- [ ] `founder-context.md` is updated after session (for partner skills)
-- [ ] Output quality is equivalent across agents (not agent-dependent)
+### Codex
 
-### Test Scenarios (run all 3)
-
-1. **Cold start:** Invoke with no context, no `founder-context.md`, no prior conversation
-2. **Mid-journey:** Invoke with a `founder-context.md` that has prior context filled in
-3. **Edge case:** Invoke with a founder who's at an unusual stage (e.g., already has users but no positioning)
-
-### Reporting Issues
-
-If a skill behaves differently across agents, open a GitHub issue with:
-- Agent name and version
-- Invocation phrase used
-- Expected output
-- Actual output
-- Whether `founder-context.md` was present
+Codex agents read the "Sequential Fallback" section that every parallelized skill includes. Same steps, same output, run one at a time. The quality is identical; only the speed differs.
 
 ---
 
 ## Known Agent-Specific Quirks
 
 ### pi
-- Skills in `~/.pi/agent/skills/` are loaded globally across all projects
-- Background knowledge skills (user-invocable: false) auto-load their description into context
-- The `founder-partner` skill works best here due to global context loading
+- Skills in `~/.pi/agent/skills/` load globally across all projects
+- `founder-partner` works best here — context loads automatically at session start
 
 ### Claude Code
-- Skills in `~/.claude/skills/` are global; `.claude/skills/` is project-specific
-- Project-level skills take precedence over global skills with the same name
-- `founder-context.md` must be in the project root where Claude Code is running
+- Project-level skills (`.claude/skills/`) take precedence over global (`~/.claude/skills/`) with the same name
+- `founder-context.md` must be in the working directory where Claude Code is running
 
 ### Codex
 - No native skill format — use AGENTS.md or system prompt injection
-- Skills work as detailed prompt templates when pasted into context
-- Session memory is limited; re-inject `founder-context.md` content manually if needed
-
-### OpenCode
-- Similar to Codex — no native skill format
-- Skills work well as structured prompts in the conversation context
-- Recommend installing the full pack as a single context document for OpenCode users
+- Skills work as structured prompt templates when read at session start
+- Re-inject `founder-context.md` content manually if context resets mid-session
 
 ---
 
 ## Versioning
 
-Each skill has a `version` field in its frontmatter. When a skill is updated:
-- Patch version (1.0.x): wording improvements, typo fixes — safe to auto-update
-- Minor version (1.x.0): framework changes, new steps — review before updating
-- Major version (x.0.0): breaking change in output format — update `founder-context.md` schema too
-
-Check `CHANGELOG.md` in each skill directory for details.
+Each skill has a `version` field in its frontmatter:
+- **Patch (1.0.x):** Wording improvements — safe to auto-update
+- **Minor (1.x.0):** Framework changes — review before updating
+- **Major (x.0.0):** Output format changed — update `founder-context.md` schema too
