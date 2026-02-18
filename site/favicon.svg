@@ -1,20 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="5" fill="#080808"/>
-  <g fill="#f97316">
-    <!-- Main paint splash blob -->
-    <path d="M16 6
-      C19 5 23 7 23 11
-      C26 10 27 13 25 15
-      C27 16 26 19 24 18
-      C24 22 21 24 18 22
-      C17 25 14 26 13 23
-      C10 24 8 21 10 19
-      C7 19 6 16 8 15
-      C6 13 7 10 10 11
-      C10 7 13 5 16 6Z"/>
-    <!-- Satellite droplets -->
-    <circle cx="26" cy="7"  r="2"/>
-    <circle cx="7"  cy="24" r="1.5"/>
-    <circle cx="27" cy="19" r="1.2"/>
-  </g>
+  <text x="16" y="22"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="18" font-weight="800"
+        fill="#f97316"
+        text-anchor="middle"
+        letter-spacing="-1">FS</text>
 </svg>

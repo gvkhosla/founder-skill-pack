@@ -1,27 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 32">
-  <!-- Icon: paint splash on black square -->
-  <rect width="32" height="32" rx="5" fill="#080808"/>
-  <g fill="#f97316">
-    <path d="M16 6
-      C19 5 23 7 23 11
-      C26 10 27 13 25 15
-      C27 16 26 19 24 18
-      C24 22 21 24 18 22
-      C17 25 14 26 13 23
-      C10 24 8 21 10 19
-      C7 19 6 16 8 15
-      C6 13 7 10 10 11
-      C10 7 13 5 16 6Z"/>
-    <circle cx="26" cy="7"  r="2"/>
-    <circle cx="7"  cy="24" r="1.5"/>
-    <circle cx="27" cy="19" r="1.2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56">
+  <!-- FS mark -->
+  <rect width="56" height="56" rx="8" fill="#080808"/>
+  <text x="28" y="40"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="32" font-weight="800"
+        fill="#f97316"
+        text-anchor="middle"
+        letter-spacing="-2">FS</text>
 
   <!-- Wordmark -->
-  <text x="40" y="13"
-        font-family="'SF Mono','Fira Code','Cascadia Code',monospace"
-        font-size="7.5" fill="#666" letter-spacing="0.02em">founder</text>
-  <text x="40" y="24"
-        font-family="'SF Mono','Fira Code','Cascadia Code',monospace"
-        font-size="7.5" fill="#e8e8e8" font-weight="600" letter-spacing="0.02em">skill-pack</text>
+  <text x="72" y="24"
+        font-family="system-ui,-apple-system,sans-serif"
+        font-size="13" font-weight="700"
+        fill="#e8e8e8"
+        letter-spacing="-0.3">Founder Skill Pack</text>
+  <text x="72" y="40"
+        font-family="'SF Mono','Fira Code',monospace"
+        font-size="10"
+        fill="#555"
+        letter-spacing="0">24 skills · 6 phases</text>
 </svg>
