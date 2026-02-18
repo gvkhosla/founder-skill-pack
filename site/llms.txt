@@ -1,0 +1,116 @@
+# Founder Skill Pack
+
+> 24 agent skills for non-technical founders building world-class products — from idea to PMF.
+
+Works with pi, Codex, and Claude Code. Each skill produces exactly one `.md` artifact.
+Every skill is a `SKILL.md` file. Clone the repo, run the install script, say the phrase.
+
+Source: https://github.com/gvkhosla/founder-skill-pack
+Site: https://founder-skill-pack.vercel.app
+
+---
+
+## Install
+
+```bash
+git clone https://github.com/gvkhosla/founder-skill-pack.git
+cd founder-skill-pack
+bash scripts/install.sh pi          # for pi
+bash scripts/install.sh codex       # for Codex (generates AGENTS.md)
+bash scripts/install.sh claude      # for Claude Code (global)
+```
+
+---
+
+## Phase 1 — Strategy
+
+Validate before you build. Is the problem real? Is the customer specific?
+
+- [mvp-scoper](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/strategy/mvp-scoper/SKILL.md): Scopes your MVP to the 3 must-have features using the MPP framework. Invoke: "Scope my MVP". Output: `mvp-brief.md`
+- [problem-validator](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/strategy/problem-validator/SKILL.md): Validates whether the problem is real, painful, and frequent enough to build for. Invoke: "Validate my problem". Output: `problem-validation.md`
+- [customer-hypothesis](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/strategy/customer-hypothesis/SKILL.md): Produces a specific customer portrait — situation, pain, existing behaviour, decision trigger. Invoke: "Define my customer". Output: `customer-profile.md`
+- [assumption-mapper](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/strategy/assumption-mapper/SKILL.md): Maps every key assumption to a Kill Risk score and the cheapest test to run this week. Invoke: "Map my assumptions". Output: `assumptions-map.md`
+
+---
+
+## Phase 2 — Design
+
+UX before UI. Flows, direction, heuristics.
+
+- [ux-flow-designer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/design/ux-flow-designer/SKILL.md): Maps the 3 core user flows step by step. Invoke: "Design my user flows". Output: `user-flows.md`
+- [design-direction-setter](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/design/design-direction-setter/SKILL.md): Sets visual vocabulary, tone, and moodboard direction. Invoke: "Set my design direction". Output: `design-direction.md`
+- [ux-heuristics-reviewer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/design/ux-heuristics-reviewer/SKILL.md): Reviews UX against 10 Nielsen heuristics, scores each, gives fixes. Invoke: "Review my UX". Output: `ux-review.md`
+
+---
+
+## Phase 3 — Build
+
+Decisions, not debates. Stack, sequence, integrations, architecture.
+
+- [stack-selector](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/build/stack-selector/SKILL.md): Picks a specific tech stack with full rationale. Invoke: "Pick my stack". Output: `stack-decision.md`
+- [feature-sequencer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/build/feature-sequencer/SKILL.md): Orders features by impact/effort, produces a build sequence. Invoke: "Sequence my features". Output: `feature-sequence.md`
+- [integration-picker](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/build/integration-picker/SKILL.md): Picks the best tool per job-to-be-done (auth, DB, payments, email, analytics…). Invoke: "Pick my integrations". Output: `integrations.md`
+- [architecture-explainer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/build/architecture-explainer/SKILL.md): Explains the system architecture in plain English. Invoke: "Explain my architecture". Output: `architecture.md`
+
+---
+
+## Phase 4 — Launch
+
+Ship with confidence. Positioning, copy, channels, pricing.
+
+- [positioning-writer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/launch/positioning-writer/SKILL.md): Writes the one-liner, elevator pitch, and tagline. Invoke: "Write my positioning". Output: `positioning.md`
+- [landing-page-copywriter](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/launch/landing-page-copywriter/SKILL.md): Writes full landing page copy section by section. Invoke: "Write my landing page". Output: `landing-page.md`
+- [launch-plan-builder](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/launch/launch-plan-builder/SKILL.md): Builds a week-by-week plan across Owned, Rented, and Borrowed channels. Invoke: "Build my launch plan". Output: `launch-plan.md`
+- [pricing-model-framer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/launch/pricing-model-framer/SKILL.md): Frames the pricing model and sets the price with rationale. Invoke: "Frame my pricing". Output: `pricing.md`
+
+---
+
+## Phase 5 — Compound
+
+The recurring ritual. Run every 1–2 weeks until PMF.
+
+- [build-cycle](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/compound/build-cycle/SKILL.md): The core ritual — ship, reflect, score MPP, read PMF signal, commit to one thing. Invoke: "Start a build cycle". Output: `cycles/YYYY-MM-DD.md`
+- [mpp-evaluator](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/compound/mpp-evaluator/SKILL.md): Scores the product against 5 MPP criteria (Pride, Recommendation, Emotion, Craft, Grief). Invoke: "Evaluate my MPP". Output: `mpp-scorecard.md`
+- [failure-navigator](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/compound/failure-navigator/SKILL.md): Diagnoses which of 5 failure modes you're in after 3+ flat cycles. Invoke: "Help me through a failure". Output: `diagnosis.md`
+
+---
+
+## Phase 6 — PMF
+
+Find and amplify what's working.
+
+- [pmf-signal-reader](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/pmf/pmf-signal-reader/SKILL.md): Reads PMF signals across retention, word-of-mouth, engagement, and revenue. Invoke: "Read my PMF signals". Output: `pmf-assessment.md`
+- [north-star-definer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/pmf/north-star-definer/SKILL.md): Picks the one metric that best captures value delivery. Invoke: "Define my north star". Output: `north-star.md`
+- [retention-loop-designer](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/pmf/retention-loop-designer/SKILL.md): Designs the Hook Canvas (Trigger → Action → Variable Reward → Investment). Invoke: "Design my retention loop". Output: `retention-loop.md`
+- [growth-loop-builder](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/pmf/growth-loop-builder/SKILL.md): Evaluates viral, content, product, and sales loops — picks the highest-fit one. Invoke: "Build my growth loop". Output: `growth-loop.md`
+- [churn-diagnostician](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/pmf/churn-diagnostician/SKILL.md): Diagnoses churn root cause via timing, behavioural gap, and feedback analysis. Invoke: "Diagnose my churn". Output: `churn-diagnosis.md`
+
+---
+
+## The Partner
+
+- [founder-partner](https://github.com/gvkhosla/founder-skill-pack/blob/main/skills/partner/founder-partner/SKILL.md): Reads `founder-context.md` + last 5 build cycles before speaking. Makes one honest observation. Routes to the right skill. Asks the hard question. Invoke: "Partner". Output: updated `founder-context.md`
+
+---
+
+## Key Concepts
+
+**MPP (Minimum Proud Product):** The version you'd show without apologizing. Composite score ≥ 7.0/10 across 5 criteria. Different from MVP — the bar is pride, not function.
+
+**founder-context.md:** A file in your project root that acts as persistent memory. Created on first partner session. Read by every skill that benefits from context. Updated by the partner at the end of every session.
+
+**Build Cycle:** The core recurring ritual. Not a one-time step. Each cycle writes `cycles/YYYY-MM-DD.md`. After 3 cycles, patterns emerge. After 3 flat cycles, failure-navigator fires.
+
+**Parallel execution:** Skills with independent workstreams spawn parallel subagents (pi, Claude Code). Codex runs the same steps sequentially — same output, same quality.
+
+---
+
+## Philosophy
+
+- Opinionated, not comprehensive — every skill makes a recommendation, not a menu of options
+- Artifacts, not advice — every skill produces a `.md` file
+- The MPP, not the MVP — the bar is pride
+- Compounding, not linear — the Compound phase repeats until PMF
+- The partner over tools — founder-partner connects everything
+
+Full philosophy: https://github.com/gvkhosla/founder-skill-pack/blob/main/docs/PHILOSOPHY.md
