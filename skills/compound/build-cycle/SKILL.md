@@ -89,43 +89,60 @@ The agent asks follow-up questions here — one at a time, never more than three
 
 ---
 
-### Phase 3 — The Honest Assessment
+### Phase 3 — The Honest Assessment (Parallel)
 
-The agent runs two scored assessments and shares them, without softening:
+Phase 3 runs three independent analyses simultaneously — MPP scoring, PMF signal assessment, and cycle pattern reading. These have no dependencies on each other. Run them in parallel.
 
-**MPP Score (1–10):** How close are you to a product you're genuinely proud of?
-See [mpp-criteria.md](../mpp-evaluator/mpp-criteria.md) for scoring guide.
+**Spawn these 3 agents simultaneously:**
 
-**PMF Signal Strength (None / Faint / Building / Clear):**
-- **None:** Users use it once and don't return. No one has told anyone else.
-- **Faint:** Some users return. 1–2 unprompted mentions.
-- **Building:** A core group returns consistently. Word of mouth starting.
-- **Clear:** Users would be visibly upset if this disappeared. Usage grows without effort.
+**Agent A — MPP Scorer**
+Reads: `founder-context.md`, last cycle record, any user behavior data from Phases 1–2
+Task: Score MPP using the 5 criteria from [mpp-criteria.md](../mpp-evaluator/mpp-criteria.md)
+Returns: Composite score (1–10) + the single criterion holding the score back + one sentence on why
 
-The agent names the score, explains why, and does NOT soften the assessment. If the score is 3/10, it says 3/10.
+**Agent B — PMF Signal Analyst**
+Reads: `founder-context.md`, all `cycles/` records
+Task: Assess PMF signal strength
+Signal levels:
+- **None:** Users use it once and don't return. No unprompted sharing.
+- **Faint:** Some users return. 1–2 unprompted mentions across all cycles.
+- **Building:** A core group retains consistently. Word of mouth starting without incentive.
+- **Clear:** Users would be upset if it disappeared. Usage grows without effort.
+Returns: Signal level + the specific evidence for that rating + the one behavior that would move it to the next level
 
-Then: **"What's the most honest reason we're at this score?"**
+**Agent C — Pattern Reader**
+Reads: All `cycles/` records (last 3 minimum, all if available)
+Task: Identify patterns across cycles
+Patterns to find:
+- Momentum: Is MPP score trending up, flat, or declining?
+- Effort: What type of work keeps repeating without producing signal?
+- Avoidance: What has been mentioned across cycles but never acted on?
+- User: Is there a user type showing stronger signal than others?
+Returns: Momentum trend + the most important pattern (effort or avoidance, whichever is stronger)
+
+**Wait for all 3 agents. The orchestrator presents findings.**
+
+The orchestrator does NOT soften the assessment. If the score is 3/10, say 3/10. Present all three agent findings, then ask:
+
+> **"What's the most honest reason we're at this score?"**
 
 This is not rhetorical. It's the most important question in the cycle. Take time here.
 
 > **The uncomfortable question:** "If this score doesn't improve next cycle, what does that mean?"
 
+> **If Pattern Reader returns 3+ consecutive flat or declining cycles:** Do not continue to Phase 5. Name it: "I need to flag something. We've had [N] cycles without improving signal. That's not a reason to panic, but it is a reason to diagnose before deciding. I want to run the Failure Navigator before we choose what to do next." See [failure-modes.md](failure-modes.md).
+
 ---
 
-### Phase 4 — The Pattern Read
+### Phase 4 — Synthesis
 
-The agent reads across your last 3 cycles (or fewer if you haven't run 3 yet) and identifies patterns:
+With all three agent returns from Phase 3 in hand, the orchestrator (no subagents — this is synthesis work) connects the findings:
 
-- **Momentum pattern:** Is the MPP score trending up, flat, or down?
-- **Effort pattern:** Is there a type of work you keep doing that isn't producing signal?
-- **Avoidance pattern:** Is there a conversation or experiment you've mentioned but never done?
-- **User pattern:** Is there a user type showing stronger signal than others?
+- What does the MPP score tell us about the Phase 1 and 2 findings?
+- What does the PMF signal tell us about which parts of the product are working?
+- What does the pattern read reveal that neither score alone would show?
 
-This is where compounding happens. A single cycle is anecdotal. Three cycles is a pattern. The agent names patterns — including uncomfortable ones.
-
-> **If 3+ consecutive cycles show flat or declining signal**, the agent does not continue to Phase 5. Instead: "I need to flag something. We've had [N] cycles without improving signal. That's not a reason to panic, but it is a reason to diagnose before deciding. I want to run the Failure Navigator before we choose what to do next."
-
-See [failure-modes.md](failure-modes.md) for what happens then.
+One paragraph. No lists. This is the co-founder thinking out loud — connecting the dots between what was built, what users did, and what the numbers say.
 
 ---
 

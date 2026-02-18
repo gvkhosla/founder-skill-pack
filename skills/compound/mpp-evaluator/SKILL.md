@@ -1,17 +1,15 @@
 ---
 name: mpp-evaluator
-description: Gives an honest, scored assessment of whether your product has crossed the Minimum Proud Product threshold — and if not, exactly what's holding it back. Use every 3–4 build cycles for a deep MPP review, or anytime you want an honest read on whether you're proud of what you've built. Produces an mpp-scorecard.md with five criteria scored, a composite score, and the single most important gap to close.
+description: Gives an honest, scored assessment of whether your product has crossed the Minimum Proud Product threshold. Uses 5 parallel scoring agents — one per criterion — then synthesizes into a composite score and the single most important gap to close. Use every 3–4 build cycles or before any major share/launch moment. Produces mpp-scorecard.md.
 phase: compound
-version: 1.0.0
+version: 2.0.0
 ---
 
 # MPP Evaluator
 
 ## What Is MPP?
 
-**Minimum Proud Product** — the minimum version of your product you'd be genuinely proud to show to someone you deeply respect. Not just functional. Not just shipped. Something where a user would feel something.
-
-The distance between MVP (viable) and MPP (proud) is where most products plateau. Viable means it works. Proud means someone's life is meaningfully better because of it.
+**Minimum Proud Product** — the minimum version you'd be genuinely proud to show to someone you deeply respect. Not just functional. Not just shipped. Something where a user feels something.
 
 You've hit MPP when:
 - You'd be embarrassed *not* to show it to someone you admire
@@ -21,130 +19,60 @@ You've hit MPP when:
 
 ## Quick Start
 
-Say: **"Evaluate my MPP"** or **"Am I proud of this?"** or **"Run the MPP scorecard"**
+Say: **"Evaluate my MPP"** or **"Run the MPP scorecard"** or **"Am I proud of this?"**
 
-Best run: every 3–4 build cycles, or before a major share/launch moment.
-Output: `mpp-scorecard.md` — five criteria scored, composite score, and the one gap that matters most.
-
-## What You'll Get
-
-`mpp-scorecard.md` — honest scores (not rounded up), the composite score, the specific gap holding you back, and a concrete description of what MPP looks like for *your specific product*.
-
-> **Example output excerpt:**
-> **Composite MPP Score: 5.2/10**
-> **The gap that matters most:** Users complete the core flow but feel nothing afterward — task done, not problem solved. The confirmation screen is functional but doesn't make the user feel like they've accomplished something meaningful. That's the difference between 5 and 7.
-
-## The Five Criteria
-
-The agent scores each criterion 1–10 based on your answers to specific questions. Scores are honest — not encouraging. A 3 is a 3.
+Output: `mpp-scorecard.md` — five criteria scored by independent agents, composite score, one gap named.
 
 ---
 
-### Criterion 1 — The Pride Test (1–10)
+## Parallel Execution
 
-**Question:** "If you bumped into the founder you most admire tomorrow, would you show them your product without apologizing or explaining its limitations first?"
+Five independent criteria. Five parallel agents. All five can be scored simultaneously — there's no dependency between them.
 
-| Score | Description |
-|-------|-------------|
-| 1–2 | You actively avoid showing it |
-| 3–4 | You show it but immediately explain what it's missing |
-| 5–6 | You show it and feel neutral — it does the job |
-| 7–8 | You show it without apology |
-| 9–10 | You're excited to show it — you'd send them the link unprompted |
+**Before spawning agents, read:**
+- `founder-context.md` — current stage, north star, last MPP score
+- `cycles/` — the last 3 cycle records for behavioral evidence
 
-**The agent also asks:** "What would you need to change to show it without apology?"
-The answer to this question usually identifies the MPP gap more precisely than the score does.
+**Spawn these 5 agents simultaneously:**
 
----
+**Agent 1 — Pride Scorer**
+Reads: `founder-context.md` + last cycle + any demo/share mentions in cycles
+Task: Score the Pride Test (1–10): "Would the founder show this without apologizing?"
+Returns: Score + 2-sentence evidence statement + the specific thing blocking a higher score
 
-### Criterion 2 — The Recommendation Test (1–10)
+**Agent 2 — Recommendation Scorer**
+Reads: `founder-context.md` + all cycles for mentions of sharing/referrals
+Task: Score the Recommendation Test (1–10): "Has any user described it to someone else unprompted?"
+Returns: Score + specific evidence (quotes from cycles if any, absence if none) + what would trigger sharing
 
-**Question:** "Has any user described your product to someone else without you asking them to — in a message, a conversation, a post, or a mention?"
+**Agent 3 — Emotion Scorer**
+Reads: `founder-context.md` + cycle records for user behavior descriptions
+Task: Score the Emotion Test (1–10): "What do users feel after the core task?"
+Returns: Score + evidence from user feedback in cycles + what the product currently makes users feel vs. what it should
 
-| Score | Description |
-|-------|-------------|
-| 1–2 | No evidence of unprompted sharing |
-| 3–4 | 1 instance you can recall — possibly prompted |
-| 5–6 | 2–3 instances of genuine sharing |
-| 7–8 | Regular unprompted mentions — a consistent pattern |
-| 9–10 | Users actively recruit others; word-of-mouth is measurable |
+**Agent 4 — Craft Scorer**
+Reads: `founder-context.md` + any UX or design notes in cycles
+Task: Score the Craft Test (1–10): "Is there evidence someone cared about the details?"
+Returns: Score + specific gaps identified (error messages, empty states, copy quality) + 1 highest-leverage craft fix
 
-**Why this matters:** No amount of polish you can see in the product compensates for the absence of this signal. Unprompted sharing is the user saying "this is worth someone else's time." That's a high bar — and a precise one.
+**Agent 5 — Grief Scorer**
+Reads: `founder-context.md` + cycle records for retention and engagement signals
+Task: Score the Grief Test (1–10): "How would the best user react if this disappeared tomorrow?"
+Returns: Score + evidence (retention data, user quotes) + what would need to be true for a higher grief score
 
----
-
-### Criterion 3 — The Emotion Test (1–10)
-
-**Question:** "When a user finishes a key task in your product, what do they feel? Function only, mild satisfaction, real positive emotion, or something close to delight?"
-
-| Score | Description |
-|-------|-------------|
-| 1–2 | Users complete tasks; nothing else |
-| 3–4 | Mild satisfaction — it worked |
-| 5–6 | Clear positive feeling (relief, confidence, ease) |
-| 7–8 | Strong positive feeling the user can articulate |
-| 9–10 | Genuine delight, transformation, or joy |
-
-**The follow-up question:** "Walk me through what a user does immediately after completing the core task. What's the last thing they see, and what do you think they feel in that moment?"
-
-The "last thing they see" is almost always where emotional resonance is won or lost. Most products end the core flow with a generic confirmation screen. That moment is an opportunity that almost nobody takes.
+**Wait for all 5 agents to return. The orchestrator (main agent) synthesizes.**
 
 ---
 
-### Criterion 4 — The Craft Test (1–10)
+## Synthesis (Orchestrator Only)
 
-**Question:** "Is there evidence in the product that someone cared deeply about the details?"
+After all 5 scores return:
 
-This is subjective — but not arbitrary. Craft shows in:
-- Copy that sounds like a person, not a product
-- Error messages that are helpful instead of apologetic
-- Edge cases that are handled gracefully
-- Loading states that don't break the flow
-- Empty states that tell you what to do next
+**1. Calculate composite:** Average of 5 criterion scores.
 
-| Score | Description |
-|-------|-------------|
-| 1–2 | Obvious gaps, placeholder copy, unhandled states |
-| 3–4 | Mostly functional, some rough edges visible |
-| 5–6 | Clean, but no evidence of caring about details |
-| 7–8 | Details clearly considered — copy is good, states are handled |
-| 9–10 | Every touchpoint feels intentional; you notice you didn't have to explain anything |
+**2. Find the gap:** Which single criterion, if improved by 2+ points, would move the composite most? That's the gap to name.
 
----
-
-### Criterion 5 — The Grief Test (1–10)
-
-**Question:** "If your product disappeared tomorrow, how would your best user react?"
-
-| Score | Description |
-|-------|-------------|
-| 1–2 | They'd shrug — they'd find an alternative quickly |
-| 3–4 | Mildly inconvenient — they'd miss it for a week |
-| 5–6 | Frustrated — it would create real work for them |
-| 7–8 | Genuinely upset — they'd reach out to ask what happened |
-| 9–10 | Devastated — they'd feel it in their daily work immediately |
-
-**The Sean Ellis connection:** This is the operational version of Sean Ellis's "how would you feel if you could no longer use this product?" survey. That survey asks for a response category (very disappointed, somewhat, not disappointed). The grief test surfaces the same signal through a scenario instead of a form — often more honestly.
-
----
-
-## Composite Score and Interpretation
-
-**Composite MPP Score = average of five criteria**
-
-| Score | Interpretation | What It Means |
-|-------|--------------|--------------|
-| 1–3 | **Early MVP** | Viable but not yet delivering real value consistently. Focus on the core loop before anything else. |
-| 4–5 | **Functional MVP** | The job gets done but nothing more. Users tolerate it more than they love it. This is where most products plateau. |
-| 6–7 | **Approaching MPP** | Signs of something real. Some users show strong signal. Identify what makes them different and build for more of that. |
-| 8–9 | **MPP Achieved** | You'd be proud to show this to anyone. Some users evangelize. Now focus on scale and PMF signals. |
-| 10 | **Rare** | Reserved for products that create category-defining moments. Very few products ever score here. |
-
----
-
-## Output
-
-`mpp-scorecard.md`:
+**3. Write `mpp-scorecard.md`** (orchestrator is the only writer):
 
 ```markdown
 # MPP Scorecard — [YYYY-MM-DD]
@@ -152,26 +80,64 @@ This is subjective — but not arbitrary. Craft shows in:
 ## Scores
 | Criterion | Score | Key Evidence |
 |-----------|-------|-------------|
-| Pride Test | [X]/10 | [One sentence] |
-| Recommendation Test | [X]/10 | [One sentence] |
-| Emotion Test | [X]/10 | [One sentence] |
-| Craft Test | [X]/10 | [One sentence] |
-| Grief Test | [X]/10 | [One sentence] |
+| Pride Test | [X]/10 | [Agent 1's evidence statement] |
+| Recommendation Test | [X]/10 | [Agent 2's evidence statement] |
+| Emotion Test | [X]/10 | [Agent 3's evidence statement] |
+| Craft Test | [X]/10 | [Agent 4's evidence statement] |
+| Grief Test | [X]/10 | [Agent 5's evidence statement] |
 
 **Composite: [X.X]/10**
 
+## Interpretation
+[Score range interpretation — see criteria reference]
+
 ## What MPP Looks Like for [Your Product]
-[2–3 sentences describing exactly what your product needs to be to earn MPP. Specific to your product — not generic.]
+[Specific description of what THIS product needs to be to earn MPP — not generic]
 
 ## The One Gap
-[The single criterion holding back the score the most, and the specific thing to address.]
+[The criterion holding back the score most + the specific fix]
 
-## What Changes If You Close This Gap
-[One sentence — what happens to the product and to users if this specific gap is closed.]
+## What Changes When You Close This Gap
+[One sentence — what happens to the product and users if this gap closes]
 ```
+
+**4. Update `founder-context.md`:** Set `mpp-score` to the new composite.
+
+---
+
+## The Five Criteria (Quick Reference)
+
+For the deep criteria guide, see [mpp-criteria.md](mpp-criteria.md).
+
+| Criterion | The Question | 1–3 | 4–6 | 7–9 | 10 |
+|-----------|-------------|-----|-----|-----|-----|
+| **Pride** | Show without apologizing? | Avoid showing | Show with caveats | Show without apology | Excited to share |
+| **Recommendation** | Unprompted sharing? | None | 1–2 instances | Regular pattern | Measurable word-of-mouth |
+| **Emotion** | What users feel after core task? | Nothing | Mild satisfaction | Clear positive feeling | Delight |
+| **Craft** | Evidence someone cared? | Rough, placeholder | Mostly functional | Details considered | Every touchpoint intentional |
+| **Grief** | React if it disappeared? | Would shrug | Mild inconvenience | Genuinely frustrated | Devastated |
+
+**Composite ≥ 7.0 = MPP achieved.** Below 7.0: fix the lowest criterion first.
+
+---
+
+## Sequential Fallback (Codex / OpenCode)
+
+If your agent doesn't support parallel subagents, run each criterion assessment in sequence:
+
+1. Pride Test → score + evidence
+2. Recommendation Test → score + evidence
+3. Emotion Test → score + evidence
+4. Craft Test → score + evidence
+5. Grief Test → score + evidence
+6. Synthesize → write `mpp-scorecard.md`
+
+Same output. ~4× longer.
+
+---
 
 ## Related Skills
 
-- Use **build-cycle** (the primary ritual) — MPP score is assessed every cycle
-- Use **failure-navigator** if MPP score is flat or declining across 3+ cycles
-- Use **founder-partner** (Partner phase) — the partner uses your MPP trajectory to guide overall strategy
+- **build-cycle** uses this skill's criteria in Phase 3 (abbreviated in-cycle version)
+- **failure-navigator** — if MPP score is flat across 3+ cycles, run this next
+- **founder-partner** (Partner phase) — uses MPP trajectory as a key health signal

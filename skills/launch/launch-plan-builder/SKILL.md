@@ -1,8 +1,8 @@
 ---
 name: launch-plan-builder
-description: Creates a realistic, week-by-week launch plan tailored to your product type and current audience size. Use when you're 2–4 weeks from launch and need a concrete action plan, or when you're not sure how to get your first 100 users. Produces a launch-plan.md with a phased plan, channel strategy, and a launch-day checklist.
+description: Creates a realistic, week-by-week launch plan tailored to your product type and current audience. Spawns 3 parallel agents — one per channel tier (Owned, Rented, Borrowed) — to build channel strategies simultaneously, then assembles into a unified plan. Use when 2–4 weeks from launch or when you need a concrete plan to get your first 100 users. Produces launch-plan.md with a phased plan and launch-day checklist.
 phase: launch
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Launch Plan Builder
@@ -11,125 +11,162 @@ version: 1.0.0
 
 Say: **"Build my launch plan"** or **"Help me plan my launch"**
 
-Describe your product, your current audience, and your timeline. Total time: 15 minutes.
-Output: `launch-plan.md` — a phased plan with specific weekly actions and a launch-day checklist.
+Describe your product, current audience, and timeline.
+Output: `launch-plan.md` — a phased, channel-specific plan with weekly actions and a launch-day checklist.
 
-## What You'll Get
+---
 
-A `launch-plan.md` with: your launch approach (phased, not a single moment), week-by-week actions for each channel, a launch-day checklist, and a "what to watch in the first 72 hours" monitoring guide.
+## How This Works
 
-> **Example output excerpt:**
-> **Week 1 (Pre-launch):** Post in 2 yoga instructor Facebook groups — not promoting, just sharing a question: "What's the most annoying part of managing class bookings?" Capture replies. These are your testimonial seeds and copy hooks.
-> **Launch Day:** Post in those same groups: "I built a solution to [exact problem they named]. Free while in beta. Here's the link." Personal, not promotional.
+The ORB framework (Owned, Rented, Borrowed channels) identifies three completely independent workstreams — each can be planned in parallel. Three agents work simultaneously on their channel tier, then the orchestrator assembles a unified, sequenced plan.
 
-## The Expert Judgment Embedded
+---
 
-This skill applies the **Owned-Rented-Borrowed (ORB) channel framework** combined with the insight that for first products, **community-native launches outperform broadcast launches by 10x**. Most founders launch by posting on Twitter and LinkedIn and getting 12 likes from friends. That's a broadcast launch. It doesn't work.
+## Step 1: Context Gathering (Orchestrator)
 
-What works: going to exactly where your target customer already spends time, showing up as a person (not a product), building genuine pre-launch relationships, and making the first ask feel like a favor between people who know each other — not a cold pitch.
+Before spawning agents, collect:
 
-The phasing is critical: Internal → Alpha → Beta → Full. Most founders skip straight to Full launch and wonder why nobody shows up.
+**Audience assessment (ask founder directly):**
+1. How many people currently know this product exists? (0 / handful / hundreds / thousands)
+2. Existing owned assets: email list size? social following? community membership?
+3. Where does your target customer spend time online? (which forums, communities, newsletters, platforms)
+4. Timeline to full launch? (2 weeks / 4 weeks / 2 months)
 
-For the complete launch checklist, see [checklist.md](checklist.md).
+**From existing documents:**
+- `founder-context.md` — customer profile, stage, product description
+- `positioning.md` — the one-liner and elevator pitch (if it exists)
+- `customer-profile.md` — where the target customer hangs out
 
-## The Process
+Pass all this context to all three agents.
 
-### Step 1: Audience Assessment
+---
 
-The agent asks three questions:
-1. How many people currently know this product exists?
-2. Do you have any existing audience (email list, social followers, community members)?
-3. Where does your target customer spend time online?
+## Step 2: Parallel Channel Strategy (3 Agents Simultaneously)
 
-Answers determine launch strategy. A founder with 0 audience needs a very different plan than one with 2,000 email subscribers.
+**Spawn these 3 agents simultaneously:**
 
-### Step 2: Channel Selection (ORB)
+**Agent 1 — Owned Channel Strategist**
+Context: Founder's existing owned assets + customer profile + product description
+Task: Design the owned channel strategy for this product and audience.
+Owned channels include: email list, waitlist, personal outreach, blog, community.
+Produce:
+- Recommended 1–2 owned channels to prioritize (based on founder's current assets)
+- Week-by-week actions for each channel across a 4-week plan
+- How to build the owned asset during the launch (e.g., if list is tiny, how to grow it)
+- Expected outcomes per channel at this audience size
+Returns: Owned channel plan (weeks 1–4 + expected outcomes + effort estimate)
 
-The agent recommends 1–2 channels from each tier:
+**Agent 2 — Rented Channel Strategist**
+Context: Target customer profile + where they spend time + product description
+Task: Design the rented channel strategy — the platforms the founder doesn't own but should use.
+Rented channels include: Reddit, Facebook Groups, Twitter/X, LinkedIn, Product Hunt, BetaList, Hacker News.
+Produce:
+- Recommended 2–3 specific communities/platforms (by name) where this customer is active
+- Concrete post strategy: what to post, when, how to frame it for this community
+- The personal framing vs. promotional framing distinction (personal always outperforms)
+- Product Hunt preparation checklist (if relevant to this product type)
+Returns: Rented channel plan (weeks 1–4 + specific community names + post frameworks + PH checklist if applicable)
 
-**Owned channels** (you control, compounds over time):
-- Email list → Personal outreach to first 50 people who might be users
-- Product waitlist → Pre-launch landing page with email capture
+**Agent 3 — Borrowed Channel Strategist**
+Context: Product description + target customer + existing network/connections
+Task: Design the borrowed channel strategy — tapping into audiences the founder doesn't own.
+Borrowed channels include: newsletter sponsorships, podcast appearances, co-marketing, influencer DMs, partnerships.
+Produce:
+- 3–5 specific newsletters or podcasts where target customer is an audience member
+- How to pitch each (not a template — a specific angle for this product)
+- One partnership opportunity that could produce a co-launch
+- Timeline: borrowed channels take 2–4 weeks to secure; what needs to start NOW
+Returns: Borrowed channel plan (specific targets + pitch angles + timeline + what to start immediately)
 
-**Rented channels** (platforms you don't control):
-- Reddit communities relevant to your user
-- Facebook groups where your customer hangs out
-- Twitter/X if your customer is active there
-- LinkedIn for B2B products
+**Wait for all 3 agents. The orchestrator assembles.**
 
-**Borrowed channels** (tap into someone else's audience):
-- Podcast appearances in your niche
-- Guest posts on newsletters your customer reads
-- DMs to 10 micro-influencers in your space
-- Partnerships with complementary tools
+---
 
-### Step 3: Week-by-Week Plan
+## Step 3: Assembly (Orchestrator Only)
 
-The agent creates a 4-week plan:
+The orchestrator synthesizes the three channel plans into a unified week-by-week plan. The sequencing principle: **do owned first (set up the capture mechanism), then rented (generate traffic), then borrowed (amplify at scale).**
 
-**Week 1 — Seed (Pre-launch)**
-Focus: Find your first 10 potential users. Don't launch publicly yet.
-- Identify 3 communities where your customer is active
-- Join them and participate without promoting anything
-- Post a question about the problem your product solves
-- DM 10 people who respond with the highest pain signals
-- Offer them free beta access
+**Write `launch-plan.md`:**
 
-**Week 2 — Soft Launch (Alpha)**
-Focus: Get your first 5–10 real users.
-- Share directly with the 10 people from Week 1
-- Ask them to use the product and give feedback in exchange for a free account
-- Fix the top 3 issues they find
-- Capture their words: "How would you describe this to a friend?"
+```markdown
+# Launch Plan — [Product Name] — [YYYY-MM-DD]
 
-**Week 3 — Beta Expansion**
-Focus: Expand to 20–50 users. Start gathering social proof.
-- Post in communities with personal framing ("I built this after struggling with X")
-- Share 1–2 testimonials or results from your alpha users
-- Launch on Product Hunt (beta label, not full launch)
+## Audience Starting Point
+[Current state: email list size, social following, awareness level]
 
-**Week 4 — Full Launch**
-Focus: Maximum visibility. Convert the awareness spike.
-- Post across all channels simultaneously
-- Email your waitlist
-- Product Hunt full launch
-- Pitch 3 newsletters in your niche for coverage
-- "This is live" message to your personal network
+## Channel Strategy
+**Owned:** [1–2 channels + rationale]
+**Rented:** [2–3 communities/platforms + rationale]
+**Borrowed:** [Top 2–3 opportunities + rationale]
 
-### Step 4: Launch-Day Checklist
+## Week-by-Week Plan
 
-From [checklist.md](checklist.md) — a 20-item checklist for launch day itself, covering pre-launch, the moment of launch, and the first 4 hours.
+### Week 1 — Seed
+**Goal:** Find your first 10 potential users.
 
-### Step 5: 72-Hour Monitoring Guide
+**Owned:** [Agent 1's week 1 actions]
+**Rented:** [Agent 2's week 1 actions — join communities, don't promote yet]
+**Borrowed:** [Agent 3's week 1 actions — send pitches NOW so they're in motion]
 
-What to watch in the first 3 days:
-- Where is traffic coming from? (PostHog / analytics)
-- Where are people dropping off in the signup flow?
-- What questions are people asking in DMs or comments?
-- What's the conversion rate from visitor to signup?
+### Week 2 — Soft Launch (Alpha)
+**Goal:** First 5–10 real users.
 
-### Step 6: Output
+[Same format — all three channels' actions integrated into a cohesive narrative]
 
-`launch-plan.md` — the full plan with weekly actions, channel strategy, and launch-day checklist embedded.
+### Week 3 — Beta Expansion
+**Goal:** 20–50 users. First social proof.
 
-## Worked Example
+[...]
 
-**Founder:** Yoga instructor booking tool. 0 existing audience. Target customer: solo yoga instructors, especially active in Facebook groups and Instagram.
+### Week 4 — Full Launch
+**Goal:** Maximum visibility. Convert the spike.
 
-**Output (Week 1–2 excerpt):**
-> **Week 1 — Seed**
-> Monday: Join "Yoga Teachers Network" and "Yoga Business Collective" Facebook groups (both 10k+ members). Don't post yet — read for 3 days.
-> Thursday: Post in both groups: "Question for solo instructors — what's the most painful part of managing bookings? For me it was the endless DMs. What about you?" Do NOT mention your product.
-> Friday-Sunday: Reply to every comment personally. Identify the 10 people with the clearest pain signals. DM them: "Your comment really resonated — I've been building something that might help. Would you try it for free and tell me what you think?"
->
-> **Week 2 — Alpha**
-> Monday: Onboard the 5 people who said yes. Do a 15-minute call with each — watch them use the product, don't explain it.
-> Wednesday: Fix the top issue every user hit (almost certainly the same issue).
-> Friday: Ask each user: "How would you describe this to another yoga instructor?" Write down their exact words — this is your copy.
+[...]
+
+## Launch Day Checklist
+
+### T-48 hours
+- [ ] [Agent 2: rented channel posts drafted and ready]
+- [ ] [Agent 3: borrowed channel partners briefed and ready]
+- [ ] Email list segment identified and email drafted
+- [ ] Analytics tracking confirmed working
+
+### Launch moment
+- [ ] Post across all rented channels simultaneously (not spread over hours)
+- [ ] Send email to list
+- [ ] Product Hunt listing goes live (if applicable)
+- [ ] Personal message to top 10 contacts in your network
+
+### First 4 hours
+- [ ] Respond to every comment, DM, and mention personally
+- [ ] Track where signups are coming from (which channel is converting)
+- [ ] Note the questions people are asking — these become your FAQ
+
+## What to Watch in the First 72 Hours
+- Traffic source breakdown: which channel is sending real users?
+- Signup conversion: what % of visitors are signing up?
+- The question people ask: what's confusing them?
+- Who's sharing it: are any rented or borrowed channels creating organic spread?
+```
+
+---
+
+## Sequential Fallback (Codex / OpenCode)
+
+Plan each channel tier in sequence:
+
+1. Owned channel strategy → week-by-week plan
+2. Rented channel strategy → week-by-week plan
+3. Borrowed channel strategy → week-by-week plan
+4. Orchestrator assembles into unified `launch-plan.md`
+
+Same output. ~3× longer.
+
+---
 
 ## Related Skills
 
-- Use **positioning-writer** before this — your positioning doc shapes the launch messaging
-- Use **landing-page-copywriter** before this — the landing page needs to be live before launch
-- Use **pricing-model-framer** before this — pricing needs to be decided before the full launch
-- Use **cycle-reflector** (Compound phase) after the first week of launch — captures what you learned from the launch itself
+- Use **positioning-writer** before this — your positioning shapes all channel messaging
+- Use **landing-page-copywriter** before this — the landing page must be live before launch traffic arrives
+- Use **pricing-model-framer** before this — pricing must be decided before full launch
+- Use **cycle-reflector** → now **build-cycle** (Compound phase) — run the first build cycle the week after launch

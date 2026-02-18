@@ -1,8 +1,8 @@
 ---
 name: assumption-mapper
-description: Maps every key assumption in your product plan to a validation method and priority level. Use after scoping your MVP or defining your customer, when you want to know which assumptions could kill the product if wrong, and how to test them cheaply before building. Produces an assumptions-map.md with a ranked list of risky bets and how to test each one.
+description: Maps every key assumption in your product plan to a validation method and priority level. Spawns parallel research agents — one per assumption — to gather evidence simultaneously. Use after scoping your MVP or defining your customer, when you want to know which assumptions could kill the product if wrong, and how to test them cheaply before building. Produces assumptions-map.md with a ranked list of risky bets and how to test each one.
 phase: strategy
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Assumption Mapper
@@ -11,99 +11,145 @@ version: 1.0.0
 
 Say: **"Map my assumptions"** or **"What am I assuming that could be wrong?"**
 
-You'll share your current plan. Total time: 10–15 minutes.
-Output: `assumptions-map.md` — a ranked list of your assumptions by risk, with a cheap test for each one.
+Share your MVP brief, customer profile, or product description.
+Output: `assumptions-map.md` — every key assumption ranked by kill risk, with a cheap test for each.
 
 ## What You'll Get
 
-An `assumptions-map.md` containing: every major assumption in your plan, categorized by type, ranked by risk (kill risk × ease of testing), and matched to the cheapest way to validate each one before building.
+An `assumptions-map.md` containing: every major assumption extracted from your plan, categorized and scored by risk, with the cheapest test for each. The top 5 assumptions get a specific test design the founder can run this week.
 
 > **Example output excerpt:**
-> **Assumption #1 (Critical):** Freelance designers will pay $29/month for proposal software.
-> **Risk:** High — no evidence of willingness to pay at this price point
-> **Test:** Run a fake door test. Build a landing page with a "Start free trial" button that collects emails. Run $50 of Twitter ads targeting freelance designers. Measure conversion rate. Target: 5%+ email capture.
-> **Time to validate:** 3 days. Cost: $50.
+> **#1 Critical (Score: 25):** Freelance designers will pay $29/month for proposal software.
+> **Test:** Fake door — landing page with a "Start free trial" button, $50 of Twitter ads. Target: 5%+ click-through. Time: 3 days. Cost: $50.
 
-## The Expert Judgment Embedded
+---
 
-This skill applies the **Assumption Mapping** technique from David Bland and Alex Osterwalder's *Testing Business Ideas*, combined with the **Leap-of-Faith Assumption** concept from Eric Ries. Every product plan is a stack of assumptions — about who has the problem, how much it hurts, how they'd pay for a solution, and whether your solution is the right one. Failing fast means testing the most dangerous assumptions first, not the most comfortable ones.
+## Parallel Execution
 
-The insight most founders miss: the cheapest time to discover an assumption is wrong is before you've written any code. This skill forces you to surface the assumptions you're hoping are true and design tests that could prove you wrong.
+After extracting the assumption list, each assumption is researched independently. Spawn one agent per assumption — they can all run simultaneously.
 
-## The Process
+### Step 1: Extract Assumptions (Orchestrator)
 
-### Step 1: Extract Assumptions
-
-The agent reads your MVP brief, customer profile, or product description and extracts every assumption embedded in it. Assumptions fall into four categories:
+Read the input (MVP brief, customer profile, or description). Extract every assumption embedded in it, organized into four categories:
 
 | Category | Question | Example |
 |----------|----------|---------|
 | **Desirability** | Do people want this? | "Yoga instructors want automated rebooking" |
-| **Feasibility** | Can we build it? | "We can build a working sync in 2 weeks" |
-| **Viability** | Can we make money from it? | "Users will pay $49/month" |
+| **Feasibility** | Can you build it? | "We can build a working sync in 2 weeks" |
+| **Viability** | Can you make money? | "Users will pay $49/month" |
 | **Adaptability** | Will users change behavior? | "Managers will actually log waste daily" |
 
-### Step 2: Score Each Assumption
+Produce a numbered list of assumptions. This list is the input for the parallel phase.
 
-Each assumption is scored on two axes:
+### Step 2: Parallel Research (One Agent Per Assumption)
 
-**Kill Risk (1–5):** If this assumption is wrong, how badly does it damage the product?
-- 5: Wrong = product has no market
-- 3: Wrong = significant pivot needed
-- 1: Wrong = minor adjustment needed
+**Spawn N agents simultaneously — one per assumption.**
 
-**Evidence Level (1–5):** How much evidence do you currently have that this is true?
-- 5: Strong evidence (multiple customer conversations, observed behavior)
-- 3: Indirect evidence (similar products exist, forum complaints)
-- 1: Hope and intuition only
+Each agent receives:
+- The assumption text
+- The assumption category (Desirability / Feasibility / Viability / Adaptability)
+- The target customer description (from `founder-context.md` or provided context)
 
-**Priority score = Kill Risk × (6 − Evidence Level)**
-Higher score = test this first.
+Each agent's task:
+1. **Score Kill Risk (1–5):** If this assumption is wrong, how badly does it damage the product?
+   - 5: Wrong = product has no market
+   - 3: Wrong = significant pivot needed
+   - 1: Wrong = minor adjustment needed
 
-### Step 3: Design Cheap Tests
+2. **Score Evidence Level (1–5):** How much evidence currently supports this assumption?
+   - 5: Strong evidence (multiple customer conversations, observed behavior, market data)
+   - 3: Indirect evidence (similar products exist, forum complaints, adjacent data)
+   - 1: Hope and intuition only
 
-For each high-priority assumption, the agent recommends the cheapest test that could produce clear evidence:
+3. **Priority Score = Kill Risk × (6 − Evidence Level)**
+   Higher score = test this first.
 
-| Test Type | When to Use | Cost | Time |
-|-----------|------------|------|------|
-| **Customer interview** | Desirability + behavior assumptions | $0 | 1–2 days to book 5 calls |
-| **Fake door test** | Willingness to pay, demand assumptions | $50–$200 in ads | 3–5 days |
-| **Landing page + waitlist** | General demand, messaging | $0 | 1 day to build |
-| **Concierge MVP** | Feasibility of core value delivery | $0 | Do it manually first |
-| **Smoke test / pre-sell** | Willingness to pay (strong form) | $0 | Ask for money before building |
-| **Existing data research** | Market size, competitor behavior | $0 | 2–4 hours |
+4. **Design the cheapest test:**
+   | Test Type | When to Use | Cost | Time |
+   |-----------|------------|------|------|
+   | Customer interview (5 calls) | Behavior + desirability | $0 | 2–3 days |
+   | Fake door test | Willingness to pay, demand | $50–$200 ads | 3–5 days |
+   | Landing page + waitlist | General demand, messaging | $0 | 1 day |
+   | Concierge MVP | Core value delivery | $0 | Do manually first |
+   | Smoke test / pre-sell | Strong willingness to pay | $0 | Ask for money |
+   | Existing data research | Market size, competitor evidence | $0 | 2–4 hours |
 
-### Step 4: Output
+Each agent returns: assumption text, category, kill risk, evidence level, priority score, test design (what to do, how long, what cost, what success looks like).
 
-`assumptions-map.md` — all assumptions ranked, scored, with test designs for the top 5.
+**Wait for all agents. The orchestrator synthesizes.**
+
+### Step 3: Synthesis and Ranking (Orchestrator Only)
+
+Sort all assumptions by priority score (descending). The top 5 get a full test design in the output. The rest are listed with scores only.
+
+Write `assumptions-map.md`:
+
+```markdown
+# Assumptions Map — [YYYY-MM-DD]
+
+## Critical Assumptions (Test Immediately)
+
+### #1 — [Assumption] | Score: [Priority Score]
+**Category:** [Desirability/Feasibility/Viability/Adaptability]
+**Kill Risk:** [X]/5 — [one sentence on why]
+**Evidence:** [X]/5 — [what evidence exists or doesn't]
+**Test:** [Specific test design — what to do, time, cost, success signal]
+
+### #2 — [Assumption] | Score: [Priority Score]
+[Same format]
+
+[...top 5...]
+
+## Remaining Assumptions (Track, Don't Test Yet)
+| # | Assumption | Category | Score |
+|---|-----------|----------|-------|
+| 6 | [text] | [cat] | [score] |
+[...]
+
+## This Week's Priority
+Run tests #1 and #2 this week. They cost [time] and [money]. If both pass, you have strong grounds to build. If either fails, you've saved [cost of building wrong thing].
+```
+
+---
+
+## Sequential Fallback (Codex / OpenCode)
+
+If your agent doesn't support parallel subagents, research each assumption one at a time:
+
+For each assumption (in the order they were extracted):
+1. Score Kill Risk
+2. Score Evidence Level
+3. Calculate Priority Score
+4. Design test
+
+Then sort by priority score and write `assumptions-map.md`.
+
+Same output. Time scales with number of assumptions (~3 min per assumption in sequential mode).
+
+---
 
 ## Worked Example
 
-**Founder:** Building a tool for Airbnb hosts to automate their guest communication.
+**Founder:** Building a client portal for boutique agencies. Has 6 assumptions from their MVP brief.
 
-**Output:**
-> **Assumptions Map — Airbnb Host Messaging Tool**
+**Assumptions extracted:** (1) Agency owners lose 3+ hours/week to client status questions, (2) Clients will log into a portal rather than email, (3) Agencies will pay $49/month for this, (4) The tool can be set up in under 30 minutes, (5) Agency owners check the portal more than they check email, (6) Clients trust the portal over direct communication.
+
+**Parallel agents spawn for all 6 simultaneously.**
+
+**Synthesis output (top 2):**
+> **#1 — Clients will log into a portal (Score: 20)**
+> Kill Risk: 5 — if clients prefer email, the whole product is moot. Evidence: 2 — no data, just founder belief.
+> Test: Ask 5 agency owners to show you a client portal tool they've tried. Ask: "Did clients actually log in?" This is 5 conversations in 3 days. Free.
 >
-> **#1 Priority — Kill Risk: 5, Evidence: 1 → Score: 25**
-> **Assumption:** Airbnb hosts spend significant time on repetitive guest messages and find it frustrating.
-> **Test:** Join 3 Airbnb host Facebook groups. Search for "guest messages" + "repetitive" + "time." Count complaints. Target: find 20+ organic complaints in 30 minutes of searching. Also: post "What's your most time-consuming hosting task?" and observe responses.
-> **Time: 2 hours. Cost: $0.**
->
-> **#2 Priority — Kill Risk: 5, Evidence: 2 → Score: 20**
-> **Assumption:** Hosts will pay $29/month for this tool.
-> **Test:** Fake door. Build a 3-page landing page: problem → solution → pricing page with "Start free trial" button. Drive 200 visitors via Airbnb host subreddit posts + one boosted Facebook post. Target: 8%+ click-through to pricing page, 3%+ email signups.
-> **Time: 3 days. Cost: $100.**
->
-> **#3 Priority — Kill Risk: 4, Evidence: 2 → Score: 16**
-> **Assumption:** Hosts will trust an AI to respond to guests on their behalf without reviewing each message.
-> **Test:** Customer interview. Ask 5 hosts: "Would you ever send an automated response to a guest without reading it first?" Watch body language / listen for hesitation. This is a behavior change assumption — interviews will reveal resistance faster than any other test.
-> **Time: 3 days (to book and run 5 calls). Cost: $0.**
->
-> **Recommendation:** Run tests #1 and #2 this week before writing a single line of code. They'll take 4 days and cost under $150. If both pass, you have strong grounds to build.
+> **#2 — Agencies will pay $49/month (Score: 16)**
+> Kill Risk: 4 — wrong price = wrong model. Evidence: 3 — similar tools (Basecamp, ClickUp) exist at adjacent price points.
+> Test: Build a 3-page landing page with a pricing page. Run $100 of LinkedIn ads to agency owners. Measure: what % click to pricing, what % start the (fake) trial.
+
+---
 
 ## Related Skills
 
-- Use **problem-validator** before this — validates the core problem, then this maps remaining assumptions
-- Use **customer-hypothesis** before this — the customer profile is a key source of assumptions
-- Use **mvp-scoper** in parallel — the MVP brief is another rich source of assumptions
-- Use **founder-partner** after building and running tests — to synthesize what you learned
+- Use **problem-validator** before this — validates the core problem, surfaces the first assumptions
+- Use **customer-hypothesis** before this — the customer profile contains key desirability assumptions
+- Use **mvp-scoper** before this — the MVP brief is the primary source of assumptions to map
+- Use **founder-partner** after running tests — to synthesize what you learned

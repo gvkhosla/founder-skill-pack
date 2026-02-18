@@ -1,165 +1,198 @@
 ---
 name: failure-navigator
-description: Diagnoses why your product isn't gaining traction after multiple cycles — and tells you specifically what to try next. Triggered automatically by build-cycle after 3+ flat cycles, or invoked directly when you feel stuck and don't know why. Produces a diagnosis.md naming the failure mode and the specific prescription to try next.
+description: Diagnoses why your product isn't gaining traction after multiple build cycles. Spawns 5 parallel hypothesis agents — one per failure mode — each gathering independent evidence. Synthesizes into a ranked diagnosis with a specific 2-cycle prescription. Triggered automatically by build-cycle after 3+ flat cycles, or invoked directly when stuck. Produces diagnosis.md.
 phase: compound
-version: 1.0.0
+version: 2.0.0
 ---
 
 # Failure Navigator
 
 ## What This Is
 
-Most founders who quit do so not because the problem was insurmountable, but because they couldn't tell the difference between "keep going" and "change direction." They either kept going when they should have changed, or changed when they should have kept going.
+Most founders who give up do so not because the problem was insurmountable, but because they couldn't distinguish between "keep going" and "change direction." This skill ends that confusion.
 
-This skill is for the stuck moment — when cycles are running, effort is real, and signal isn't improving. It doesn't decide whether to pivot. It identifies *why* you're stuck so the next decision is informed rather than panic-driven.
+When cycles stop producing signal improvement, there are exactly five possible reasons. This skill tests all five simultaneously and tells you which one is most likely — with evidence, not intuition.
 
 ## Quick Start
 
 Say: **"Help me figure out why I'm stuck"** or **"Run failure navigator"** or **"Why isn't this working?"**
 
-The build-cycle skill triggers this automatically when 3+ consecutive cycles show flat or declining signal.
+Auto-triggered by `build-cycle` after 3+ consecutive flat cycles.
 
-Output: `diagnosis.md` — failure mode named, evidence cited, prescription for the next 2 cycles.
+Output: `diagnosis.md` — failure mode ranked by evidence, 2-cycle prescription, pivot threshold.
 
-## What You'll Get
+---
 
-A `diagnosis.md` naming the failure mode (one of five), the specific evidence that led to that diagnosis, and a concrete 2-cycle prescription — what to try, how to know if it's working, and when to consider a pivot.
+## Pre-Check (Before Spawning Agents)
 
-> **Example output excerpt:**
-> **Failure Mode: Wrong Solution**
-> **Evidence:** 3 users named the same friction point in their feedback. Onboarding completion rate is 40%. The 3 users who completed onboarding all show meaningful retention.
-> **Diagnosis:** The product works — but 60% of users never reach the working version. The solution itself is right; the path to it is broken.
-> **Prescription:** Spend 2 cycles exclusively on reducing time-to-value. Not new features. Not marketing. Get the onboarding completion rate above 70% and re-evaluate.
+Rule out execution issues first — if any of these are true, this is not a product problem:
 
-## When This Is Not the Right Skill
+- [ ] Did the founder actually execute last cycle's commitment? (If no: execution problem)
+- [ ] Have at least 5 real users tried the product? (If no: insufficient data)
+- [ ] Have at least 3 complete build-cycles run? (If no: too early to diagnose)
 
-- If you've had fewer than 3 cycles: too early to diagnose. More data needed.
-- If cycles haven't been run consistently: the problem is execution, not product. Run cycles first.
-- If the founder hasn't actually done the previous cycle's commitment: not a product problem.
+If any box is unchecked, name the real problem and return.
 
-## The Five Failure Modes
+---
 
-See [build-cycle/failure-modes.md](../build-cycle/failure-modes.md) for the full diagnostic guide.
+## Parallel Execution
 
-| Mode | Core Question | Key Signal |
-|------|--------------|-----------|
-| **Wrong Customer** | Are you reaching the person who has this problem most acutely? | Users engage once but don't return; feedback is positive but non-specific |
-| **Wrong Problem** | Is the problem you're solving actually urgent for users? | Users understand product but don't use it; workarounds are preferred |
-| **Wrong Solution** | Is the path to value clear and accessible? | Problem is real but users don't reach value; specific friction points named repeatedly |
-| **Wrong Timing** | Is the market ready? Is the trigger moment right? | Intellectual interest without urgency; innovators love it, no early majority |
-| **Wrong Distribution** | Are you reaching the right person through the right channel? | Some cohorts are excellent; channel performance varies dramatically |
+Five failure modes. Five independent evidence-gathering agents. All run simultaneously.
 
-## The Diagnosis Process
+**Before spawning agents, gather:**
+- `founder-context.md` — current stage, customer profile, north star
+- All `cycles/` documents — the full record of what's been tried and what happened
+- Any raw user feedback, retention data, or channel metrics mentioned in cycles
 
-### Step 1: Rule Out Execution
+**Spawn these 5 agents simultaneously:**
 
-Before diagnosing product, rule out execution issues:
+**Agent 1 — Wrong Customer Investigator**
+Reads: `founder-context.md`, all cycle records, any user profile descriptions
+Task: Gather evidence for/against the Wrong Customer hypothesis.
+Evidence to find:
+- Do users engage once and not return?
+- Is feedback positive but non-specific ("it's nice")?
+- Can any user articulate what they'd lose if the product disappeared?
+- How specific is the founder's customer description?
+Returns: Likelihood (High/Medium/Low) + top 3 pieces of evidence + one diagnostic question the founder should answer
 
-- "Was the previous cycle's commitment actually completed?" If no: execution problem, not product.
-- "Are you consistently talking to users?" If no: insufficient data to diagnose.
-- "Have you run at least 3 complete build cycles?" If no: too early to diagnose.
+**Agent 2 — Wrong Problem Investigator**
+Reads: `founder-context.md`, all cycle records, any user conversation notes
+Task: Gather evidence for/against the Wrong Problem hypothesis.
+Evidence to find:
+- Do users understand the product but not use it regularly?
+- Do users have workarounds they prefer to the product?
+- How frequently does the problem actually occur in users' lives?
+- Is the problem a vitamin (nice to have) or painkiller (must fix)?
+Returns: Likelihood (High/Medium/Low) + top 3 pieces of evidence + one diagnostic question
 
-### Step 2: Evidence Inventory
+**Agent 3 — Wrong Solution Investigator**
+Reads: `founder-context.md`, all cycle records, any onboarding or usage data
+Task: Gather evidence for/against the Wrong Solution hypothesis.
+Evidence to find:
+- Are specific friction points named repeatedly across cycles?
+- What is the onboarding completion rate (estimated or actual)?
+- Do the users who get through onboarding retain better than those who don't?
+- Is there a gap between users who "get it" and those who don't?
+Returns: Likelihood (High/Medium/Low) + top 3 pieces of evidence + one diagnostic question
 
-The agent asks for — or reads from cycle records — specific data points:
+**Agent 4 — Wrong Timing Investigator**
+Reads: `founder-context.md`, all cycle records, any market or adoption observations
+Task: Gather evidence for/against the Wrong Timing hypothesis.
+Evidence to find:
+- Is there intellectual interest without urgency?
+- Are early adopters (innovators) enthusiastic but mainstream users unresponsive?
+- Is there a specific trigger event that makes the problem urgent — and are you reaching people at that moment?
+- Have any users said "I love this but I'm not ready for it yet"?
+Returns: Likelihood (High/Medium/Low) + top 3 pieces of evidence + one diagnostic question
 
-- Current retention rate (D1, D7, D30 if available)
-- Last 5 user behaviors (what users did, not what they said)
-- Most recent 5 pieces of feedback (exact quotes, not summaries)
-- The onboarding completion rate (% who reach the core value moment)
-- The referral rate (how many users have told someone else)
+**Agent 5 — Wrong Distribution Investigator**
+Reads: `founder-context.md`, all cycle records, any channel or acquisition data
+Task: Gather evidence for/against the Wrong Distribution hypothesis.
+Evidence to find:
+- Do users from different acquisition channels behave differently?
+- Where did the best (most engaged, best-retained) users come from?
+- Is the founder reaching the buyer vs. the user vs. the influencer?
+- Is CAC rising, flat, or unknown?
+Returns: Likelihood (High/Medium/Low) + top 3 pieces of evidence + one diagnostic question
 
-### Step 3: Hypothesis Generation
+**Wait for all 5 agents to return. The orchestrator synthesizes.**
 
-Based on the evidence, the agent generates hypotheses for each failure mode — then scores each by the evidence:
+---
 
-| Mode | Evidence For | Evidence Against | Likelihood |
-|------|-------------|-----------------|-----------|
-| Wrong Customer | ... | ... | High / Medium / Low |
-| Wrong Problem | ... | ... | High / Medium / Low |
-| Wrong Solution | ... | ... | High / Medium / Low |
-| Wrong Timing | ... | ... | High / Medium / Low |
-| Wrong Distribution | ... | ... | High / Medium / Low |
+## Synthesis (Orchestrator Only)
 
-### Step 4: Primary Diagnosis
+**1. Score each hypothesis** based on agent returns:
 
-The highest-likelihood mode becomes the diagnosis. If two modes are equally likely, the agent names both and recommends testing the cheaper hypothesis first.
+| Mode | Likelihood | Top Evidence |
+|------|-----------|-------------|
+| Wrong Customer | [H/M/L] | [Agent 1 summary] |
+| Wrong Problem | [H/M/L] | [Agent 2 summary] |
+| Wrong Solution | [H/M/L] | [Agent 3 summary] |
+| Wrong Timing | [H/M/L] | [Agent 4 summary] |
+| Wrong Distribution | [H/M/L] | [Agent 5 summary] |
 
-### Step 5: The Prescription
+**2. Primary diagnosis:** The highest-likelihood mode. If two are tied, name both and recommend testing the cheaper hypothesis first.
 
-Each failure mode has a specific prescription — not "do more research" but a concrete experiment with a clear success signal.
+**3. The prescription** — specific to the diagnosed mode:
 
-**Prescription format:**
-> "For the next 2 cycles, do [specific action]. Don't do [other tempting thing] — that addresses a different failure mode. You'll know the diagnosis was right if [specific observable change]. You'll know it was wrong if [signal that points to a different mode]."
+| Failure Mode | 2-Cycle Prescription |
+|-------------|---------------------|
+| **Wrong Customer** | Find 5 people who exactly match your most-engaged user's situation. Go to them directly — don't use your existing channels. Show the product cold. Measure engagement vs. current users. |
+| **Wrong Problem** | Interview 5 current users: "Walk me through the last 7 days of your life around this problem." Count how often it actually occurred and how much it cost them when it did. |
+| **Wrong Solution** | Watch 5 users attempt the core flow without guidance. Record exactly where they slow or stop. Fix only those 3 points. Re-measure onboarding completion. Nothing else. |
+| **Wrong Timing** | Identify the trigger event that makes the problem urgent. Build ONE way to reach people at exactly that moment. Compare engaged rate vs. current users. |
+| **Wrong Distribution** | Interview your 3 best users: exact path from first hearing about you to becoming a user. Spend 1 full cycle reproducing that path more. Nothing else. |
 
-**Prescription examples by mode:**
-
-*Wrong Customer:* "Find 5 people who exactly match your most-engaged user (same job, same company size, same specific situation). Don't recruit from your existing channels — go find them where your best user hangs out. Show them the product cold. If engagement is dramatically different, the customer was too broad."
-
-*Wrong Problem:* "Ask 5 current users to walk you through the last 7 days of their life around this problem — before they open your product. You're looking for how often the problem actually occurs and how much it costs them when it does. If they struggle to name a recent specific instance, the problem isn't frequent or painful enough."
-
-*Wrong Solution:* "Watch 5 users try to complete the core flow without helping them. Record exactly where they slow down. Fix only those 3 friction points in the next cycle — nothing else. Re-measure onboarding completion."
-
-*Wrong Timing:* "Find the moment right before a user feels the pain most acutely. Build a way to reach people at exactly that moment — a trigger-based outreach, a community post, a partnership with whoever encounters the trigger first. Test whether timing-matched users behave differently than your current users."
-
-*Wrong Distribution:* "Interview your 3 best users about exactly how they found you. Trace the path. Then spend one cycle exclusively putting yourself in more of those situations — nothing else."
-
-### Step 6: The Pivot Threshold
-
-If a prescription is attempted for 2 full cycles with no change in signal, the agent surfaces the pivot conversation:
-
-> "We've now tested the [X] hypothesis with real effort across 2 cycles and the signal hasn't changed. That's meaningful evidence. It doesn't mean start over — it means [specific assumption] appears to be wrong.
->
-> There are three ways to respond to this:
-> 1. **Customer pivot** — Keep the solution; find who it's actually for
-> 2. **Problem pivot** — Keep the customer; find what they actually need most
-> 3. **Solution pivot** — Keep the customer and problem; try a different approach
->
-> Which of these feels most true based on what you know?"
-
-The pivot conversation is not a verdict — it's an invitation to use the evidence. The founder decides. The navigator provides the frame.
-
-## Output
-
-`diagnosis.md`:
+**4. Write `diagnosis.md`** (orchestrator only):
 
 ```markdown
 # Failure Diagnosis — [YYYY-MM-DD]
 
 ## Evidence Summary
-[What data was used — specific, not summarized]
+Cycles analyzed: [N] | Users observed: [N] | Commitments executed: [Y/N]
 
 ## Hypothesis Scores
 | Mode | Likelihood | Key Evidence |
 |------|-----------|-------------|
-| Wrong Customer | [High/Med/Low] | [One sentence] |
-| Wrong Problem | [High/Med/Low] | [One sentence] |
-| Wrong Solution | [High/Med/Low] | [One sentence] |
-| Wrong Timing | [High/Med/Low] | [One sentence] |
-| Wrong Distribution | [High/Med/Low] | [One sentence] |
+| Wrong Customer | [H/M/L] | [One sentence] |
+| Wrong Problem | [H/M/L] | [One sentence] |
+| Wrong Solution | [H/M/L] | [One sentence] |
+| Wrong Timing | [H/M/L] | [One sentence] |
+| Wrong Distribution | [H/M/L] | [One sentence] |
 
 ## Primary Diagnosis
 **Mode:** [Name]
-**Confidence:** [High/Medium]
-**Why:** [2–3 sentences of reasoning]
+**Confidence:** [High / Medium]
+**Why:** [2-3 sentences of evidence-based reasoning]
 
-## The Prescription
-**For the next 2 cycles:**
-[Specific action — what to do, what NOT to do]
-
-**You'll know the diagnosis was right if:**
-[Observable signal within 2 cycles]
-
-**You'll know it was wrong if:**
-[Signal that points to a different mode]
+## The Prescription (2 cycles)
+**Do this:** [Specific action]
+**Don't do:** [The tempting wrong thing that addresses a different mode]
+**You'll know the diagnosis was right if:** [Observable signal within 2 cycles]
+**You'll know it was wrong if:** [Signal pointing to a different mode]
 
 ## Pivot Threshold
-If the prescription produces no change by [date + 2 cycles]:
-→ Return to failure-navigator and run the pivot conversation
+If prescription produces no change by [date + 2 cycles]:
+→ Run failure-navigator again → proceed to pivot conversation
 ```
+
+---
+
+## The Pivot Conversation
+
+Triggered if prescription shows no change after 2 cycles:
+
+> "We've now tested the [X] hypothesis with real effort across 2 cycles and the signal hasn't changed. That's meaningful evidence that [specific assumption] appears to be wrong.
+>
+> There are three responses to this:
+> 1. **Customer pivot** — keep the solution, find who it's actually for
+> 2. **Problem pivot** — keep the customer, find what they actually need most  
+> 3. **Solution pivot** — keep the customer and problem, try a different approach
+>
+> Which of these does the evidence point to?"
+
+The pivot conversation is not a verdict. It's the most important use of the evidence you've gathered.
+
+---
+
+## Sequential Fallback (Codex / OpenCode)
+
+Run each investigator step sequentially:
+
+1. Wrong Customer evidence → likelihood
+2. Wrong Problem evidence → likelihood
+3. Wrong Solution evidence → likelihood
+4. Wrong Timing evidence → likelihood
+5. Wrong Distribution evidence → likelihood
+6. Rank all five → write `diagnosis.md`
+
+Same output. ~5× longer.
+
+---
 
 ## Related Skills
 
-- Triggered by **build-cycle** — runs automatically at 3+ flat cycles
-- Use **mpp-evaluator** alongside this — MPP trajectory is key diagnostic evidence
-- Use **founder-partner** (Partner phase) — for the broader strategic context when pivoting
+- Triggered by **build-cycle** at 3+ flat cycles
+- Use **mpp-evaluator** alongside — MPP score trajectory is key diagnostic evidence
+- Use **founder-partner** (Partner phase) for the broader strategic context when pivoting
