@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Founder Skill Pack — Agent skills for founders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <meta name="description" content="24 agent skills for non-technical founders building world-class products. Works with pi, Claude Code, and Codex." />
 
   <!-- Favicon -->
@@ -34,7 +37,7 @@
       --text: #e8e8e8;
       --dim: #888;
       --mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --sans: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 
       --strategy: #818cf8;
       --design:   #f472b6;
@@ -71,10 +74,12 @@
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
+      font-family: 'Geist', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #e8e8e8;
+      letter-spacing: -0.02em;
     }
-    .nav-logo img { display: block; }
 
     .nav-links {
       display: flex; align-items: center; gap: 1.5rem;
@@ -516,7 +521,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo"><img src="/logo.svg" alt="Founder Skill Pack" height="48" /></a>
+  <a href="/" class="nav-logo">founder skill pack</a>
   <div class="nav-links">
     <a href="#skills" class="hide-mobile">Skills</a>
     <a href="#install" class="hide-mobile">Install</a>
