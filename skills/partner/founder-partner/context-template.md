@@ -20,6 +20,23 @@ Last updated: YYYY-MM-DD
 
 ---
 
+## Founder Profile
+
+**founder_type:** `technical` | `non-technical` | `mixed`
+
+*technical — you can build the product yourself or are the primary builder*
+*non-technical — you work with developers, agencies, or no-code tools*
+*mixed — founding team with both technical and non-technical co-founders*
+
+**If mixed — co-founder breakdown:**
+- [Name]: technical / non-technical
+- [Name]: technical / non-technical
+
+**Notes on coverage gaps:**
+[What does the team naturally avoid or underprioritize? Be honest. This is what the partner will push on.]
+
+---
+
 ## Stage
 
 Current: `idea` | `building` | `launched` | `users` | `revenue` | `pmf` | `scaling`
@@ -92,10 +109,10 @@ Record when they happen. These are the product's history.
 
 ## Partner Session History
 
-| Date | Key Observation | One Thing Committed To |
-|------|----------------|----------------------|
-| [Date] | [What the partner noticed] | [The one thing] |
-| [Date] | [What the partner noticed] | [The one thing] |
+| Date | Partner Mode | Key Observation | One Thing Committed To |
+|------|-------------|----------------|----------------------|
+| [Date] | technical / non-technical / mixed | [What the partner noticed] | [The one thing] |
+| [Date] | technical / non-technical / mixed | [What the partner noticed] | [The one thing] |
 
 ---
 
