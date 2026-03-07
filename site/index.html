@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Founder Skills — Agent skills for founders</title>
-  <meta name="description" content="24 agent skills covering every phase of building a product — from idea to PMF. Works with pi, Codex, and Claude Code." />
+  <meta name="description" content="27 agent skills covering every phase of building a product — from idea to PMF. Works with pi, Codex, and Claude Code." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Founder Skills" />
-  <meta property="og:description" content="24 agent skills for founders building world-class products." />
+  <meta property="og:description" content="27 agent skills for founders building world-class products." />
   <meta property="og:url" content="https://fskills.xyz" />
   <meta property="og:image" content="https://fskills.xyz/og.png" />
   <meta property="og:image:width" content="1200" />
@@ -44,6 +44,7 @@
       --compound: #a78bfa;
       --pmf:      #22d3ee;
       --partner:  #f97316;
+      --scale:    #e879f9;
     }
 
     html { scroll-behavior: smooth; }
@@ -324,6 +325,35 @@
     [data-p=compound] .phase-tag { border-color:var(--compound);  color:var(--compound); }
     [data-p=pmf]      .phase-tag { border-color:var(--pmf);       color:var(--pmf);      }
     [data-p=partner]  .phase-tag { border-color:var(--partner);   color:var(--partner);  }
+    [data-p=scale]    .phase-tag { border-color:var(--scale);     color:var(--scale);    }
+
+    /* What's New */
+    .whats-new-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .wn-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .wn-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 0.6rem;
+      background: color-mix(in srgb, var(--scale) 15%, transparent);
+      color: var(--scale);
+    }
+    .wn-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .wn-desc  { font-size: 0.82rem; color: var(--dim); line-height: 1.5; }
 
     .skills-grid {
       display: grid;
@@ -533,7 +563,7 @@
   <div class="hero">
     <div class="hero-badge">
       <span class="dot"></span>
-      24 skills &nbsp;·&nbsp; 6 phases &nbsp;·&nbsp; MIT license
+      27 skills &nbsp;·&nbsp; 7 phases &nbsp;·&nbsp; MIT license
     </div>
     <h1>From idea<br>to PMF —<br>with your agent</h1>
     <p class="hero-sub">
@@ -563,7 +593,7 @@
       <div class="step">
         <div class="step-num">01 — install</div>
         <h3>Install</h3>
-        <p>One command installs all 24 skills into your agent's skill directory.</p>
+        <p>One command installs all 27 skills into your agent's skill directory.</p>
         <code>npx founder-skills install --agent pi</code>
       </div>
       <div class="step">
@@ -582,18 +612,54 @@
   </section>
 </div>
 
+<!-- WHATS NEW -->
+<div class="wrap">
+  <section style="padding-top: 0;">
+    <p class="label">What's new</p>
+    <h2>27 skills. 7 phases.</h2>
+    <p class="section-sub">Three new skills added. Six upgraded to v2.0 with parallel agents. The partner skill now adapts to who you are.</p>
+    <div class="whats-new-grid">
+      <div class="wn-card">
+        <div class="wn-tag">new</div>
+        <div class="wn-title">user-interview-guide</div>
+        <div class="wn-desc">5-person interview sprint using Mom Test principles. Spawns 3 synthesis agents to find patterns, surprises, and the best quotes.</div>
+      </div>
+      <div class="wn-card">
+        <div class="wn-tag">new</div>
+        <div class="wn-title">competitor-mapper</div>
+        <div class="wn-desc">4 parallel agents map direct competitors, indirect alternatives, positioning gaps, and public review weaknesses simultaneously.</div>
+      </div>
+      <div class="wn-card">
+        <div class="wn-tag">new</div>
+        <div class="wn-title">first-hire-brief</div>
+        <div class="wn-desc">Human hire or AI agent hire — same framework, different output. Covers role scoping, evaluation design, and system prompt scaffolding for agents.</div>
+      </div>
+      <div class="wn-card">
+        <div class="wn-tag">v2.0</div>
+        <div class="wn-title">founder-partner</div>
+        <div class="wn-desc">Now adapts to founder type. Technical founders get pushed on customers and distribution. Non-technical founders get pushed on scope and build clarity.</div>
+      </div>
+      <div class="wn-card">
+        <div class="wn-tag">v2.0</div>
+        <div class="wn-title">6 skills upgraded</div>
+        <div class="wn-desc">ux-heuristics-reviewer (10 parallel agents), positioning-writer (3 direction hypotheses), landing-page-copywriter (5 section agents), problem-validator (explicit scoring), mvp-scoper (scope pressure step), stack-selector (branches by product type).</div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- THE JOURNEY -->
 <div class="wrap">
   <section style="padding-top: 0;">
     <p class="label">The journey</p>
-    <h2>Six phases, 24 skills</h2>
+    <h2>Seven phases, 27 skills</h2>
     <p class="section-sub">Start where you are. Each phase has its own skills. Every skill outputs exactly one artifact.</p>
 
     <div class="phases">
       <div class="phase-item" data-p="strategy">
         <div class="phase-dot">⬡</div>
         <div class="phase-name">Strategy</div>
-        <div class="phase-count">4 skills</div>
+        <div class="phase-count">6 skills</div>
       </div>
       <div class="phase-arrow">→</div>
       <div class="phase-item" data-p="design">
@@ -625,6 +691,12 @@
         <div class="phase-name">PMF</div>
         <div class="phase-count">5 skills</div>
       </div>
+      <div class="phase-arrow">→</div>
+      <div class="phase-item" data-p="scale">
+        <div class="phase-dot">⬆</div>
+        <div class="phase-name">Scale</div>
+        <div class="phase-count">1 skill</div>
+      </div>
     </div>
   </section>
 </div>
@@ -648,6 +720,8 @@
         <div class="skill"><div class="skill-name">problem-validator</div><div class="skill-output">→ <code>problem-validation-report.md</code></div><div class="skill-invoke">"Validate my problem"</div></div>
         <div class="skill"><div class="skill-name">customer-hypothesis</div><div class="skill-output">→ <code>customer-profile.md</code></div><div class="skill-invoke">"Define my customer"</div></div>
         <div class="skill"><div class="skill-name">assumption-mapper</div><div class="skill-output">→ <code>assumptions-map.md</code></div><div class="skill-invoke">"Map my assumptions"</div></div>
+        <div class="skill"><div class="skill-name">user-interview-guide</div><div class="skill-output">→ <code>research-report.md</code></div><div class="skill-invoke">"Run user interviews"</div></div>
+        <div class="skill"><div class="skill-name">competitor-mapper</div><div class="skill-output">→ <code>competitor-map.md</code></div><div class="skill-invoke">"Map my competition"</div></div>
       </div>
     </div>
 
@@ -725,6 +799,22 @@
       </div>
     </div>
 
+    <!-- Scale -->
+    <div class="phase-block" data-p="scale">
+      <div class="phase-header">
+        <span class="phase-tag">scale</span>
+        <h3>Your first hires — human and AI</h3>
+        <span class="ph-desc">Who to hire first: a person or an agent</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill" style="grid-column:1/-1;max-width:420px;">
+          <div class="skill-name">first-hire-brief</div>
+          <div class="skill-output">→ <code>human-hire-brief.md</code> or <code>agent-hire-brief.md</code></div>
+          <div class="skill-invoke">"Help me make my first hire"</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Partner -->
     <div class="phase-block" data-p="partner">
       <div class="phase-header">
@@ -756,7 +846,7 @@
         <div class="feat"><span class="feat-icon">→</span><span>Routes you to the exact skill for the moment</span></div>
         <div class="feat"><span class="feat-icon">🏁</span><span>Tracks 13 milestones — first user through PMF Clear</span></div>
         <div class="feat"><span class="feat-icon">✏️</span><span>Updates your context file at the end of every session</span></div>
-        <div class="feat"><span class="feat-icon">❓</span><span>Asks the hard question every session</span></div>
+        <div class="feat"><span class="feat-icon">⚡</span><span>Adapts to who you are — pushes technical founders on distribution, non-technical on scope and build clarity</span></div>
       </div>
     </div>
   </section>
@@ -798,7 +888,7 @@
     </div>
 
     <div id="tab-pi" class="panel active">
-      <pre><span class="c"># Install all 24 skills</span>
+      <pre><span class="c"># Install all 27 skills</span>
 <span class="cmd">npx founder-skills install --agent pi</span>
 
 <span class="c"># Or just one phase</span>
@@ -838,7 +928,7 @@
     <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/PHILOSOPHY.md" target="_blank">philosophy</a>
     <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/AUTHORING.md" target="_blank">contribute</a>
   </div>
-  <p class="footer-copy">MIT License · 24 skills · 6 phases · built for founders</p>
+  <p class="footer-copy">MIT License · 27 skills · 7 phases · built for founders</p>
 </footer>
 
 <script>
