@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["outputs", "bottleneck", "next_move"],
+  "properties": {
+    "outputs": {
+      "type": "array",
+      "contains": { "const": "founder-context.md" }
+    },
+    "bottleneck": { "type": "string" },
+    "next_move": {
+      "type": "object",
+      "required": ["type", "name", "reason"],
+      "properties": {
+        "type": { "enum": ["skill", "sequence"] },
+        "name": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

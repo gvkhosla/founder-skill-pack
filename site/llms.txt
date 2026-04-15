@@ -1,9 +1,13 @@
-# Founder Skills
+# Founder Skills OS
 
-> 24 agent skills for non-technical founders building world-class products — from idea to PMF.
+> Founder Skills is evolving from a 27-skill founder pack into an agent-agnostic operating system for coding agents.
 
-Works with pi, Codex, and Claude Code. Each skill produces exactly one `.md` artifact.
-Every skill is a `SKILL.md` file. Install with `npx founder-skills`, then say the phrase.
+Today the repo has two layers:
+- the legacy 27-skill pack for pi, Codex, and Claude Code
+- the Founder Skills OS beta for pi, Claude Code, Codex, OpenCode, OpenClaw, and Hermes
+
+Each skill produces exactly one `.md` artifact.
+Every skill is a `SKILL.md` file.
 
 Source: https://github.com/gvkhosla/founder-skills
 Site: https://fskills.xyz
@@ -11,6 +15,21 @@ Site: https://fskills.xyz
 ---
 
 ## Install
+
+### Founder Skills OS beta
+
+```bash
+npm install
+npm run os:gen
+npm run os:install -- --host pi
+npm run os:install -- --host claude-code --scope project
+npm run os:install -- --host codex
+npm run os:install -- --host opencode
+npm run os:install -- --host openclaw
+npm run os:install -- --host hermes
+```
+
+### Legacy pack
 
 ```bash
 npx founder-skills install --agent pi

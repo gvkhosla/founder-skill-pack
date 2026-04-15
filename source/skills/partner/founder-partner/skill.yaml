@@ -1,0 +1,30 @@
+name: founder-partner
+description: Acts as the founder’s operating partner by reading company state, recent history, and active bottlenecks before recommending the next move. Use at the start of any session, when priorities feel unclear, or when the founder needs company-level guidance. Produces updated founder-context.md and recommended-next-step.md.
+invocations:
+  - Partner
+  - What should I focus on?
+  - Check in with my partner
+outputs:
+  - founder-context.md
+  - recommended-next-step.md
+depends_on:
+  - .fs/company-state.json
+  - founder-context.md
+feeds_into:
+  - weekly-review.md
+  - implementation-plan.md
+  - launch-plan.md
+  - pipeline-review.md
+checks:
+  - bottleneck_identified
+  - next_move_recommended
+  - founder_focus_locked
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

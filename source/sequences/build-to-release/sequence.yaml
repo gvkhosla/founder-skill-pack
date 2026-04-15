@@ -1,0 +1,19 @@
+name: build-to-release
+description: Moves a scoped product through implementation planning, build handoff, QA, and release readiness.
+entrypoint: founder-partner
+steps:
+  - implementation-planner
+  - architecture-reviewer
+  - design-to-code-brief
+  - qa-verifier
+  - release-readiness-auditor
+  - post-ship-review
+primary_outputs:
+  - implementation-plan.md
+  - architecture-overview.md
+  - design-build-brief.md
+  - qa-report.md
+  - release-readiness.md
+  - post-ship-review.md
+success_signal:
+  - founder_can_build_and_ship_with_clear_quality_gates

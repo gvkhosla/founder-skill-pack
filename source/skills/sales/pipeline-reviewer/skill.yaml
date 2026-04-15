@@ -1,0 +1,24 @@
+name: pipeline-reviewer
+description: Diagnoses pipeline weakness and identifies the highest-leverage fix in founder-led sales. Use when demos are happening but closes are weak. Produces pipeline-review.md.
+invocations:
+  - Review my pipeline
+  - Why are our deals not closing?
+outputs:
+  - pipeline-review.md
+depends_on:
+  - positioning.md
+feeds_into:
+  - objection-map.md
+  - outbound-sequences.md
+checks:
+  - specific_recommendation
+  - concrete_output
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

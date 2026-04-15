@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fskills.xyz/schemas/company-state.schema.json",
+  "title": "CompanyState",
+  "type": "object",
+  "required": ["company", "metrics", "execution", "focus", "stateMeta"],
+  "properties": {
+    "company": {
+      "type": "object",
+      "required": ["name", "stage", "currentBottleneck"],
+      "properties": {
+        "name": { "type": "string" },
+        "stage": {
+          "type": "string",
+          "enum": ["idea", "validating", "building", "launched", "revenue", "growing"]
+        },
+        "currentBottleneck": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "metrics": { "type": "object" },
+    "execution": { "type": "object" },
+    "focus": { "type": "object" },
+    "stateMeta": {
+      "type": "object",
+      "required": ["version", "lastUpdated"],
+      "properties": {
+        "version": { "type": "number" },
+        "lastUpdated": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

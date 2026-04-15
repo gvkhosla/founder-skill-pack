@@ -1,22 +1,61 @@
-# Founder Skills
+# Founder Skills OS
 
-**27 agent skills for non-technical founders building world-class products.**
+**Founder Skills is evolving from a 27-skill founder pack into an agent-agnostic company operating system for coding agents.**
 
 Site: **https://fskills.xyz**
 
-Skills for pi, Claude, and Codex. Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
+Today this repo has two layers:
+
+- **Legacy pack:** 27 published founder skills for pi, Claude, and Codex
+- **Founder Skills OS beta:** a TypeScript rebuild with canonical source, sequences, host adapters, generated outputs, and install/export flows for coding hosts
+
+## Founder Skills OS beta
+
+Current coding-host scope:
+
+- **6 coding hosts:** pi, Claude Code, Codex, OpenCode, OpenClaw, Hermes
+- **17 canonical skills** in the new source-driven system
+- **3 canonical sequences:** `validate-to-build`, `build-to-release`, `weekly-operating-rhythm`
+- **coding-host-first install/export flows** that move generated bundles into real host locations
+
+### OS quickstart
+
+```bash
+npm install
+npm run os:doctor
+npm run os:gen
+
+npm run os:install -- --host pi
+npm run os:install -- --host claude-code --scope project
+npm run os:install -- --host codex
+npm run os:install -- --host opencode
+npm run os:install -- --host openclaw
+npm run os:install -- --host hermes
+```
+
+Useful docs:
+
+- [Founder Skills OS install/export flows](docs/founder-skills-os-install-export-flows.md)
+- [Founder Skills OS repo architecture](docs/founder-skills-os-repo-architecture.md)
+- [Founder Skills OS host adapter contract](docs/founder-skills-os-host-adapter-contract.md)
+- [Founder Skills OS coding-host priority](docs/founder-skills-os-coding-host-priority.md)
 
 ---
 
+## Legacy skill pack
+
+The original 27-skill pack remains in the repo and published package.
+Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
+
 ## The Journey
 
-The skills map to six phases of building a product:
+The skills map to seven phases of building a product:
 
 ```
 Strategy → Design → Build → Launch → Compound → PMF → Scale
 ```
 
-You don't need all 24. Start where you are.
+You don't need all 27. Start where you are.
 
 ---
 
@@ -91,7 +130,32 @@ You don't need all 24. Start where you are.
 
 ---
 
-## Install
+## Founder Skills OS install and export
+
+Generate the latest coding-host bundles, then install them into the harness you want:
+
+```bash
+npm run os:gen
+npm run os:install -- --host pi
+npm run os:install -- --host claude-code --scope project
+npm run os:install -- --host codex
+npm run os:install -- --host opencode
+npm run os:install -- --host openclaw
+npm run os:install -- --host hermes
+```
+
+Default export targets:
+
+- `pi` → `~/.pi/agent/skills/founder-skills-os/`
+- `Claude Code` → `.claude/skills/founder-skills-os/` or `~/.claude/skills/founder-skills-os/`
+- `Codex` → `.codex/founder-skills-os/` + managed `AGENTS.md` section
+- `OpenCode` → `.opencode/founder-skills-os/` + managed `AGENTS.md` section
+- `OpenClaw` → `.openclaw/founder-skills-os/` + managed `AGENTS.md` section
+- `Hermes` → `~/.hermes/skills/founder-skills-os/`
+
+See [docs/founder-skills-os-install-export-flows.md](docs/founder-skills-os-install-export-flows.md) for the full matrix.
+
+## Legacy pack install
 
 **No clone required (recommended):**
 
@@ -194,6 +258,9 @@ Full philosophy: [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md)
 - [AUTHORING.md](docs/AUTHORING.md) — How to write a skill for this pack
 - [COMPATIBILITY.md](docs/COMPATIBILITY.md) — Agent-specific install and behavior details
 - [MULTI-AGENT.md](docs/MULTI-AGENT.md) — How parallel execution works per agent
+- [founder-skills-os-install-export-flows.md](docs/founder-skills-os-install-export-flows.md) — Coding-host install/export commands and target paths
+- [founder-skills-os-repo-architecture.md](docs/founder-skills-os-repo-architecture.md) — The new OS repo shape and architecture
+- [founder-skills-os-host-adapter-contract.md](docs/founder-skills-os-host-adapter-contract.md) — Host-neutral core, host-specific delivery contract
 
 ---
 

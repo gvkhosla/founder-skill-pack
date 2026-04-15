@@ -1,0 +1,19 @@
+name: validate-to-build
+description: Moves a founder from validated problem to confident implementation planning.
+entrypoint: founder-partner
+steps:
+  - problem-validator
+  - customer-hypothesis
+  - mvp-scoper
+  - implementation-planner
+  - architecture-reviewer
+  - release-readiness-auditor
+primary_outputs:
+  - problem-validation-report.md
+  - customer-profile.md
+  - mvp-brief.md
+  - implementation-plan.md
+  - architecture-overview.md
+  - release-readiness.md
+success_signal:
+  - founder_can_start_build_with_no_major_ambiguity

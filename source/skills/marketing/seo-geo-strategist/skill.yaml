@@ -1,0 +1,23 @@
+name: seo-geo-strategist
+description: Designs a practical SEO and GEO strategy so the product can compound through discoverability. Use when messaging exists but search visibility is weak or nonexistent. Produces seo-geo-plan.md.
+invocations:
+  - Build our SEO strategy
+  - Help with SEO and GEO
+outputs:
+  - seo-geo-plan.md
+depends_on:
+  - positioning.md
+feeds_into:
+  - content-engine.md
+checks:
+  - channel_recommendation_present
+  - execution_plan_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

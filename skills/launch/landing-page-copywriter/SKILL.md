@@ -1,6 +1,6 @@
 ---
 name: landing-page-copywriter
-description: Writes complete landing page copy from headline to final CTA by spawning 5 parallel section agents — Hero, Problem, Solution + Benefits, Social Proof + Objections, and Pricing + Final CTA — then assembles them into a single ready-to-implement document. Grounded in your positioning and customer profile. Produces landing-page-copy.md with every section written and ready to hand to your agent to build.
+description: Writes complete landing page copy from headline to final CTA by spawning 5 parallel section agents, then assembles the strongest page. Use when your positioning is clear and you need build-ready homepage copy. Produces landing-page-copy.md.
 phase: launch
 version: 2.0.0
 ---

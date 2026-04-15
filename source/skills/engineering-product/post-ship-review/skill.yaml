@@ -1,0 +1,23 @@
+name: post-ship-review
+description: Reviews what changed after shipping and identifies the highest-leverage follow-up move. Use right after release or after a meaningful product change lands. Produces post-ship-review.md.
+invocations:
+  - Review what changed after shipping
+  - Run a post-ship review
+outputs:
+  - post-ship-review.md
+depends_on:
+  - qa-report.md
+  - release-readiness.md
+feeds_into:
+  - weekly-review.md
+  - experiment-plan.md
+checks:
+  - outcomes_present
+  - next_move_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - openclaw
+  - hermes

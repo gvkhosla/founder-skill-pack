@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["artifact", "sections"],
+  "properties": {
+    "artifact": { "const": "implementation-plan.md" },
+    "sections": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 5
+    }
+  },
+  "additionalProperties": false
+}

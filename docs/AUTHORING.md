@@ -18,7 +18,7 @@ The test: if the skill output sounds like something a great founder advisor woul
 
 ```
 skills/[phase]/[skill-name]/
-├── SKILL.md          # Required. The skill itself. Under 300 lines.
+├── SKILL.md          # Required. The skill itself. Under 350 lines.
 └── reference.md      # Optional. Detailed frameworks, long reference lists, examples.
 ```
 
@@ -37,7 +37,7 @@ Every SKILL.md starts with YAML frontmatter:
 ---
 name: skill-name
 description: One sentence of what it does. Use when [trigger scenario]. Produces [concrete output].
-phase: strategy | design | build | launch | compound | pmf | partner
+phase: strategy | design | build | launch | compound | pmf | scale | partner
 version: 1.0.0
 ---
 ```
@@ -153,9 +153,9 @@ Every phase has a thing founders systematically avoid. Good skills name it and a
 - Compound: founders avoid reflecting honestly (they reflect to confirm, not to learn)
 - PMF: founders confuse vanity metrics with PMF signals
 
-### 5. Keep it under 300 lines
+### 5. Keep it under 350 lines
 
-If SKILL.md exceeds 300 lines, extract the excess into `reference.md` and link to it. Long skills lose the founder's attention and dilute the key points.
+If SKILL.md exceeds 350 lines, extract the excess into `reference.md` and link to it. Long skills lose the founder's attention and dilute the key points.
 
 ### 6. Write the worked example last
 
@@ -211,6 +211,6 @@ The `founder-partner` reads `founder-context.md`. All other partner-adjacent ski
 - [ ] Expert judgment section names the framework being applied
 - [ ] Worked example is specific (not generic)
 - [ ] Skill makes a recommendation, not an option list
-- [ ] SKILL.md is under 300 lines
+- [ ] SKILL.md is under 350 lines
 - [ ] Related Skills links are accurate
 - [ ] Tested with 3 real founder scenarios

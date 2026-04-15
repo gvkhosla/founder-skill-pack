@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["artifact", "one_liner", "tagline", "elevator_pitch"],
+  "properties": {
+    "artifact": { "const": "positioning.md" },
+    "one_liner": { "type": "string" },
+    "tagline": { "type": "string" },
+    "elevator_pitch": { "type": "string" }
+  },
+  "additionalProperties": false
+}

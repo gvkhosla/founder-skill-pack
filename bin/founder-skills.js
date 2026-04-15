@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const PHASES = ['strategy', 'design', 'build', 'launch', 'compound', 'pmf', 'partner'];
+const PHASES = ['strategy', 'design', 'build', 'launch', 'compound', 'pmf', 'scale', 'partner'];
 const AGENTS = ['pi', 'claude', 'codex'];
 
 const packageRoot = path.resolve(__dirname, '..');
@@ -23,7 +23,7 @@ Usage:
 
 Install options:
   --agent, -a   Agent target (pi | claude | codex)
-  --phase, -p   all | strategy | design | build | launch | compound | pmf | partner
+  --phase, -p   all | strategy | design | build | launch | compound | pmf | scale | partner
   --scope, -s   (claude only) global | project
   --out, -o     (codex only) output file path (default: ./AGENTS.founder-skills.md)
 

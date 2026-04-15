@@ -1,0 +1,1 @@
+Start each week by reviewing company state, current bottleneck, active sequence, and next recommended artifact.

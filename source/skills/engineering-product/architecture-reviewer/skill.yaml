@@ -1,0 +1,24 @@
+name: architecture-reviewer
+description: Reviews the implementation plan and identifies the simplest architecture that can safely support the product. Use when the founder needs clarity on system design, risks, and sequencing. Produces architecture-overview.md.
+invocations:
+  - Review the architecture
+  - What architecture should we use?
+outputs:
+  - architecture-overview.md
+depends_on:
+  - implementation-plan.md
+feeds_into:
+  - qa-report.md
+  - release-readiness.md
+checks:
+  - recommendation_present
+  - risks_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

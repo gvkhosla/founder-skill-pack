@@ -1,0 +1,22 @@
+name: support-insights-reader
+description: Turns support conversations and tickets into product and retention insights. Use when support volume is growing or repeating patterns are hard to see. Produces support-insights.md.
+invocations:
+  - Read our support insights
+  - What are support tickets telling us?
+outputs:
+  - support-insights.md
+feeds_into:
+  - onboarding-friction.md
+  - retention-loop.md
+checks:
+  - themes_present
+  - recommendations_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

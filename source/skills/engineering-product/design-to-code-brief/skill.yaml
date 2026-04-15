@@ -1,0 +1,22 @@
+name: design-to-code-brief
+description: Turns product and design intent into a build-ready implementation brief for UI and interaction work. Use when a founder knows what the product should feel like but the handoff to build is fuzzy. Produces design-build-brief.md.
+invocations:
+  - Turn this design into a build brief
+  - Help me hand this off to build
+outputs:
+  - design-build-brief.md
+depends_on:
+  - implementation-plan.md
+  - positioning.md
+feeds_into:
+  - qa-report.md
+checks:
+  - handoff_clarity_present
+  - states_and_interactions_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - openclaw
+  - hermes

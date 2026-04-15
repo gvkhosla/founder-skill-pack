@@ -1,6 +1,6 @@
 ---
 name: user-interview-guide
-description: Plans a 5-person user interview sprint and synthesizes findings into research-report.md. Use before building or whenever you are guessing about users instead of knowing.
+description: Plans a 5-person user interview sprint and synthesizes findings. Use before building or whenever you are guessing about users instead of knowing. Produces research-report.md.
 phase: strategy
 version: 1.0.0
 ---

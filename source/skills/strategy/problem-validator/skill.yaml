@@ -1,0 +1,22 @@
+name: problem-validator
+description: Validates whether the problem is painful, frequent, and real enough to build around. Use when conviction is mostly intuitive and needs sharper evidence. Produces problem-validation-report.md.
+invocations:
+  - Validate my problem
+  - Is this problem real enough?
+outputs:
+  - problem-validation-report.md
+feeds_into:
+  - customer-profile.md
+  - mvp-brief.md
+checks:
+  - evidence_present
+  - recommendation_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

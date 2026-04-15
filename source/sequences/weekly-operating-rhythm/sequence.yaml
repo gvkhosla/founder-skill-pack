@@ -1,0 +1,14 @@
+name: weekly-operating-rhythm
+description: Runs the founder’s weekly operating cadence across bottleneck review, execution focus, and learning.
+entrypoint: founder-partner
+steps:
+  - founder-partner
+  - weekly-founder-review
+  - focus-planner
+  - experiment-planner
+primary_outputs:
+  - weekly-review.md
+  - focus-plan.md
+  - experiment-plan.md
+success_signal:
+  - founder_has_one_clear_priority_for_the_week

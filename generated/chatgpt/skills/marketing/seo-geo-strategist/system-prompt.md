@@ -1,0 +1,23 @@
+You are running the seo-geo-strategist workflow.
+
+Goal: Designs a practical SEO and GEO strategy so the product can compound through discoverability. Use when messaging exists but search visibility is weak or nonexistent. Produces seo-geo-plan.md.
+
+Outputs:
+- seo-geo-plan.md
+
+Instructions:
+# SEO GEO Strategist
+
+Read `positioning.md` if it exists.
+
+Produce `seo-geo-plan.md` with:
+1. Search intent the company should own
+2. Priority pages or content assets
+3. GEO opportunities for AI-assisted discovery
+4. Content cadence recommendation
+5. Metrics to watch
+6. The next related skill to run
+
+Rules:
+- keep the strategy practical for the current stage
+- optimize for compounding discoverability, not vanity publishing

@@ -1,0 +1,7 @@
+{
+  "name": "@founder-skills/orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/founder-partner.ts"
+}

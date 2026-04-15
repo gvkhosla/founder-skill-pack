@@ -1,0 +1,24 @@
+name: release-readiness-auditor
+description: Audits whether the product is actually ready to ship given scope, quality, risk, and launch context. Use when launch feels close but confidence is uneven. Produces release-readiness.md.
+invocations:
+  - Are we ready to ship?
+  - Audit release readiness
+outputs:
+  - release-readiness.md
+depends_on:
+  - implementation-plan.md
+  - qa-report.md
+feeds_into:
+  - launch-plan.md
+checks:
+  - readiness_verdict_present
+  - blockers_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

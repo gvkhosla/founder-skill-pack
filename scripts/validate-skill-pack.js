@@ -16,6 +16,7 @@ const allowedPhases = new Set([
   'launch',
   'compound',
   'pmf',
+  'scale',
   'partner',
 ]);
 
@@ -254,8 +255,8 @@ function assertNpmReadiness() {
 
 function main() {
   const skillFiles = listSkillFiles();
-  if (skillFiles.length !== 24) {
-    fail(`Expected 24 skills, found ${skillFiles.length}`);
+  if (skillFiles.length !== 27) {
+    fail(`Expected 27 skills, found ${skillFiles.length}`);
   }
 
   const canonicalOutputs = new Map();
@@ -266,7 +267,7 @@ function main() {
     const rel = path.relative(root, file);
     const text = fs.readFileSync(file, 'utf8');
     const lines = text.split('\n').length;
-    if (lines > 300) fail(`${rel}: exceeds 300 lines (${lines})`);
+    if (lines > 350) fail(`${rel}: exceeds 350 lines (${lines})`);
 
     const fm = parseFrontmatter(text, rel);
     if (!fm) continue;

@@ -1,0 +1,22 @@
+name: weekly-founder-review
+description: Runs a weekly founder operating review across wins, misses, bottlenecks, and next focus. Use at the end of each week or when momentum feels messy. Produces weekly-review.md.
+invocations:
+  - Run my weekly review
+  - Review this week
+outputs:
+  - weekly-review.md
+feeds_into:
+  - focus-plan.md
+  - experiment-plan.md
+checks:
+  - bottleneck_identified
+  - focus_locked
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

@@ -1,0 +1,7 @@
+{
+  "name": "@founder-skills/graph",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/artifact-index.ts"
+}

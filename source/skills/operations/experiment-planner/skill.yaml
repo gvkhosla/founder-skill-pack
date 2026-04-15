@@ -1,0 +1,19 @@
+name: experiment-planner
+description: Turns a bottleneck or hypothesis into a concrete experiment for the next cycle. Use when the founder knows what to learn next but not how to structure the test. Produces experiment-plan.md.
+invocations:
+  - Plan my next experiment
+  - Turn this into an experiment
+outputs:
+  - experiment-plan.md
+checks:
+  - experiment_present
+  - success_metric_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

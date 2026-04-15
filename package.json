@@ -12,14 +12,29 @@
     "scripts/validate-skill-pack.js",
     "skills",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "generated",
+    "source",
+    "scripts/*.ts",
+    "packages"
   ],
   "scripts": {
     "validate": "node scripts/validate-skill-pack.js",
     "lint:shell": "bash -n scripts/install.sh",
     "check": "npm run lint:shell && npm run validate",
     "pack:dry-run": "npm pack --dry-run",
-    "test": "npm run check"
+    "test": "npm run check",
+    "os:gen": "npm run os:gen:hosts && npm run os:check:generated && npm run os:check:consistency",
+    "os:gen:hosts": "tsx scripts/gen-host-skills.ts",
+    "os:gen:chat": "tsx scripts/gen-chat-bundles.ts",
+    "os:gen:all": "npm run os:gen:hosts && npm run os:gen:chat && npm run os:check:consistency",
+    "os:install": "tsx scripts/install-host-bundles.ts",
+    "os:check:consistency": "tsx scripts/check-consistency.ts",
+    "os:check:generated": "tsx scripts/validate-generated-hosts.ts",
+    "os:check:sequences": "tsx scripts/validate-sequences.ts",
+    "os:doctor": "tsx scripts/doctor.ts",
+    "os:typecheck": "tsc -p tsconfig.json",
+    "os:test": "tsx --test tests/**/*.test.ts"
   },
   "keywords": [
     "ai",
@@ -40,7 +55,15 @@
   },
   "homepage": "https://fskills.xyz",
   "license": "MIT",
+  "packageManager": "pnpm@9.12.0",
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.19.2",
+    "turbo": "^2.1.3",
+    "typescript": "^5.6.3",
+    "yaml": "^2.6.0"
   }
 }

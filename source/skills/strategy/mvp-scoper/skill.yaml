@@ -1,0 +1,27 @@
+name: mvp-scoper
+description: Defines exactly what is in and out of scope for the MVP. Use when the product idea is clear but scope keeps expanding. Produces mvp-brief.md.
+invocations:
+  - Help me scope my MVP
+  - What should I build first?
+outputs:
+  - mvp-brief.md
+depends_on:
+  - customer-profile.md
+  - problem-validation-report.md
+feeds_into:
+  - implementation-plan.md
+  - build-sequence.md
+checks:
+  - specific_recommendation
+  - concrete_output
+  - explicit_out_of_scope_list
+readiness_gate: build-readiness
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - chatgpt
+  - claude-chat
+  - openclaw
+  - hermes

@@ -1,0 +1,7 @@
+{
+  "name": "@founder-skills/hosts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/base/host-adapter.ts"
+}

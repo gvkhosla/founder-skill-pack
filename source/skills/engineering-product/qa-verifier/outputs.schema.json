@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["artifact", "critical_flows", "verdict"],
+  "properties": {
+    "artifact": { "const": "qa-report.md" },
+    "critical_flows": { "type": "array", "minItems": 1 },
+    "verdict": { "type": "string" }
+  },
+  "additionalProperties": false
+}

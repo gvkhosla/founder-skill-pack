@@ -1,0 +1,22 @@
+name: qa-verifier
+description: Checks whether the product actually works across critical flows before release. Use when features are implemented and confidence needs verification. Produces qa-report.md.
+invocations:
+  - Run QA verification
+  - Check whether this actually works
+outputs:
+  - qa-report.md
+depends_on:
+  - implementation-plan.md
+  - architecture-overview.md
+feeds_into:
+  - release-readiness.md
+checks:
+  - critical_flows_present
+  - blockers_present
+supported_hosts:
+  - pi
+  - claude-code
+  - codex
+  - opencode
+  - openclaw
+  - hermes

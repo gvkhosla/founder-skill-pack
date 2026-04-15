@@ -1,0 +1,1 @@
+Start with founder-partner, identify the current bottleneck, continue the active sequence if one exists, and keep build work tied to launch and GTM context.

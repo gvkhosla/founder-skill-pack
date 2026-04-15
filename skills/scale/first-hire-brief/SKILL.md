@@ -1,6 +1,6 @@
 ---
 name: first-hire-brief
-description: Defines who or what to hire first — a human or an AI agent — and produces a brief to find, evaluate, and onboard them.
+description: Defines who or what to hire first — a human or an AI agent. Use when founder capacity is the bottleneck and you need a concrete hiring decision. Produces human-hire-brief.md or agent-hire-brief.md.
 phase: scale
 version: 1.0.0
 ---

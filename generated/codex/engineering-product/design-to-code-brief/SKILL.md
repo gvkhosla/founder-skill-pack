@@ -1,0 +1,34 @@
+---
+name: design-to-code-brief
+description: Turns product and design intent into a build-ready implementation brief for UI and interaction work. Use when a founder knows what the product should feel like but the handoff to build is fuzzy. Produces design-build-brief.md.
+---
+
+# design-to-code-brief
+
+## Invocation
+- Turn this design into a build brief
+- Help me hand this off to build
+
+## Outputs
+- design-build-brief.md
+
+## Prompt
+# Design to Code Brief
+
+Read available context:
+- `implementation-plan.md`
+- `positioning.md`
+- any design notes or screenshots if available
+
+Produce `design-build-brief.md` with:
+1. Product intent for the screen or flow
+2. Core components and states
+3. Interaction expectations
+4. Copy and messaging constraints
+5. Edge states and failure states
+6. What good looks like when implemented
+
+Rules:
+- optimize for implementation clarity, not visual poetry
+- write for builders and founders to understand equally well
+- include states, interactions, and acceptance criteria
