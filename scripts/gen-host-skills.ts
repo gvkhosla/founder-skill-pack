@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { loadAllCanonicalSkills, loadAllCanonicalSequences } from "../packages/core/src/loaders/index.js";
 import { getDefaultHostAdapters } from "../packages/hosts/src/index.js";
+import { getStarterWorkspaceFiles } from "../packages/state/src/workspace.js";
 
 const root = process.cwd();
 const hostAdapters = getDefaultHostAdapters().filter((adapter) => adapter.hostClass === "coding-agent");
@@ -32,9 +33,9 @@ for (const adapter of hostAdapters) {
   for (const artifact of adapter.generateWorkspace({
     companyStateSchema: {},
     artifactGraphSchema: {},
-    starterFiles: [],
+    starterFiles: getStarterWorkspaceFiles(),
     recommendedInstructions:
-      "Start with founder-partner, identify the current bottleneck, continue the active sequence if one exists, and keep build work tied to launch and GTM context.",
+      "Start with founder-partner. Read .fs/company-state.json, .fs/artifact-index.json, .fs/sequence-state.json, founder-context.md, truth-memo.md, and recommended-next-step.md when they exist. Continue the active sequence before ad hoc work, keep recommended-next-step.md current, and tie build work to validation, launch, PMF, and GTM context.",
   })) {
     writeArtifact(root, artifact.path, artifact.content);
   }

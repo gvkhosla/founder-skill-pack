@@ -8,8 +8,16 @@ export interface CanonicalSequence {
   prompt: string;
 }
 
+export interface SequenceStepState {
+  name: string;
+  status: "done" | "current" | "pending" | "blocked";
+  outputs?: string[];
+}
+
 export interface SequenceState {
   activeSequence?: string;
   currentStep?: string;
   blockedBy?: string[];
+  steps?: SequenceStepState[];
+  successSignal?: string;
 }

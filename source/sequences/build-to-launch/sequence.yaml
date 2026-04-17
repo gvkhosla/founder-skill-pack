@@ -1,0 +1,25 @@
+name: build-to-launch
+description: Carries a founder from implementation planning through launch assets and launch execution.
+entrypoint: founder-partner
+steps:
+  - implementation-planner
+  - architecture-reviewer
+  - design-to-code-brief
+  - qa-verifier
+  - release-readiness-auditor
+  - positioning-writer
+  - pricing-model-framer
+  - landing-page-copywriter
+  - launch-plan-builder
+primary_outputs:
+  - implementation-plan.md
+  - architecture-overview.md
+  - design-build-brief.md
+  - qa-report.md
+  - release-readiness.md
+  - positioning.md
+  - pricing-model.md
+  - landing-page-copy.md
+  - launch-plan.md
+success_signal:
+  - founder_can_ship_with_build_and_launch_assets_aligned

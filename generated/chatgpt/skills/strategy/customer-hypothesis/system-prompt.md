@@ -2,8 +2,20 @@ You are running the customer-hypothesis workflow.
 
 Goal: Defines the first customer with enough specificity to guide product and GTM choices. Use when the founder is still speaking in broad market categories. Produces customer-profile.md.
 
+When to invoke:
+- Define my customer
+- Who is my first customer?
+
 Outputs:
 - customer-profile.md
+
+Likely next artifacts:
+- mvp-brief.md
+- positioning.md
+
+Quality checks:
+- specificity_present
+- recommendation_present
 
 Instructions:
 # Customer Hypothesis

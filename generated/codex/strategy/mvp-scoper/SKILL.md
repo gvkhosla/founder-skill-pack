@@ -5,12 +5,25 @@ description: Defines exactly what is in and out of scope for the MVP. Use when t
 
 # mvp-scoper
 
-## Invocation
+## When to invoke
 - Help me scope my MVP
 - What should I build first?
 
 ## Outputs
 - mvp-brief.md
+
+## Depends on
+- customer-profile.md
+- problem-validation-report.md
+
+## Feeds into
+- implementation-plan.md
+- build-sequence.md
+
+## Quality checks
+- specific_recommendation
+- concrete_output
+- explicit_out_of_scope_list
 
 ## Prompt
 # MVP Scoper

@@ -36,6 +36,11 @@ export abstract class CodingHostAdapter implements HostAdapter {
         kind: "project-instructions",
         content: input.recommendedInstructions,
       },
+      ...input.starterFiles.map((file) => ({
+        path: `generated/${this.id}/${file.path}`,
+        kind: "workspace-doc" as const,
+        content: file.content,
+      })),
     ];
   }
 
@@ -55,10 +60,51 @@ export abstract class CodingHostAdapter implements HostAdapter {
   }
 
   protected renderSkill(skill: CanonicalSkill): string {
-    return `---\nname: ${skill.name}\ndescription: ${skill.description}\n---\n\n# ${skill.name}\n\n## Invocation\n${skill.invocations.map((i) => `- ${i}`).join("\n")}\n\n## Outputs\n${skill.outputs.map((o) => `- ${o}`).join("\n")}\n\n## Prompt\n${skill.prompt.trim()}\n`;
+    const sections = [
+      `---\nname: ${skill.name}\ndescription: ${skill.description}\n---`,
+      `# ${skill.name}`,
+      `## When to invoke\n${skill.invocations.map((invocation) => `- ${invocation}`).join("\n")}`,
+      `## Outputs\n${skill.outputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (skill.dependsOn.length > 0) {
+      sections.push(`## Depends on\n${skill.dependsOn.map((dependency) => `- ${dependency}`).join("\n")}`);
+    }
+
+    if (skill.feedsInto.length > 0) {
+      sections.push(`## Feeds into\n${skill.feedsInto.map((output) => `- ${output}`).join("\n")}`);
+    }
+
+    if (skill.checks.length > 0) {
+      sections.push(`## Quality checks\n${skill.checks.map((check) => `- ${check}`).join("\n")}`);
+    }
+
+    sections.push(`## Prompt\n${skill.prompt.trim()}`);
+
+    if (skill.reference?.trim()) {
+      sections.push(`## Reference\n${skill.reference.trim()}`);
+    }
+
+    return `${sections.join("\n\n")}\n`;
   }
 
   protected renderSequence(sequence: CanonicalSequence): string {
-    return `# ${sequence.name}\n\n${sequence.description}\n\n## Steps\n${sequence.steps.map((step, index) => `${index + 1}. ${step}`).join("\n")}\n\n## Primary outputs\n${sequence.primaryOutputs.map((o) => `- ${o}`).join("\n")}`;
+    const sections = [
+      `# ${sequence.name}`,
+      sequence.description,
+      `## Entrypoint\n- ${sequence.entrypoint}`,
+      `## Steps\n${sequence.steps.map((step, index) => `${index + 1}. ${step}`).join("\n")}`,
+      `## Primary outputs\n${sequence.primaryOutputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (sequence.successSignal.length > 0) {
+      sections.push(`## Success signals\n${sequence.successSignal.map((signal) => `- ${signal}`).join("\n")}`);
+    }
+
+    if (sequence.prompt.trim()) {
+      sections.push(`## Operating notes\n${sequence.prompt.trim()}`);
+    }
+
+    return `${sections.join("\n\n")}\n`;
   }
 }

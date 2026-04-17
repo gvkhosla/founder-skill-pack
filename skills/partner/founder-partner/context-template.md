@@ -70,6 +70,26 @@ Stage notes: [One sentence on what defines the current stage and what would trig
 
 ---
 
+## Truth Stack
+
+**What we know:**
+- [Evidence-backed fact]
+- [Evidence-backed fact]
+
+**What we think:**
+- [Strong inference, but still inference]
+- [Strong inference, but still inference]
+
+**What we hope:**
+- [Optimistic but unproven belief]
+- [Optimistic but unproven belief]
+
+**Contradictions / weak assumptions:**
+- [Belief] ↔ [Conflicting evidence or missing proof]
+- [Belief] ↔ [Conflicting evidence or missing proof]
+
+---
+
 ## Open Questions
 
 Questions that came up and aren't answered yet. The partner will bring these back.
@@ -111,8 +131,8 @@ Record when they happen. These are the product's history.
 
 | Date | Partner Mode | Key Observation | One Thing Committed To |
 |------|-------------|----------------|----------------------|
-| [Date] | technical / non-technical / mixed | [What the partner noticed] | [The one thing] |
-| [Date] | technical / non-technical / mixed | [What the partner noticed] | [The one thing] |
+| [Date] | grill / validate / decide / scope / review | [What the partner noticed] | [The one thing] |
+| [Date] | grill / validate / decide / scope / review | [What the partner noticed] | [The one thing] |
 
 ---
 

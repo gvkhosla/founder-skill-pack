@@ -1,0 +1,17 @@
+name: north-star-definer
+description: Defines the one metric that best captures delivered value and future company health. Use when the founder is tracking too many metrics or lacks one leading signal. Produces north-star.md.
+invocations:
+  - Define my north star
+  - What metric should we obsess over?
+outputs:
+  - north-star.md
+depends_on:
+  - customer-profile.md
+  - mvp-brief.md
+feeds_into:
+  - pmf-assessment.md
+  - weekly-review.md
+checks:
+  - specific_recommendation
+  - metric_definition_present
+  - next_step_present

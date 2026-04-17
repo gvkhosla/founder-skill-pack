@@ -5,12 +5,23 @@ description: Audits whether the product is actually ready to ship given scope, q
 
 # release-readiness-auditor
 
-## Invocation
+## When to invoke
 - Are we ready to ship?
 - Audit release readiness
 
 ## Outputs
 - release-readiness.md
+
+## Depends on
+- implementation-plan.md
+- qa-report.md
+
+## Feeds into
+- launch-plan.md
+
+## Quality checks
+- readiness_verdict_present
+- blockers_present
 
 ## Prompt
 # Release Readiness Auditor

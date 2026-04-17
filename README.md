@@ -1,30 +1,120 @@
+<p align="center">
+  <img src="site/logo.svg" alt="Founder Skills" width="320" />
+</p>
+
+<p align="center">
+  <img src="site/social-preview.png" alt="Founder Skills social preview" width="720" />
+</p>
+
 # Founder Skills OS
 
-**Founder Skills is evolving from a 27-skill founder pack into an agent-agnostic company operating system for coding agents.**
+**Turn your agent into a brutally honest co-founder.**
+
+Founder Skills transforms your agent into a co-founder with product taste, validation rigor, and a growth mindset - to get you from idea to PMF and beyond.
+
+Instead of only helping you ship code faster, it helps you answer the harder founder questions:
+- is this problem real?
+- who is the exact customer?
+- should we validate, narrow, build, launch, or stop?
+- what artifact do we need next?
+- what is the one move that matters now?
 
 Site: **https://fskills.xyz**
 
-Today this repo has two layers:
+## Why it works
 
-- **Legacy pack:** 27 published founder skills for pi, Claude, and Codex
-- **Founder Skills OS beta:** a TypeScript rebuild with canonical source, sequences, host adapters, generated outputs, and install/export flows for coding hosts
+Founder Skills is built around a simple thesis:
 
-## Founder Skills OS beta
+> **Tell the founder the truth before the market does.**
 
-Current coding-host scope:
+That shows up in the product in five ways:
+- **reads company memory first** — `.fs/` state, `founder-context.md`, `truth-memo.md`, `recommended-next-step.md`, and recent artifacts
+- **separates what you know, think, and hope** — so strategy does not get smuggled through as confidence
+- **routes into validation before build** — when the evidence is weak
+- **writes concrete artifacts** — not vague advice or brainstorming sludge
+- **ends with one next move** — not ten equally-weighted suggestions
 
-- **6 coding hosts:** pi, Claude Code, Codex, OpenCode, OpenClaw, Hermes
-- **17 canonical skills** in the new source-driven system
-- **3 canonical sequences:** `validate-to-build`, `build-to-release`, `weekly-operating-rhythm`
-- **coding-host-first install/export flows** that move generated bundles into real host locations
+## What ships today
 
-### OS quickstart
+Founder Skills currently has two layers:
+
+### 1. Founder Skills OS beta
+The new source-driven system for coding and chat hosts.
+
+- **29 canonical skills**
+- **10 operating areas**
+- **6 lifecycle sequences**
+- **stateful workspace memory** in `.fs/`
+- **recommendation routing** that maps bottlenecks to the right skill or sequence
+- **generated host bundles** for `pi`, `Claude Code`, `Codex`, `OpenCode`, `OpenClaw`, `Hermes`, `ChatGPT`, and `Claude`
+
+### 2. Legacy pack
+The published `npx founder-skills install ...` pack remains available and still ships the original 27-skill system.
+
+---
+
+## Fastest way to try it
+
+If you want the quickest path, use the published package:
+
+```bash
+npx founder-skills install --agent pi
+```
+
+Then start with:
+
+```text
+Be brutally honest with me.
+```
+
+If the bottleneck is unclear, always start with **`founder-partner`**.
+
+### Install by agent
+
+Run the OS commands from this repo.
+
+```bash
+# pi
+npx founder-skills install --agent pi
+
+# Claude Code
+npx founder-skills install --agent claude --scope project
+
+# Codex
+npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md
+
+# OpenCode
+npm run os:install -- --host opencode --project /path/to/startup
+
+# OpenClaw
+npm run os:install -- --host openclaw --project /path/to/startup
+
+# Hermes
+npm run os:install -- --host hermes --project /path/to/startup
+```
+
+---
+
+## Founder Skills OS beta quickstart
+
+Use the OS if you want stateful company memory, active sequences, install/export flows, and a richer operating model.
 
 ```bash
 npm install
 npm run os:doctor
-npm run os:gen
+npm run os:gen:all
 
+# bootstrap company memory inside your startup repo
+npm run os:init -- --project /path/to/startup --stage building --sequence validate-to-build
+
+# ask the router what matters next
+npm run os:recommend -- --project /path/to/startup
+
+# start or sync lifecycle sequences
+npm run os:sequence -- start --name gtm-engine --project /path/to/startup
+npm run os:sequence -- sync --project /path/to/startup
+
+# install host bundles
 npm run os:install -- --host pi
 npm run os:install -- --host claude-code --scope project
 npm run os:install -- --host codex
@@ -33,118 +123,90 @@ npm run os:install -- --host openclaw
 npm run os:install -- --host hermes
 ```
 
-Useful docs:
+## The operating model
 
-- [Founder Skills OS install/export flows](docs/founder-skills-os-install-export-flows.md)
-- [Founder Skills OS repo architecture](docs/founder-skills-os-repo-architecture.md)
-- [Founder Skills OS host adapter contract](docs/founder-skills-os-host-adapter-contract.md)
-- [Founder Skills OS coding-host priority](docs/founder-skills-os-coding-host-priority.md)
+A strong Founder Skills session should do four things:
 
----
+1. **Read the state first**
+   - `.fs/company-state.json`
+   - `.fs/artifact-index.json`
+   - `.fs/sequence-state.json`
+   - `.fs/weekly-review.json`
+   - `founder-context.md`
+   - `truth-memo.md`
+   - `recommended-next-step.md`
 
-## Legacy skill pack
+2. **Name the bottleneck clearly**
+   - problem clarity
+   - customer clarity
+   - build confidence
+   - launch readiness
+   - PMF uncertainty
+   - GTM weakness
+   - founder focus
+   - etc.
 
-The original 27-skill pack remains in the repo and published package.
-Every skill produces a concrete `.md` artifact — not option lists, not framework overviews. Opinionated decisions, worked examples, and a clear next step.
+3. **Write the artifact**
+   Examples: `truth-memo.md`, `mvp-brief.md`, `implementation-plan.md`, `landing-page-copy.md`, `pmf-assessment.md`.
 
-## The Journey
-
-The skills map to seven phases of building a product:
-
-```
-Strategy → Design → Build → Launch → Compound → PMF → Scale
-```
-
-You don't need all 27. Start where you are.
-
----
-
-## Skills
-
-### Strategy — Validate before you build
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `mvp-scoper` | `mvp-brief.md` — scoped MVP with 3 must-have features | "Scope my MVP" |
-| `problem-validator` | `problem-validation-report.md` — evidence the problem is real | "Validate my problem" |
-| `customer-hypothesis` | `customer-profile.md` — specific customer portrait | "Define my customer" |
-| `assumption-mapper` | `assumptions-map.md` — ranked risky bets with cheap tests | "Map my assumptions" |
-| `user-interview-guide` | `research-report.md` — validated insights from 5 user interviews | "Run user interviews" |
-| `competitor-mapper` | `competitor-map.md` — competitive landscape + positioning gap | "Map my competition" |
-
-### Design — UX before UI
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `ux-flow-designer` | `user-flows.md` — 3 core flows mapped step by step | "Design my user flows" |
-| `design-direction-setter` | `design-brief.md` — visual vocabulary and moodboard brief | "Set my design direction" |
-| `ux-heuristics-reviewer` | `ux-review.md` — 10 heuristics scored with fixes | "Review my UX" |
-
-### Build — Decisions, not debates
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `stack-selector` | `stack-decision.md` — specific tech stack with rationale | "Pick my stack" |
-| `feature-sequencer` | `build-sequence.md` — ordered build sequence | "Sequence my features" |
-| `integration-picker` | `integrations-plan.md` — specific tools per job-to-be-done | "Pick my integrations" |
-| `architecture-explainer` | `architecture-overview.md` — system explained in plain English | "Explain my architecture" |
-
-### Launch — Ship with confidence
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `positioning-writer` | `positioning.md` — one-liner, elevator pitch, tagline | "Write my positioning" |
-| `landing-page-copywriter` | `landing-page-copy.md` — full landing page copy | "Write my landing page" |
-| `launch-plan-builder` | `launch-plan.md` — week-by-week plan across 3 channels | "Build my launch plan" |
-| `pricing-model-framer` | `pricing-model.md` — pricing model with rationale | "Frame my pricing" |
-
-### Compound — The recurring ritual
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `build-cycle` | `cycles/YYYY-MM-DD.md` — cycle record with MPP + PMF signal | "Start a build cycle" |
-| `mpp-evaluator` | `mpp-scorecard.md` — Minimum Proud Product score across 5 criteria | "Evaluate my MPP" |
-| `failure-navigator` | `diagnosis.md` — root cause of stagnation + pivot prescription | "Help me through a failure" |
-
-### PMF — Find and amplify what's working
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `pmf-signal-reader` | `pmf-assessment.md` — signal strength across retention/WoM/engagement/revenue | "Read my PMF signals" |
-| `north-star-definer` | `north-star.md` — the one metric to obsess over | "Define my north star" |
-| `retention-loop-designer` | `retention-loop.md` — complete Hook Canvas design | "Design my retention loop" |
-| `growth-loop-builder` | `growth-loop.md` — self-reinforcing growth mechanism | "Build my growth loop" |
-| `churn-diagnostician` | `churn-diagnosis.md` — root cause + specific experiment | "Diagnose my churn" |
-
-### Partner — Your co-founder in a skill
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `founder-partner` | Updated `founder-context.md` + direction for the session | "Partner" or "Check in with my partner" |
-
-### Scale — Your first hires (human and AI)
-
-| Skill | What it produces | Invoke with |
-|-------|-----------------|-------------|
-| `first-hire-brief` | `human-hire-brief.md` or `agent-hire-brief.md` — who or what to hire first | "Help me make my first hire" |
+4. **Call the next move**
+   The output should narrow the company toward one next skill, one next sequence, or one real-world action.
 
 ---
 
-## Founder Skills OS install and export
+## Operating areas
 
-Generate the latest coding-host bundles, then install them into the harness you want:
+The canonical OS skills are organized around ten operating areas.
 
-```bash
-npm run os:gen
-npm run os:install -- --host pi
-npm run os:install -- --host claude-code --scope project
-npm run os:install -- --host codex
-npm run os:install -- --host opencode
-npm run os:install -- --host openclaw
-npm run os:install -- --host hermes
+| Area | What it handles | Canonical skills |
+|---|---|---|
+| **Partner** | routing, hard truth, founder focus | `founder-partner` |
+| **Strategy** | problem, customer, scope, assumptions | `problem-validator`, `customer-hypothesis`, `mvp-scoper`, `assumption-mapper` |
+| **Engineering + Product** | implementation planning, architecture, design-to-code, QA, release, post-ship review | `implementation-planner`, `architecture-reviewer`, `design-to-code-brief`, `qa-verifier`, `release-readiness-auditor`, `post-ship-review` |
+| **Launch** | positioning, landing pages, launch plans, pricing | `positioning-writer`, `landing-page-copywriter`, `launch-plan-builder`, `pricing-model-framer` |
+| **Marketing** | messaging systems, SEO/GEO, CAC diagnosis | `messaging-architect`, `seo-geo-strategist`, `cac-diagnostician` |
+| **Sales** | pipeline quality and sales motion | `pipeline-reviewer` |
+| **PMF** | PMF signal, north star, churn, retention, growth loops | `pmf-signal-reader`, `north-star-definer`, `churn-diagnostician`, `retention-loop-designer`, `growth-loop-builder` |
+| **Operations** | founder focus, experiments, weekly review cadence | `focus-planner`, `experiment-planner`, `weekly-founder-review` |
+| **Support** | support signal into product decisions | `support-insights-reader` |
+| **Scale** | first human or AI hire | `first-hire-brief` |
+
+## Lifecycle sequences
+
+Founder Skills OS also ships reusable sequences for common company transitions.
+
+| Sequence | When to use it | Primary outputs |
+|---|---|---|
+| `validate-to-build` | when the founder needs to earn the right to build | `problem-validation-report.md`, `customer-profile.md`, `mvp-brief.md`, `implementation-plan.md`, `architecture-overview.md`, `release-readiness.md` |
+| `build-to-release` | when the product is being built and needs stronger ship discipline | `implementation-plan.md`, `architecture-overview.md`, `design-build-brief.md`, `qa-report.md`, `release-readiness.md` |
+| `build-to-launch` | when build and launch assets need to converge | `implementation-plan.md`, `architecture-overview.md`, `design-build-brief.md`, `qa-report.md`, `release-readiness.md`, `positioning.md`, `pricing-model.md`, `landing-page-copy.md`, `launch-plan.md` |
+| `gtm-engine` | when message, pipeline, SEO, and CAC need to work as one system | `customer-profile.md`, `positioning.md`, `messaging-architecture.md`, `pricing-model.md`, `landing-page-copy.md`, `pipeline-review.md`, `seo-geo-plan.md`, `cac-diagnosis.md` |
+| `pmf-recovery` | when activation, retention, churn, and PMF signals are weak | `north-star.md`, `pmf-assessment.md`, `support-insights.md`, `churn-diagnosis.md`, `retention-loop.md`, `growth-loop.md`, `experiment-plan.md`, `weekly-review.md` |
+| `weekly-operating-rhythm` | when the founder needs a tighter weekly cadence | `weekly-review.md`, `focus-plan.md`, `experiment-plan.md` |
+
+---
+
+## Workspace memory
+
+Founder Skills OS bootstraps a founder-readable operating layer inside the startup repo.
+
+```text
+.fs/
+├─ company-state.json
+├─ artifact-index.json
+├─ sequence-state.json
+└─ weekly-review.json
+
+founder-context.md
+truth-memo.md
+recommended-next-step.md
 ```
 
-Default export targets:
+This is what lets the system feel less like one-off prompting and more like an operating system.
+
+## Install and export targets
+
+Default OS export targets:
 
 - `pi` → `~/.pi/agent/skills/founder-skills-os/`
 - `Claude Code` → `.claude/skills/founder-skills-os/` or `~/.claude/skills/founder-skills-os/`
@@ -155,32 +217,31 @@ Default export targets:
 
 See [docs/founder-skills-os-install-export-flows.md](docs/founder-skills-os-install-export-flows.md) for the full matrix.
 
-## Legacy pack install
+---
 
-**No clone required (recommended):**
+## Legacy package install
+
+The published package still supports the original install flow:
 
 ```bash
 # Install all skills for pi
 npx founder-skills install --agent pi
 
-# Install all skills for Claude globally
+# Install Claude globally
 npx founder-skills install --agent claude
 
-# Install Claude skills in current project only
+# Install Claude into the current project
 npx founder-skills install --agent claude --scope project
 
-# Generate Codex AGENTS file in current directory
+# Generate a Codex agents file in the current directory
 npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md
-```
 
-**Install a single phase:**
-
-```bash
+# Install a single legacy phase
 npx founder-skills install --agent pi --phase strategy
 npx founder-skills install --agent claude --phase pmf
 ```
 
-**Optional: clone + bash installer (legacy path):**
+Optional legacy clone path:
 
 ```bash
 git clone https://github.com/gvkhosla/founder-skills.git
@@ -188,96 +249,50 @@ cd founder-skills
 bash scripts/install.sh pi
 ```
 
----
+## Multi-agent behavior
 
-## How Skills Work
+Some workflows are deliberately parallelizable.
 
-Every skill is a `SKILL.md` file. Each file contains:
+- pi and Claude-style coding agents can split independent workstreams
+- Codex-compatible flows can run the same logic sequentially
+- every strong skill still ends in a concrete artifact, not just parallel chatter
 
-1. **What you'll get** — the exact output artifact
-2. **How it works** — step-by-step process the agent follows
-3. **Parallel execution** (where applicable) — independent workstreams run simultaneously
-4. **Worked example** — a real scenario showing inputs and outputs
-5. **Related skills** — what to use before and after
-
-Skills are self-contained. No internet required. No API keys. No setup beyond installing the files.
-
----
-
-## Multi-Agent
-
-Skills with independent workstreams spawn parallel subagents. pi and Claude execute this natively. Codex runs the same steps sequentially (every parallelized skill includes a Sequential Fallback section).
-
-**Skills with parallel execution:**
-- `assumption-mapper` — N agents, one per assumption
-- `mpp-evaluator` — 5 agents, one per MPP criterion
-- `failure-navigator` — 5 agents, one per failure hypothesis
-- `build-cycle` (Phase 3) — 3 agents for scoring and pattern reading
-- `launch-plan-builder` — 3 agents for Owned/Rented/Borrowed channels
-- `pmf-signal-reader` — 4 agents for retention/WoM/engagement/revenue
-- `north-star-definer` — N agents, one per candidate metric
-- `retention-loop-designer` — 4 agents for Trigger/Action/Reward/Investment
-- `growth-loop-builder` — 4 agents for viral/content/product/sales loops
-- `churn-diagnostician` — 3 agents for timing/behavior/feedback
-
----
-
-## The `founder-context.md` Convention
-
-The `founder-partner` skill keeps a persistent memory of your product's story in `founder-context.md` at your project root.
-
-Every skill that benefits from context will read this file if it exists. Create yours from the template:
-
-```bash
-cp skills/partner/founder-partner/context-template.md [your-project-root]/founder-context.md
-```
-
-Then run a `founder-partner` session to fill it in.
-
----
+See [docs/MULTI-AGENT.md](docs/MULTI-AGENT.md).
 
 ## Philosophy
 
-**Opinionated, not comprehensive.** Every skill makes a recommendation — not a menu of options. You can disagree. But you'll have to think to disagree.
+- **truth first** — say the uncomfortable thing early
+- **artifacts over advice** — every serious workflow leaves behind something reusable
+- **validation before build** — earn the right to execute
+- **one move over many** — clarity beats option overload
+- **company memory over one-off chat** — context compounds
 
-**Artifacts, not advice.** Every skill produces a `.md` file. You can read it, share it, argue with it, update it, and use it with the next skill.
-
-**The MPP, not the MVP.** Minimum Proud Product: the version you'd show without apologizing. The bar is pride, not mere functionality.
-
-**Compounding, not linear.** The Compound phase is a recurring ritual, not a one-time step. Each cycle builds on the last. The journal of cycle records is the product's memory.
-
-**The partner over tools.** The `founder-partner` skill is the most important skill in the pack. Not because it does the most, but because it holds the context across all the others.
-
-Full philosophy: [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md)
-
----
+Read more in [docs/PHILOSOPHY.md](docs/PHILOSOPHY.md) and [docs/founder-partner-manifesto.md](docs/founder-partner-manifesto.md).
 
 ## Documentation
 
-- [PHILOSOPHY.md](docs/PHILOSOPHY.md) — The principles behind every decision
-- [AUTHORING.md](docs/AUTHORING.md) — How to write a skill for this pack
-- [COMPATIBILITY.md](docs/COMPATIBILITY.md) — Agent-specific install and behavior details
-- [MULTI-AGENT.md](docs/MULTI-AGENT.md) — How parallel execution works per agent
-- [founder-skills-os-install-export-flows.md](docs/founder-skills-os-install-export-flows.md) — Coding-host install/export commands and target paths
-- [founder-skills-os-repo-architecture.md](docs/founder-skills-os-repo-architecture.md) — The new OS repo shape and architecture
-- [founder-skills-os-host-adapter-contract.md](docs/founder-skills-os-host-adapter-contract.md) — Host-neutral core, host-specific delivery contract
-
----
+- [Founder Partner manifesto](docs/founder-partner-manifesto.md)
+- [Homepage positioning](docs/homepage-positioning.md)
+- [OS install/export flows](docs/founder-skills-os-install-export-flows.md)
+- [OS repo architecture](docs/founder-skills-os-repo-architecture.md)
+- [OS host adapter contract](docs/founder-skills-os-host-adapter-contract.md)
+- [OS coding-host priority](docs/founder-skills-os-coding-host-priority.md)
+- [AUTHORING.md](docs/AUTHORING.md)
+- [COMPATIBILITY.md](docs/COMPATIBILITY.md)
+- [MULTI-AGENT.md](docs/MULTI-AGENT.md)
 
 ## Contributing
 
-Read [docs/AUTHORING.md](docs/AUTHORING.md) first. Every skill must follow the 7 laws and the canonical template. Skills that produce option lists instead of recommendations won't be accepted. Skills that don't produce a concrete artifact won't be accepted.
+Read [docs/AUTHORING.md](docs/AUTHORING.md) first.
 
-Run validation before opening a PR:
+Before opening a PR:
 
 ```bash
 npm run check
+npm run os:typecheck
+npm run os:test
 ```
-
-Open an issue before writing a new skill — check the existing ones for overlap first.
-
----
 
 ## License
 
-MIT — use freely, commercially included. Attribution appreciated, not required.
+MIT

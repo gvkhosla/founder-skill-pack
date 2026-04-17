@@ -1,7 +1,7 @@
 {
   "name": "founder-skills",
   "version": "0.2.0",
-  "description": "A curated collection of agent skills for non-technical founders building world-class products",
+  "description": "Brutally honest founder workflows and company-memory for coding agents",
   "bin": {
     "founder-skills": "bin/founder-skills.js"
   },
@@ -23,11 +23,14 @@
     "lint:shell": "bash -n scripts/install.sh",
     "check": "npm run lint:shell && npm run validate",
     "pack:dry-run": "npm pack --dry-run",
-    "test": "npm run check",
-    "os:gen": "npm run os:gen:hosts && npm run os:check:generated && npm run os:check:consistency",
+    "test": "npm run check && npm run os:typecheck && npm run os:test",
+    "os:gen": "npm run os:gen:hosts && npm run os:check:generated && npm run os:check:sequences && npm run os:check:consistency",
     "os:gen:hosts": "tsx scripts/gen-host-skills.ts",
     "os:gen:chat": "tsx scripts/gen-chat-bundles.ts",
-    "os:gen:all": "npm run os:gen:hosts && npm run os:gen:chat && npm run os:check:consistency",
+    "os:gen:all": "npm run os:gen:hosts && npm run os:gen:chat && npm run os:check:sequences && npm run os:check:consistency",
+    "os:init": "tsx scripts/init-company-workspace.ts",
+    "os:recommend": "tsx scripts/recommend-next.ts",
+    "os:sequence": "tsx scripts/sequence-cli.ts",
     "os:install": "tsx scripts/install-host-bundles.ts",
     "os:check:consistency": "tsx scripts/check-consistency.ts",
     "os:check:generated": "tsx scripts/validate-generated-hosts.ts",

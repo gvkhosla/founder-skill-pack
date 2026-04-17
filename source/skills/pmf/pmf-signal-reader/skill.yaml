@@ -1,0 +1,18 @@
+name: pmf-signal-reader
+description: Reads whether traction is real by judging retention, word of mouth, engagement, and revenue signals. Use when the founder needs an honest PMF read instead of vanity metrics. Produces pmf-assessment.md.
+invocations:
+  - Read my PMF signals
+  - Do we have PMF?
+outputs:
+  - pmf-assessment.md
+depends_on:
+  - north-star.md
+  - founder-context.md
+feeds_into:
+  - churn-diagnosis.md
+  - retention-loop.md
+  - growth-loop.md
+checks:
+  - honest_assessment
+  - signal_strength_named
+  - next_step_present

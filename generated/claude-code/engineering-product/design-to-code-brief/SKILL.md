@@ -5,12 +5,23 @@ description: Turns product and design intent into a build-ready implementation b
 
 # design-to-code-brief
 
-## Invocation
+## When to invoke
 - Turn this design into a build brief
 - Help me hand this off to build
 
 ## Outputs
 - design-build-brief.md
+
+## Depends on
+- implementation-plan.md
+- positioning.md
+
+## Feeds into
+- qa-report.md
+
+## Quality checks
+- handoff_clarity_present
+- states_and_interactions_present
 
 ## Prompt
 # Design to Code Brief

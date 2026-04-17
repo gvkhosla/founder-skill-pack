@@ -2,6 +2,9 @@
 
 Moves a founder from validated problem to confident implementation planning.
 
+## Entrypoint
+- founder-partner
+
 ## Steps
 1. problem-validator
 2. customer-hypothesis
@@ -17,3 +20,19 @@ Moves a founder from validated problem to confident implementation planning.
 - implementation-plan.md
 - architecture-overview.md
 - release-readiness.md
+
+## Success signals
+- founder_can_start_build_with_no_major_ambiguity
+
+## Operating notes
+# Validate to Build
+
+Use this sequence when the founder has conviction around the problem and now needs to turn that into a buildable path.
+
+## Sequence logic
+1. Validate the problem
+2. Define the customer
+3. Scope the MVP
+4. Turn scope into a concrete implementation plan
+5. Review architecture and technical risk
+6. Audit release readiness before shipping

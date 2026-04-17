@@ -23,10 +23,11 @@ test("openclaw and hermes adapters emit coding-harness artifacts", () => {
     description: "Sample skill",
     invocations: ["Help me plan the build"],
     outputs: ["implementation-plan.md"],
-    dependsOn: [],
-    feedsInto: [],
+    dependsOn: ["founder-context.md"],
+    feedsInto: ["release-readiness.md"],
     prompt: "Do the work",
-    checks: [],
+    reference: "Be direct.",
+    checks: ["specific_recommendation"],
   };
 
   const openclaw = adapters.find((adapter) => adapter.id === "openclaw");
@@ -39,5 +40,59 @@ test("openclaw and hermes adapters emit coding-harness artifacts", () => {
   const hermesArtifacts = hermes!.generateSkill(sampleSkill);
 
   assert.ok(openclawArtifacts.some((artifact) => artifact.path.includes("generated/openclaw/skills/implementation-planner/SKILL.md")));
+  assert.ok(openclawArtifacts.some((artifact) => artifact.content.includes("## Read first when available")));
+  assert.ok(openclawArtifacts.some((artifact) => artifact.content.includes("founder-context.md")));
+  assert.ok(openclawArtifacts.some((artifact) => artifact.content.includes("specific_recommendation")));
+  assert.ok(openclawArtifacts.some((artifact) => artifact.content.includes("Be direct.")));
   assert.ok(hermesArtifacts.some((artifact) => artifact.path.includes("generated/hermes/engineering-product/implementation-planner/SKILL.md")));
+  assert.ok(hermesArtifacts.some((artifact) => artifact.content.includes("## Depends on")));
+  assert.ok(hermesArtifacts.some((artifact) => artifact.content.includes("## Quality checks")));
+  assert.ok(hermesArtifacts.some((artifact) => artifact.content.includes("Be direct.")));
+});
+
+test("host adapters include sequence routing metadata in generated bundles", () => {
+  const sampleSequence = {
+    name: "validate-to-build",
+    description: "Sample sequence",
+    entrypoint: "founder-partner",
+    steps: ["problem-validator", "customer-hypothesis"],
+    primaryOutputs: ["problem-validation-report.md"],
+    successSignal: ["founder_can_start_build_with_no_major_ambiguity"],
+    prompt: "Move from validation into implementation planning.",
+  };
+
+  const pi = adapters.find((adapter) => adapter.id === "pi");
+  const chatgpt = adapters.find((adapter) => adapter.id === "chatgpt");
+
+  assert.ok(pi);
+  assert.ok(chatgpt);
+
+  const piSequence = pi!.generateSequence(sampleSequence)[0];
+  const chatSequence = chatgpt!.generateSequence(sampleSequence)[0];
+
+  assert.ok(piSequence.content.includes("## Entrypoint"));
+  assert.ok(piSequence.content.includes("## Success signals"));
+  assert.ok(piSequence.content.includes("Move from validation into implementation planning."));
+  assert.ok(chatSequence.content.includes("Entrypoint:"));
+  assert.ok(chatSequence.content.includes("Success signals:"));
+  assert.ok(chatSequence.content.includes("Move from validation into implementation planning."));
+});
+
+test("coding-host adapters can emit starter workspace state files", () => {
+  const pi = adapters.find((adapter) => adapter.id === "pi");
+  assert.ok(pi);
+
+  const artifacts = pi!.generateWorkspace({
+    companyStateSchema: {},
+    artifactGraphSchema: {},
+    starterFiles: [
+      { path: "workspace/starter/.fs/company-state.json", content: "{}" },
+      { path: "workspace/starter/founder-context.md", content: "# Founder Context" },
+    ],
+    recommendedInstructions: "Read state first.",
+  });
+
+  assert.ok(artifacts.some((artifact) => artifact.path.endsWith("generated/pi/workspace/project-instructions.md")));
+  assert.ok(artifacts.some((artifact) => artifact.path.endsWith("generated/pi/workspace/starter/.fs/company-state.json")));
+  assert.ok(artifacts.some((artifact) => artifact.path.endsWith("generated/pi/workspace/starter/founder-context.md")));
 });

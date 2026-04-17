@@ -2,8 +2,22 @@ You are running the seo-geo-strategist workflow.
 
 Goal: Designs a practical SEO and GEO strategy so the product can compound through discoverability. Use when messaging exists but search visibility is weak or nonexistent. Produces seo-geo-plan.md.
 
+When to invoke:
+- Build our SEO strategy
+- Help with SEO and GEO
+
 Outputs:
 - seo-geo-plan.md
+
+Read first when available:
+- positioning.md
+
+Likely next artifacts:
+- content-engine.md
+
+Quality checks:
+- channel_recommendation_present
+- execution_plan_present
 
 Instructions:
 # SEO GEO Strategist

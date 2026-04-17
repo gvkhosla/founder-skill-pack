@@ -1,1477 +1,1313 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founder Skills OS — Founder operating system for coding agents</title>
-  <meta name="description" content="Founder Skills is evolving from a 27-skill founder pack into a coding-host-first operating system for pi, Claude Code, Codex, OpenCode, OpenClaw, and Hermes." />
+  <title>Founder Skills</title>
+  <meta name="description" content="Turn your agent into a brutally honest co-founder." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <meta name="theme-color" content="#09090b" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Founder Skills OS" />
-  <meta property="og:description" content="Founder Skills is evolving into a coding-host-first operating system for founders who build with AI agents." />
+  <meta property="og:title" content="Founder Skills" />
+  <meta property="og:description" content="Turn your agent into a brutally honest co-founder." />
   <meta property="og:url" content="https://fskills.xyz" />
   <meta property="og:image" content="https://fskills.xyz/og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Founder Skills social preview inspired by a Paris invader mosaic" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Founder Skills" />
+  <meta name="twitter:description" content="Turn your agent into a brutally honest co-founder." />
   <meta name="twitter:image" content="https://fskills.xyz/og.png" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:      #070707;
-      --surface: #0e0e0e;
-      --surface2: #141414;
-      --border:  #1c1c1c;
-      --border2: #252525;
-      --muted:   #404040;
-      --dim:     #6b6b6b;
-      --sub:     #999;
-      --text:    #ededed;
-      --white:   #ffffff;
+      color-scheme: dark;
+      --font-serif: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --mono: 'SF Mono', 'Fira Code', ui-monospace, monospace;
-
-      --strategy: #818cf8;
-      --design:   #f472b6;
-      --build:    #fbbf24;
-      --launch:   #34d399;
-      --compound: #a78bfa;
-      --pmf:      #22d3ee;
-      --partner:  #fb923c;
-      --scale:    #e879f9;
-
-      --content-max: 1180px;
-      --section-space: clamp(4.75rem, 9vw, 7rem);
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --shadow-soft: 0 18px 40px rgba(0,0,0,0.26);
-      --shadow-lg: 0 36px 110px rgba(0,0,0,0.48);
+      --bg: #09090b;
+      --surface: #18181b;
+      --surface-2: #111114;
+      --border: #27272a;
+      --border-2: #3f3f46;
+      --text: #f5f5f5;
+      --muted: #a1a1aa;
+      --soft: #71717a;
+      --accent: #f97316;
+      --max: 780px;
     }
 
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #fffdfa;
+      --surface: #f5f5f4;
+      --surface-2: #fafaf9;
+      --border: #e7e5e4;
+      --border-2: #d6d3d1;
+      --text: #0f0f10;
+      --muted: #57534e;
+      --soft: #78716c;
+      --accent: #ea580c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background:
-        radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--strategy) 11%, transparent) 0%, transparent 28%),
-        radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--pmf) 10%, transparent) 0%, transparent 24%),
-        radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--compound) 7%, transparent) 0%, transparent 30%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.65;
-      letter-spacing: -0.012em;
+      font-family: var(--font-sans);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      overflow-x: hidden;
+      transition: background-color .2s ease, color .2s ease;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent 14%, transparent 86%, rgba(255,255,255,0.01));
-      z-index: -1;
-    }
-
-    ::selection {
-      background: color-mix(in srgb, var(--strategy) 32%, transparent);
-      color: var(--white);
+    body.modal-open {
+      overflow: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
-    code { font-family: var(--mono); }
+    code, pre { font-family: var(--font-mono); }
 
-    /* ─── NAV ─────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 62px;
-      display: flex; align-items: center;
-      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-      background: rgba(7,7,7,0.76);
-      backdrop-filter: blur(22px) saturate(180%);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .nav-inner {
-      width: 100%; max-width: var(--content-max); margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
+    @keyframes soft-scale-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .nav-brand {
-      display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.93rem; font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-    }
-    .nav-brand img { width: 24px; height: 24px; }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 1.8rem;
-      font-size: 0.82rem; color: var(--dim);
-    }
-    .nav-links a { transition: color 0.18s ease; }
-    .nav-links a:hover { color: var(--text); }
-
-    .nav-cta {
-      display: flex; align-items: center; gap: 0.35rem;
-      padding: 0.46rem 0.96rem;
-      background: var(--white);
-      color: var(--bg);
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      box-shadow: 0 8px 22px rgba(255,255,255,0.09);
-      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
-    }
-    .nav-cta:hover {
-      opacity: 0.94;
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(255,255,255,0.12);
-    }
-
-    /* ─── LAYOUT ───────────────────────────────────────── */
-    .container {
-      max-width: var(--content-max);
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
-      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
     }
 
-    /* ─── HERO ─────────────────────────────────────────── */
+    main { padding: 1.5rem 0 3.4rem; }
+
+    /* ---------- Hero ---------- */
+
     .hero {
-      padding-top: clamp(8rem, 12vw, 10.5rem);
-      padding-bottom: clamp(5.5rem, 10vw, 7.5rem);
-      display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-      gap: clamp(3rem, 6vw, 5.5rem);
-      align-items: center;
-      min-height: calc(100vh - 62px);
-    }
-
-    .hero-left {
-      max-width: 620px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-size: 0.73rem;
-      font-family: var(--mono);
-      color: #8b8b8b;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      margin-bottom: 1.8rem;
-      padding: 0.44rem 0.72rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 999px;
-    }
-    .hero-eyebrow .pulse {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--launch);
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--launch) 40%, transparent);
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--launch) 40%, transparent); }
-      50% { box-shadow: 0 0 0 6px transparent; }
-    }
-
-    .hero h1 {
-      font-size: clamp(3.2rem, 6vw, 5.35rem);
-      font-weight: 800;
-      letter-spacing: -0.072em;
-      line-height: 0.93;
-      color: var(--white);
-      margin-bottom: 1.45rem;
-      max-width: 10.2ch;
-    }
-
-    .hero h1 em {
-      display: inline-block;
-      font-style: normal;
-      background: linear-gradient(92deg, #d7ddff 0%, var(--strategy) 20%, #d6bcfa 48%, var(--pmf) 78%, #b8f3ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      filter: saturate(1.08);
-      -webkit-text-stroke: 0.015em rgba(255,255,255,0.035);
-    }
-
-    .hero-sub {
-      font-size: clamp(1.02rem, 1.35vw, 1.16rem);
-      color: #adadad;
-      line-height: 1.78;
-      max-width: 52ch;
-      margin-bottom: 2.3rem;
-    }
-
-    .hero-install {
-      display: inline-flex; align-items: center; gap: 0.78rem;
-      background: linear-gradient(180deg, rgba(18,18,18,0.95), rgba(12,12,12,0.98));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 11px;
-      padding: 0.78rem 1.06rem 0.78rem 0.96rem;
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      color: var(--text);
-      cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), var(--shadow-soft);
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-      margin-bottom: 0.95rem;
-    }
-    .hero-install:hover {
-      border-color: rgba(255,255,255,0.13);
-      background: linear-gradient(180deg, #171717, #101010);
-      transform: translateY(-1px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 34px rgba(0,0,0,0.28);
-    }
-    .hero-install .prompt { color: var(--muted); user-select: none; }
-    .hero-install .hint {
-      font-family: var(--sans); font-size: 0.68rem;
-      color: var(--muted); margin-left: 0.5rem;
-      padding-left: 0.78rem; border-left: 1px solid var(--border2);
-    }
-
-    .hero-agents {
-      font-size: 0.75rem; color: var(--muted);
-    }
-    .hero-agents b { color: #b8b8b8; font-weight: 600; }
-
-    /* ─── ARTIFACT PREVIEW ─────────────────────────────── */
-    .hero-right {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 8% -6% -10% 12%;
-      background: radial-gradient(circle at center, color-mix(in srgb, var(--strategy) 10%, transparent), transparent 62%);
-      filter: blur(24px);
-      z-index: -1;
-      opacity: 0.9;
-    }
-
-    .artifact-window {
-      position: relative;
-      background:
-        linear-gradient(180deg, rgba(17,17,17,0.98), rgba(10,10,10,0.98)) padding-box,
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)) border-box;
-      border: 1px solid transparent;
-      border-radius: 20px;
-      overflow: hidden;
-      font-size: 0.8rem;
-      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-
-    .artifact-window::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 82%, rgba(255,255,255,0.015));
-    }
-
-    .artifact-titlebar {
-      display: flex; align-items: center; gap: 0.7rem;
-      padding: 0.82rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: linear-gradient(180deg, rgba(24,24,24,0.96), rgba(18,18,18,0.96));
-    }
-    .artifact-dots { display: flex; gap: 0.35rem; }
-    .artifact-dots span {
-      width: 10px; height: 10px; border-radius: 50%;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
-    }
-    .dot-r { background: #ff5f57; }
-    .dot-y { background: #ffbd2e; }
-    .dot-g { background: #28c840; }
-
-    .artifact-filename {
-      font-family: var(--mono); font-size: 0.72rem;
-      color: #8a8a8a; margin-left: 0.25rem;
-      letter-spacing: 0.01em;
-    }
-
-    .artifact-body {
-      position: relative;
-      padding: 1.35rem 1.5rem 1.55rem 4.25rem;
-      line-height: 1.8;
-      color: var(--sub);
-      font-family: var(--mono);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.012), transparent 30%),
-        linear-gradient(90deg, rgba(255,255,255,0.018), transparent 1px) 0 0 / 100% 100%;
-    }
-
-    .artifact-body::before {
-      content: '01\A02\A03\A04';
-      white-space: pre;
-      position: absolute;
-      left: 1.2rem;
-      top: 1.32rem;
-      color: #3f3f46;
-      font-size: 0.72rem;
-      line-height: 2.34;
-      letter-spacing: 0.02em;
-    }
-
-    .artifact-section {
-      margin-bottom: 1.15rem;
-    }
-    .artifact-label {
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--strategy);
-      margin-bottom: 0.38rem;
-      font-family: var(--mono);
-    }
-    .artifact-content {
-      font-size: 0.79rem;
-      color: #d3d3d3;
-      line-height: 1.72;
-    }
-    .artifact-content .strike { text-decoration: line-through; color: var(--dim); }
-    .artifact-list {
-      list-style: none;
-      font-size: 0.79rem;
-      color: #d8d8d8;
-    }
-    .artifact-list li { padding: 0.16rem 0; }
-    .artifact-list li::before { content: '→ '; color: var(--launch); }
-    .artifact-out {
-      font-size: 0.74rem;
-      color: #9f9f9f;
-    }
-    .artifact-out span { color: #8d8d8d; }
-
-    .tok-key { color: #c4b5fd; }
-    .tok-entity { color: #f8fafc; }
-    .tok-string { color: #86efac; }
-    .tok-accent { color: #7dd3fc; }
-    .tok-warn { color: #fcd34d; }
-    .tok-muted { color: #a1a1aa; }
-
-    .invoke-line {
-      position: absolute;
-      top: -44px; left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      background: color-mix(in srgb, var(--strategy) 12%, var(--surface));
-      border: 1px solid color-mix(in srgb, var(--strategy) 30%, transparent);
-      border-radius: 999px;
-      padding: 0.34rem 0.95rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: #c7ceff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-
-    /* ─── STATS STRIP ──────────────────────────────────── */
-    .stats {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 1.6rem 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
-    }
-    .stats-inner {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.9rem;
-      align-items: stretch;
-    }
-    .stat {
       text-align: center;
-      min-width: 0;
-      background: linear-gradient(180deg, rgba(17,17,17,0.94), rgba(11,11,11,0.98));
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 1.15rem 0.9rem 1.05rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
-    }
-    .stat::before {
-      content: '';
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-    }
-    .stat-num {
-      font-size: clamp(2.45rem, 4vw, 3.45rem);
-      font-weight: 800;
-      letter-spacing: -0.08em;
-      background: linear-gradient(180deg, #ffffff 0%, #d5d5d5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      line-height: 0.88;
-      margin-bottom: 0.38rem;
-      text-shadow: 0 0 24px rgba(255,255,255,0.06);
-    }
-    .stat-label {
-      font-size: 0.69rem;
-      color: #8f8f8f;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      font-weight: 700;
-    }
-    .stat-divider { display: none; }
-
-    /* ─── PHILOSOPHY ───────────────────────────────────── */
-    .philosophy {
-      padding: var(--section-space) 0;
-    }
-    .phil-grid {
+      padding: 1.5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 18px;
-      overflow: hidden;
-      margin-top: 2.9rem;
+      justify-items: center;
     }
-    .phil-item {
-      padding: 2rem 1.75rem 2.05rem;
-      background: rgba(7,7,7,0.98);
-      transition: background 0.2s ease, transform 0.2s ease;
+
+    .hero-mark {
+      width: min(100%, 540px);
+      margin: 0 auto 2rem;
+      display: block;
+      animation: fade-up .7s cubic-bezier(.22,.9,.22,1) both;
     }
-    .phil-item:hover {
+
+    .hero-mark img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 22px 50px rgba(0,0,0,0.3);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .hero-mark:hover img {
+      transform: translateY(-2px);
+      box-shadow: 0 26px 58px rgba(0,0,0,0.34);
+    }
+
+    h1 {
+      font-family: var(--font-sans);
+      font-size: clamp(2.6rem, 6.8vw, 4.2rem);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+      font-weight: 700;
+      max-width: 15ch;
+      margin: 0 auto 1.4rem;
+      text-wrap: balance;
+      animation: fade-up .7s cubic-bezier(.22,.9,.22,1) .08s both;
+    }
+
+    .hero-copy {
+      max-width: 40rem;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      line-height: 1.58;
+      color: var(--muted);
+      text-wrap: pretty;
+      animation: fade-up .7s cubic-bezier(.22,.9,.22,1) .14s both;
+    }
+
+    .install-box {
       background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      margin: 0 auto 0.7rem;
+      max-width: 620px;
+      width: 100%;
+      text-align: left;
+      transition: border-color .18s ease, transform .18s ease;
+      animation: fade-up .7s cubic-bezier(.22,.9,.22,1) .24s both;
+    }
+
+    .install-box:hover {
+      border-color: var(--border-2);
       transform: translateY(-1px);
     }
-    .phil-icon {
-      font-size: 1.15rem; margin-bottom: 1rem;
-    }
-    .phil-item h3 {
-      font-size: 0.98rem; font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.46rem; color: var(--text);
-    }
-    .phil-item p {
-      font-size: 0.84rem; color: #8f8f8f; line-height: 1.72;
+
+    .install-box code {
+      border: 0;
+      background: none;
+      padding: 0;
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      white-space: normal;
+      word-break: break-word;
     }
 
-    /* ─── SECTION HEADER ───────────────────────────────── */
-    .sec-eyebrow {
-      font-size: 0.69rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .install-prefix {
       color: var(--muted);
-      margin-bottom: 0.7rem;
-      font-family: var(--mono);
+      margin-right: 0.4rem;
     }
-    .sec-title {
-      font-size: clamp(2rem, 3.8vw, 2.85rem);
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      line-height: 1.02;
-      color: var(--white);
-      margin-bottom: 0.9rem;
+
+
+    .copy-btn {
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 6px;
+      padding: 0.38rem 0.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: color .15s, border-color .15s, opacity .15s ease;
+    }
+
+    .copy-btn:hover { color: var(--text); border-color: var(--border-2); }
+    .copy-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-top: 0.25rem;
+      animation: fade-up .7s cubic-bezier(.22,.9,.22,1) .28s both;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.52rem;
+      min-height: 50px;
+      padding: 0 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform .15s ease, border-color .15s ease, background-color .15s ease, color .15s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .hero-btn:hover { transform: translateY(-1px); }
+
+    .hero-btn:active,
+    .copy-btn:active,
+    .connect-inline-copy:active,
+    .footer-logo-link:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .hero-btn-primary {
+      background: var(--accent);
+      color: #1a120a;
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 24%, transparent);
+    }
+
+    .hero-btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border-2);
+    }
+
+    .hero-btn-secondary:hover { border-color: var(--text); }
+
+    .hero-btn svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .connect-agent {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .section {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 800px;
+    }
+
+    .connect-copy {
+      display: grid;
+      gap: 0.9rem;
+      align-content: start;
+    }
+
+    .connect-copy .section-title {
+      font-size: clamp(1.42rem, 2.7vw, 1.88rem);
+      line-height: 1.08;
+      margin-bottom: 0.15rem;
       max-width: 13ch;
     }
-    .sec-sub {
-      font-size: 1rem;
-      color: #a6a6a6;
-      max-width: 58ch;
-      line-height: 1.78;
+
+    .connect-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.62;
+      max-width: 32ch;
     }
 
-    /* ─── WHAT'S NEW ───────────────────────────────────── */
-    .whats-new { padding-bottom: var(--section-space); }
+    .connect-copy .hero-btn { justify-self: start; margin-top: 0.25rem; }
 
-    .wn-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid rgba(255,255,255,0.05);
+    .connect-note {
+      color: var(--soft);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      max-width: 40ch;
+    }
+
+    .connect-note a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
+
+    .connect-preview {
+      position: relative;
+      padding: 0.9rem;
       border-radius: 18px;
       overflow: hidden;
-      margin-top: 2.6rem;
+      background:
+        linear-gradient(rgba(9,9,11,0.1), rgba(9,9,11,0.1)),
+        url('/assets/hero-invader.png') center / cover no-repeat;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    .wn-item {
-      background: rgba(7,7,7,0.98);
-      padding: 1.55rem 1.75rem 1.65rem;
-      transition: background 0.2s ease, transform 0.2s ease;
+
+    .connect-preview:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(0,0,0,0.16);
+    }
+
+    .connect-panel {
       position: relative;
+      background: color-mix(in srgb, var(--bg) 95%, white 2%);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 0.9rem;
+      backdrop-filter: blur(6px);
     }
-    .wn-item:hover {
+
+    .connect-panel-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .connect-panel-title {
+      font-family: var(--font-sans);
+      font-size: 0.94rem;
+      line-height: 1.34;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.72rem;
+      color: var(--text);
+      max-width: 24ch;
+    }
+
+    .connect-code-wrap {
+      background: color-mix(in srgb, var(--surface) 78%, #0f172a 22%);
+      border: 1px solid color-mix(in srgb, var(--border) 90%, white 3%);
+      border-radius: 13px;
+      padding: 0.72rem;
+    }
+
+    .connect-code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .connect-code-head span {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .connect-inline-copy {
+      flex: 0 0 auto;
+      border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border));
+      background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.32rem 0.7rem;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .connect-code-wrap pre {
+      margin: 0;
+      color: #e7e5e4;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow: auto;
+    }
+
+    .connect-preview-footer {
+      margin-top: 0.75rem;
+      color: var(--soft);
+      font-size: 0.78rem;
+      line-height: 1.55;
+    }
+
+    /* ---------- Works-with strip ---------- */
+
+    .works-with {
+      padding: 1.9rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem 1.75rem;
+    }
+
+    .strip-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.95rem 1.9rem;
+    }
+
+    .logo-item {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.34rem 0.48rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.82;
+      min-height: 24px;
+      cursor: pointer;
+      transition: opacity .15s, transform .15s ease, border-color .15s ease, background-color .15s ease;
+    }
+
+    .logo-item:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .logo-item.is-active {
+      opacity: 1;
+      border-color: color-mix(in srgb, var(--accent) 58%, var(--border));
+      background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    }
+
+    .logo-item img {
+      display: block;
+      width: auto;
+      height: 24px;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .logo-wordmark { max-width: 152px; }
+
+    img.theme-dark-only { display: block; }
+    img.theme-light-only { display: none; }
+    html[data-theme="light"] img.theme-dark-only { display: none; }
+    html[data-theme="light"] img.theme-light-only { display: block; }
+
+    /* ---------- Sections ---------- */
+
+    .sections {
+      padding-top: 2.6rem;
+      display: grid;
+      gap: 2.6rem;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.55rem, 3.1vw, 2rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      max-width: 20ch;
+    }
+
+    .section p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.62;
+      margin-bottom: 0.7rem;
+      max-width: 60ch;
+      text-wrap: pretty;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ---------- Feature grid ---------- */
+
+    .feature-grid {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .feature {
+      border-top: 1px solid var(--border);
+      padding-top: 0.72rem;
+    }
+
+    .feature strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .feature span {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    /* ---------- Categories ---------- */
+
+    .categories {
+      margin-top: 1.1rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .category {
+      padding: 0.9rem 1rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      gap: 0.45rem;
+      align-content: start;
+    }
+
+    .cat-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .cat-index {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    .cat-name {
+      font-family: var(--font-sans);
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .cat-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      max-width: 52ch;
+    }
+
+    .cat-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.32rem 0.36rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.1rem 0 0;
+    }
+
+    .cat-skills li {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      padding: 0.24rem 0.46rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface-2);
+      transition: color .15s, border-color .15s, background-color .15s;
+    }
+
+    .cat-skills li:hover {
+      color: var(--text);
+      border-color: var(--border-2);
       background: var(--surface);
       transform: translateY(-1px);
     }
-    .wn-item::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    }
-    .wn-new::before  { background: var(--scale); }
-    .wn-v2::before   { background: var(--partner); }
-    .wn-wide { grid-column: 1 / -1; }
 
-    .wn-badge {
-      display: inline-block;
-      font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.09em; text-transform: uppercase;
-      padding: 0.18rem 0.55rem;
+    /* ---------- Start modal ---------- */
+
+    .start-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .start-modal[hidden] {
+      display: none;
+    }
+
+    .start-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 5, 6, 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .start-modal-card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 640px);
+      padding: 1.15rem;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 97%, transparent), var(--surface-2));
+      box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+      animation: soft-scale-in .22s ease both;
+    }
+
+    .start-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      margin-bottom: 0.8rem;
-    }
-    .badge-new { background: color-mix(in srgb, var(--scale) 15%, transparent); color: var(--scale); }
-    .badge-v2  { background: color-mix(in srgb, var(--partner) 15%, transparent); color: var(--partner); }
-
-    .wn-title {
-      font-size: 0.91rem; font-weight: 700; font-family: var(--mono);
-      margin-bottom: 0.44rem; color: var(--text);
-    }
-    .wn-desc  { font-size: 0.81rem; color: #8d8d8d; line-height: 1.62; }
-
-    /* ─── SKILLS ───────────────────────────────────────── */
-    .skills-section { padding-bottom: var(--section-space); }
-
-    .phase-nav {
-      display: flex; gap: 0.45rem; flex-wrap: wrap;
-      margin-top: 2.55rem; margin-bottom: 2.6rem;
-    }
-    .phase-pill {
-      display: flex; align-items: center; gap: 0.44rem;
-      padding: 0.44rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.75rem; font-weight: 700;
-      color: #878787;
-      background: rgba(14,14,14,0.95);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1;
       cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-      white-space: nowrap;
-      font-family: var(--sans);
+      transition: color .15s ease, border-color .15s ease, transform .15s ease;
     }
-    .phase-pill:hover {
-      border-color: rgba(255,255,255,0.12);
+
+    .start-modal-close:hover {
       color: var(--text);
+      border-color: var(--border-2);
       transform: translateY(-1px);
     }
-    .phase-pill.active {
-      color: var(--bg); border-color: transparent;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
-    }
-    .phase-pill .count {
-      font-size: 0.65rem; opacity: 0.72;
-      font-weight: 600; font-family: var(--mono);
-    }
-    .pill-all.active { background: var(--white); }
-    .pill-strategy.active { background: var(--strategy); }
-    .pill-design.active   { background: var(--design); }
-    .pill-build.active    { background: var(--build); }
-    .pill-launch.active   { background: var(--launch); }
-    .pill-compound.active { background: var(--compound); }
-    .pill-pmf.active      { background: var(--pmf); }
-    .pill-scale.active    { background: var(--scale); }
-    .pill-partner.active  { background: var(--partner); }
 
-    .phase-group { margin-bottom: 3.5rem; }
-    .phase-group[hidden] { display: none; }
-
-    .phase-group-header {
-      display: flex; align-items: baseline; gap: 0.75rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 1.35rem;
-    }
-    .phase-group-name {
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      font-family: var(--mono);
-    }
-    .phase-group-desc {
-      font-size: 0.82rem; color: #848484;
-    }
-    .phase-group-count {
-      margin-left: auto;
-      font-size: 0.68rem; color: var(--muted);
-      font-family: var(--mono);
+    .start-modal-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.72rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
     }
 
-    /* phase variables + name colors */
-    [data-phase=strategy] { --phase-color: var(--strategy); }
-    [data-phase=design]   { --phase-color: var(--design); }
-    [data-phase=build]    { --phase-color: var(--build); }
-    [data-phase=launch]   { --phase-color: var(--launch); }
-    [data-phase=compound] { --phase-color: var(--compound); }
-    [data-phase=pmf]      { --phase-color: var(--pmf); }
-    [data-phase=scale]    { --phase-color: var(--scale); }
-    [data-phase=partner]  { --phase-color: var(--partner); }
-
-    [data-phase=strategy] .phase-group-name { color: var(--strategy); }
-    [data-phase=design]   .phase-group-name { color: var(--design); }
-    [data-phase=build]    .phase-group-name { color: var(--build); }
-    [data-phase=launch]   .phase-group-name { color: var(--launch); }
-    [data-phase=compound] .phase-group-name { color: var(--compound); }
-    [data-phase=pmf]      .phase-group-name { color: var(--pmf); }
-    [data-phase=scale]    .phase-group-name { color: var(--scale); }
-    [data-phase=partner]  .phase-group-name { color: var(--partner); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
-      gap: 0.85rem;
+    .start-modal h3 {
+      font-family: var(--font-sans);
+      font-size: clamp(1.18rem, 2vw, 1.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.45rem;
+      max-width: 15ch;
     }
 
-    .skill-card {
-      background: linear-gradient(180deg, rgba(17,17,17,0.98), rgba(12,12,12,0.98));
-      border: 1px solid rgba(255,255,255,0.05);
+    .start-modal p {
+      margin: 0 0 0.85rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.58;
+      max-width: 48ch;
+    }
+
+    .start-modal pre {
+      margin: 0;
+      padding: 0.85rem 0.95rem;
       border-radius: 14px;
-      padding: 1.12rem 1.2rem 1.18rem 1.3rem;
-      position: relative;
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-      overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
-    }
-    .skill-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-      background: var(--phase-color);
-      opacity: 0.95;
-    }
-    .skill-card:hover {
-      border-color: color-mix(in srgb, var(--phase-color) 34%, rgba(255,255,255,0.06));
-      background: linear-gradient(180deg, rgba(22,22,22,0.98), rgba(14,14,14,0.98));
-      transform: translateY(-3px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.035),
-        0 18px 34px rgba(0,0,0,0.28),
-        0 0 0 1px color-mix(in srgb, var(--phase-color) 12%, transparent),
-        0 0 28px color-mix(in srgb, var(--phase-color) 12%, transparent);
-    }
-
-    .skill-name {
-      font-family: var(--mono); font-size: 0.82rem; font-weight: 650;
-      color: var(--text); margin-bottom: 0.38rem;
-    }
-    .skill-artifact {
-      font-size: 0.74rem; color: #8a8a8a; margin-bottom: 0.72rem;
-      line-height: 1.55;
-    }
-    .skill-artifact code { font-size: 0.7rem; color: #757575; }
-    .skill-invoke {
-      display: inline-block;
-      font-family: var(--mono); font-size: 0.7rem;
-      color: #c7c7c7;
-      background: rgba(7,7,7,0.92);
+      background: #111827;
+      color: #e7e5e4;
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 999px;
-      padding: 0.24rem 0.58rem;
-    }
-
-    /* ─── PARTNER FEATURE ──────────────────────────────── */
-    .partner-section { padding-bottom: var(--section-space); }
-
-    .partner-card {
-      background: linear-gradient(180deg, rgba(16,16,16,0.98), rgba(11,11,11,0.98));
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 22px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .partner-left {
-      padding: 3rem;
-      border-right: 1px solid rgba(255,255,255,0.05);
-    }
-    .partner-left .sec-eyebrow { margin-bottom: 1rem; }
-    .partner-left .sec-title { font-size: clamp(1.55rem, 2.8vw, 2.15rem); margin-bottom: 1rem; }
-    .partner-left .sec-sub { font-size: 0.92rem; margin-bottom: 2rem; max-width: 44ch; }
-
-    .partner-feats {
-      display: flex; flex-direction: column; gap: 0.82rem;
-    }
-    .partner-feat {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      font-size: 0.84rem; color: #a4a4a4; line-height: 1.62;
-    }
-    .feat-dot {
-      width: 18px; height: 18px; border-radius: 50%;
-      background: color-mix(in srgb, var(--partner) 15%, var(--surface2));
-      border: 1px solid color-mix(in srgb, var(--partner) 30%, transparent);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 1px;
-      font-size: 0.55rem; color: var(--partner);
-    }
-
-    .partner-right {
-      padding: 2rem 2.4rem;
-      background: rgba(7,7,7,0.96);
-    }
-
-    .mode-tabs {
-      display: flex; gap: 0.4rem; margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .mode-tab {
-      padding: 0.34rem 0.78rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.75rem; font-weight: 700;
-      cursor: pointer; background: rgba(14,14,14,0.9); color: var(--dim);
-      transition: all 0.15s ease; font-family: var(--sans);
-    }
-    .mode-tab.active {
-      background: color-mix(in srgb, var(--partner) 15%, transparent);
-      border-color: color-mix(in srgb, var(--partner) 40%, transparent);
-      color: var(--partner);
-    }
-
-    .mode-panel { display: none; }
-    .mode-panel.active { display: block; }
-
-    .obs-card {
-      background: linear-gradient(180deg, rgba(16,16,16,0.98), rgba(12,12,12,0.98));
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 1.3rem;
-      margin-bottom: 1rem;
-    }
-    .obs-label {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em;
-      text-transform: uppercase; color: var(--partner);
-      margin-bottom: 0.65rem;
-      font-family: var(--mono);
-    }
-    .obs-text {
-      font-size: 0.83rem; color: #b0b0b0;
-      line-height: 1.72; font-style: italic;
-    }
-    .obs-then {
-      margin-top: 0.95rem;
-      font-size: 0.73rem; color: var(--dim);
-      display: flex; align-items: center; gap: 0.42rem;
-      flex-wrap: wrap;
-    }
-    .obs-then strong { color: var(--text); font-style: normal; }
-    .next-skill {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      background: var(--surface2); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 999px; padding: 0.22rem 0.62rem;
-      font-family: var(--mono); font-size: 0.7rem; color: var(--text);
-    }
-
-    /* ─── INSTALL ──────────────────────────────────────── */
-    .install-section { padding-bottom: var(--section-space); }
-
-    .install-card {
-      background: linear-gradient(180deg, rgba(16,16,16,0.98), rgba(11,11,11,0.98));
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 22px;
-      overflow: hidden;
-      margin-top: 2.5rem;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .install-header {
-      display: flex; gap: 0.35rem;
-      padding: 0.95rem 1.25rem;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(20,20,20,0.98);
-      flex-wrap: wrap;
-    }
-    .itab {
-      padding: 0.34rem 0.92rem;
-      border-radius: 999px;
-      border: 1px solid transparent; cursor: pointer;
-      font-family: var(--mono); font-size: 0.78rem;
-      background: none; color: var(--muted);
-      transition: all 0.15s ease; font-weight: 500;
-    }
-    .itab.active {
-      background: rgba(11,11,11,0.92);
-      color: var(--text);
-      border-color: rgba(255,255,255,0.06);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-
-    .install-body {
-      padding: 1.6rem 1.8rem 1.7rem;
-    }
-    .ipanel { display: none; }
-    .ipanel.active { display: block; }
-
-    .ipanel pre {
-      font-family: var(--mono); font-size: 0.82rem;
-      line-height: 2; color: var(--text); overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.48;
       white-space: pre-wrap;
       word-break: break-word;
     }
-    .c   { color: var(--muted); }
-    .cmd { color: #93c5fd; }
 
-    .install-note {
-      margin-top: 1rem; padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      font-size: 0.76rem; color: #8b8b8b;
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────── */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 2rem 0;
-    }
-    .footer-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-brand {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.82rem; font-weight: 600; color: var(--dim);
-    }
-    .footer-brand img { width: 20px; height: 20px; }
-    .footer-links {
-      display: flex; gap: 1.5rem;
-      font-size: 0.78rem; color: var(--muted);
+    .start-modal-actions {
+      display: flex;
+      justify-content: flex-start;
+      gap: 0.8rem;
+      margin-top: 0.85rem;
       flex-wrap: wrap;
     }
-    .footer-links a:hover { color: var(--text); }
-    .footer-meta {
-      font-size: 0.7rem; color: var(--muted);
+
+    .start-modal-actions .hero-btn {
+      min-height: 42px;
+      padding: 0 1rem;
+      font-size: 0.92rem;
     }
 
-    /* ─── SCROLL REVEAL ────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
+    /* ---------- Footer ---------- */
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
     }
-    .reveal.visible {
+
+    .footer-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .footer-logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0.92;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .footer-logo-link:hover {
       opacity: 1;
-      transform: none;
+      transform: translateY(-1px);
     }
 
-    /* ─── RESPONSIVE ───────────────────────────────────── */
-    @media (max-width: 980px) {
-      .hero {
+    .footer-invader,
+    .footer-khosla-logo {
+      width: 32px;
+      height: 32px;
+      display: block;
+      border-radius: 7px;
+    }
+
+    .footer-invader {
+      image-rendering: pixelated;
+    }
+
+    .footer-copy {
+      color: var(--soft);
+      font-size: 0.86rem;
+      text-align: right;
+    }
+
+    .footer-copy a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer-copy a:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 900px) {
+      .connect-agent {
         grid-template-columns: 1fr;
-        padding-top: 7.2rem;
-        padding-bottom: 4.5rem;
-        min-height: auto;
-        gap: 2.8rem;
+        gap: 1.35rem;
       }
-      .hero-left {
-        max-width: none;
+
+      .categories {
+        grid-template-columns: 1fr;
       }
-      .hero h1 {
-        max-width: 11ch;
-      }
-      .hero-right {
-        max-width: 760px;
-      }
-      .invoke-line { display: none; }
-      .stats-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .partner-card { grid-template-columns: 1fr; }
-      .partner-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .phil-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
-      .nav-links { display: none; }
-      .hero h1 { font-size: clamp(2.75rem, 12vw, 4rem); }
-      .hero-sub { max-width: none; }
-      .stats-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .phase-group-header {
-        flex-wrap: wrap;
-        gap: 0.45rem 0.75rem;
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      main { padding: 1.35rem 0 3rem; }
+      .hero { padding: 1rem 0 2.3rem; }
+      .hero-mark { margin-bottom: 1.7rem; }
+      .hero-copy { font-size: 0.96rem; line-height: 1.52; }
+      .install-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.7rem;
       }
-      .phase-group-count {
-        margin-left: 0;
-        width: 100%;
+      .install-box code { white-space: normal; }
+      .copy-btn { width: 100%; }
+      .hero-actions { width: 100%; }
+      .hero-btn { width: 100%; }
+      .works-with { flex-direction: column; gap: 0.85rem; padding: 1.5rem 0; }
+      .logo-row { gap: 0.8rem 1.15rem; }
+      .logo-item img { height: 22px; }
+      .sections { padding-top: 2.4rem; gap: 2.4rem; }
+      .section p { font-size: 0.92rem; line-height: 1.58; }
+      .category { padding: 0.85rem 0.9rem; }
+      .connect-preview,
+      .connect-panel,
+      .connect-code-wrap { padding-left: 1rem; padding-right: 1rem; }
+      .connect-code-head { align-items: stretch; flex-direction: column; }
+      .connect-inline-copy,
+      #copy-agent-btn { width: 100%; }
+      .footer-invader,
+      .footer-khosla-logo {
+        width: 30px;
+        height: 30px;
       }
-      .wn-wide { grid-column: auto; }
-      .partner-left, .partner-right { padding: 2rem 1.5rem; }
-      .install-body { padding: 1.35rem 1.3rem 1.4rem; }
+      .footer-copy {
+        font-size: 0.82rem;
+      }
     }
 
-    @media (max-width: 540px) {
-      nav { height: 58px; }
-      .nav-cta { padding: 0.42rem 0.8rem; }
-      .hero {
-        padding-top: 6.3rem;
-        gap: 2.2rem;
+    @media (max-width: 520px) {
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      .hero-eyebrow {
-        margin-bottom: 1.25rem;
-        width: 100%;
-        justify-content: center;
+      .footer-copy {
+        text-align: left;
       }
-      .hero h1 {
-        font-size: 2.6rem;
-        margin-bottom: 1.1rem;
+      .start-modal {
+        padding: 14px;
       }
-      .hero-install {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        row-gap: 0.4rem;
+      .start-modal-card {
+        padding: 1rem;
       }
-      .hero-install .hint {
-        margin-left: 0;
-        padding-left: 0;
-        border-left: none;
+      .start-modal-actions {
+        flex-direction: column;
+      }
+      .start-modal-actions .hero-btn,
+      .start-modal-actions .connect-inline-copy {
         width: 100%;
       }
-      .artifact-window { border-radius: 18px; }
-      .artifact-body {
-        padding: 1.2rem 1.1rem 1.3rem 3.25rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
       }
-      .artifact-body::before {
-        left: 0.92rem;
-        top: 1.18rem;
-      }
-      .stats-inner { grid-template-columns: 1fr; }
-      .phase-nav { gap: 0.4rem; }
-      .phase-pill { flex: 1 1 calc(50% - 0.2rem); justify-content: center; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .sec-title { max-width: none; }
-      .footer-inner { align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-brand">
-      <img src="/favicon.svg" alt="FS" />
-      founder skills
-    </a>
-    <div class="nav-links">
-      <a href="#skills">skills</a>
-      <a href="#install">install</a>
-      <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/PHILOSOPHY.md" target="_blank">philosophy</a>
-      <a href="https://github.com/gvkhosla/founder-skills" target="_blank">GitHub ↗</a>
-    </div>
-    <a href="#install" class="nav-cta">Get started</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="container">
-  <div class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="pulse"></span>
-        Founder Skills OS beta &nbsp;·&nbsp; 6 coding hosts &nbsp;·&nbsp; MIT
-      </div>
-      <h1>Give your coding harness<br><em>founder judgment.</em></h1>
-      <p class="hero-sub">
-        Founder Skills is evolving from a 27-skill founder pack into a multi-host operating system for AI-native startups. Today: the legacy pack still ships, and the new coding-host rebuild already generates and installs bundles for pi, Claude Code, Codex, OpenCode, OpenClaw, and Hermes.
-      </p>
-      <div class="hero-install" onclick="copyInstall(this)">
-        <span class="prompt">$</span>
-        <span>npx founder-skills install --agent pi</span>
-        <span class="hint">click to copy</span>
-      </div>
-      <p class="hero-agents">works with <b>pi</b> · <b>Claude Code</b> · <b>Codex</b> · <b>OpenCode</b> · <b>OpenClaw</b> · <b>Hermes</b></p>
-    </div>
-    <div class="hero-right">
-      <div class="invoke-line">"Scope my MVP"</div>
-      <div class="artifact-window">
-        <div class="artifact-titlebar">
-          <div class="artifact-dots">
-            <span class="dot-r"></span>
-            <span class="dot-y"></span>
-            <span class="dot-g"></span>
-          </div>
-          <span class="artifact-filename">mvp-brief.md</span>
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-mark">
+          <img src="/assets/hero-invader.png" alt="Invader mosaic on a Paris wall" width="1200" height="1132" decoding="async" fetchpriority="high" />
         </div>
-        <div class="artifact-body">
-          <div class="artifact-section">
-            <div class="artifact-label">The MVP</div>
-            <div class="artifact-content"><span class="tok-entity">A scheduling tool</span> that lets <span class="tok-key">independent therapists</span> send <span class="tok-string">booking links</span> — <span class="tok-muted">no back-and-forth email</span>.</div>
-          </div>
-          <div class="artifact-section">
-            <div class="artifact-label">In scope</div>
-            <ul class="artifact-list">
-              <li><span class="tok-string">Shareable booking link</span> with <span class="tok-accent">available slots</span></li>
-              <li><span class="tok-entity">Email confirmation</span> to both parties</li>
-              <li><span class="tok-entity">Simple admin view</span> of upcoming appointments</li>
-            </ul>
-          </div>
-          <div class="artifact-section">
-            <div class="artifact-label">Not in scope</div>
-            <div class="artifact-out">
-              <span><span class="tok-warn">Payments</span> · calendar sync · recurring appointments · reminders · team features</span>
+        <h1>Turn your agent into a brutally honest co-founder.</h1>
+        <p class="hero-copy">Founder Skills transforms your agent into a co-founder with product taste, validation rigor, and a growth mindset - to get you from idea to PMF and beyond.</p>
+
+        <div class="install-box">
+          <code id="install-command"><span class="install-prefix">$</span>npx founder-skills install --agent pi</code>
+          <button class="copy-btn" id="copy-btn">Copy</button>
+        </div>
+
+        <div class="hero-actions">
+          <button class="hero-btn hero-btn-primary" id="get-started-btn">Get started</button>
+          <a class="hero-btn hero-btn-secondary" href="https://github.com/gvkhosla/founder-skills" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.57 7.57 0 0 1 8 4.84c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="works-with" aria-label="Supported coding agents">
+        <span class="strip-label">Works with</span>
+        <div class="logo-row">
+          <button class="logo-item is-active" type="button" data-install-agent="pi" aria-label="pi" aria-pressed="true">
+            <img class="theme-dark-only logo-pi" src="/brands/pi-dark.svg" alt="pi" />
+            <img class="theme-light-only logo-pi" src="/brands/pi-light.svg" alt="pi" />
+          </button>
+          <button class="logo-item" type="button" data-install-agent="openclaw" aria-label="OpenClaw" aria-pressed="false">
+            <img class="theme-dark-only logo-wordmark" src="/brands/openclaw-light.png" alt="OpenClaw" />
+            <img class="theme-light-only logo-wordmark" src="/brands/openclaw-dark.png" alt="OpenClaw" />
+          </button>
+          <button class="logo-item" type="button" data-install-agent="codex" aria-label="Codex" aria-pressed="false">
+            <img class="theme-dark-only logo-codex" src="/brands/codex-dark.png" alt="Codex" />
+            <img class="theme-light-only logo-codex" src="/brands/codex-light.png" alt="Codex" />
+          </button>
+          <button class="logo-item" type="button" data-install-agent="opencode" aria-label="OpenCode" aria-pressed="false">
+            <img class="theme-dark-only logo-wordmark" src="/brands/opencode-dark.svg" alt="OpenCode" />
+            <img class="theme-light-only logo-wordmark" src="/brands/opencode-light.svg" alt="OpenCode" />
+          </button>
+          <button class="logo-item" type="button" data-install-agent="claude-code" aria-label="Claude Code" aria-pressed="false">
+            <img class="theme-dark-only logo-claude" src="/brands/claude-dark.png" alt="Claude Code" />
+            <img class="theme-light-only logo-claude" src="/brands/claude-light.png" alt="Claude Code" />
+          </button>
+          <button class="logo-item" type="button" data-install-agent="hermes" aria-label="Hermes" aria-pressed="false">
+            <img class="theme-dark-only logo-hermes" src="/brands/hermes-dark.png" alt="Hermes" />
+            <img class="theme-light-only logo-hermes" src="/brands/hermes-light.png" alt="Hermes" />
+          </button>
+        </div>
+      </section>
+
+      <div class="sections">
+        <section class="section" id="what">
+          <div class="section-label">Why it works</div>
+          <h2 class="section-title">Reads the state. Tells the truth. Calls the next move.</h2>
+          <p>Founder Skills reads company memory before it speaks.</p>
+          <p>It separates what you know, think, and hope. Then it writes the artifact and names the next move.</p>
+          <div class="feature-grid">
+            <div class="feature">
+              <strong>Reads company memory</strong>
+              <span><code>.fs/</code>, <code>founder-context.md</code>, <code>truth-memo.md</code>, and <code>recommended-next-step.md</code>.</span>
+            </div>
+            <div class="feature">
+              <strong>Gives a verdict</strong>
+              <span>A clear call: validate, narrow, build, or stop.</span>
+            </div>
+            <div class="feature">
+              <strong>Leaves artifacts</strong>
+              <span><code>truth-memo.md</code>, <code>implementation-plan.md</code>, <code>landing-page-copy.md</code>, and more.</span>
             </div>
           </div>
-          <div class="artifact-section" style="margin-bottom:0">
-            <div class="artifact-label">Success signal</div>
-            <div class="artifact-content"><span class="tok-key">Therapist</span> sends link to <span class="tok-accent">3 clients</span> and at least <span class="tok-string">2 book</span> without asking follow-up questions.</div>
+        </section>
+
+        <section class="section" id="skills">
+          <div class="section-label">Operating areas</div>
+          <h2 class="section-title">Ten operating areas.</h2>
+          <p>Plus 6 sequences.</p>
+          <div class="categories">
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">01</span>
+                <h3 class="cat-name">Partner</h3>
+              </header>
+              <p class="cat-desc">Start here when the bottleneck is unclear.</p>
+              <ul class="cat-skills">
+                <li>/founder-partner</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">02</span>
+                <h3 class="cat-name">Strategy</h3>
+              </header>
+              <p class="cat-desc">Problem, customer, scope, and assumptions.</p>
+              <ul class="cat-skills">
+                <li>/problem-validator</li>
+                <li>/customer-hypothesis</li>
+                <li>/mvp-scoper</li>
+                <li>/assumption-mapper</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">03</span>
+                <h3 class="cat-name">Engineering + Product</h3>
+              </header>
+              <p class="cat-desc">Build plan, architecture, QA, release, and post-ship review.</p>
+              <ul class="cat-skills">
+                <li>/implementation-planner</li>
+                <li>/architecture-reviewer</li>
+                <li>/design-to-code-brief</li>
+                <li>/qa-verifier</li>
+                <li>/release-readiness-auditor</li>
+                <li>/post-ship-review</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">04</span>
+                <h3 class="cat-name">Launch</h3>
+              </header>
+              <p class="cat-desc">Positioning, pricing, landing page copy, and launch plan.</p>
+              <ul class="cat-skills">
+                <li>/positioning-writer</li>
+                <li>/landing-page-copywriter</li>
+                <li>/launch-plan-builder</li>
+                <li>/pricing-model-framer</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">05</span>
+                <h3 class="cat-name">Marketing</h3>
+              </header>
+              <p class="cat-desc">Messaging, SEO/GEO, and CAC.</p>
+              <ul class="cat-skills">
+                <li>/messaging-architect</li>
+                <li>/seo-geo-strategist</li>
+                <li>/cac-diagnostician</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">06</span>
+                <h3 class="cat-name">Sales</h3>
+              </header>
+              <p class="cat-desc">Pipeline review.</p>
+              <ul class="cat-skills">
+                <li>/pipeline-reviewer</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">07</span>
+                <h3 class="cat-name">PMF</h3>
+              </header>
+              <p class="cat-desc">PMF signal, north star, churn, retention, and growth.</p>
+              <ul class="cat-skills">
+                <li>/pmf-signal-reader</li>
+                <li>/north-star-definer</li>
+                <li>/churn-diagnostician</li>
+                <li>/retention-loop-designer</li>
+                <li>/growth-loop-builder</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">08</span>
+                <h3 class="cat-name">Operations</h3>
+              </header>
+              <p class="cat-desc">Focus, experiments, and weekly review.</p>
+              <ul class="cat-skills">
+                <li>/focus-planner</li>
+                <li>/experiment-planner</li>
+                <li>/weekly-founder-review</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">09</span>
+                <h3 class="cat-name">Support</h3>
+              </header>
+              <p class="cat-desc">Support into product decisions.</p>
+              <ul class="cat-skills">
+                <li>/support-insights-reader</li>
+              </ul>
+            </article>
+            <article class="category">
+              <header class="cat-head">
+                <span class="cat-index">10</span>
+                <h3 class="cat-name">Scale</h3>
+              </header>
+              <p class="cat-desc">Decide the next hire.</p>
+              <ul class="cat-skills">
+                <li>/first-hire-brief</li>
+              </ul>
+            </article>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="container">
-    <div class="stats-inner">
-      <div class="stat">
-        <div class="stat-num">27</div>
-        <div class="stat-label">skills</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <div class="stat-num">7</div>
-        <div class="stat-label">phases</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <div class="stat-num">27</div>
-        <div class="stat-label">artifacts</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <div class="stat-num">0</div>
-        <div class="stat-label">option lists</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <div class="stat-num">MIT</div>
-        <div class="stat-label">license</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PHILOSOPHY -->
-<div class="container">
-  <div class="philosophy reveal">
-    <div class="sec-eyebrow">How it works</div>
-    <div class="sec-title">Invoke. Framework. Artifact.</div>
-    <p class="sec-sub">Every skill follows the same pattern — structured questions, a proven framework, one file. Nothing else.</p>
-    <div class="phil-grid">
-      <div class="phil-item">
-        <div class="phil-icon">💬</div>
-        <h3>Say the phrase</h3>
-        <p>Each skill has a plain-English trigger. "Scope my MVP." "Map my assumptions." "Diagnose my churn." Your agent knows what to do next.</p>
-      </div>
-      <div class="phil-item">
-        <div class="phil-icon">⚙️</div>
-        <h3>The framework runs</h3>
-        <p>The skill asks the right questions and applies the right expert framework — Jobs To Be Done, Mom Test, Hook Canvas, April Dunford's positioning method.</p>
-      </div>
-      <div class="phil-item">
-        <div class="phil-icon">📄</div>
-        <h3>You get a file</h3>
-        <p>Not advice. Not a framework overview. A concrete <code>.md</code> artifact — specific decisions you can act on, share, argue with, and build from.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- WHAT'S NEW -->
-<div class="container">
-  <div class="whats-new reveal">
-    <div class="sec-eyebrow">What's new</div>
-    <div class="sec-title">Founder Skills OS rebuild.</div>
-    <p class="sec-sub">The repo is now coding-host first: canonical source, generated host bundles, richer engineering-product coverage, and real install/export flows.</p>
-    <div class="wn-grid">
-      <div class="wn-item wn-new">
-        <span class="wn-badge badge-new">beta</span>
-        <div class="wn-title">canonical source + host generation</div>
-        <div class="wn-desc">Founder Skills OS now has a TypeScript monorepo, canonical skill source in <code>source/</code>, host adapters, sequence validation, and generated outputs under <code>generated/</code>.</div>
-      </div>
-      <div class="wn-item wn-new">
-        <span class="wn-badge badge-new">beta</span>
-        <div class="wn-title">6 coding hosts</div>
-        <div class="wn-desc">The rebuild now targets pi, Claude Code, Codex, OpenCode, OpenClaw, and Hermes — with coding hosts intentionally prioritized ahead of chat bundles.</div>
-      </div>
-      <div class="wn-item wn-new">
-        <span class="wn-badge badge-new">new</span>
-        <div class="wn-title">OpenClaw + Hermes</div>
-        <div class="wn-desc">OpenClaw gets orchestration-oriented prompts and AGENTS sections. Hermes gets native <code>SKILL.md</code> bundle generation for <code>~/.hermes/skills/</code>.</div>
-      </div>
-      <div class="wn-item wn-v2">
-        <span class="wn-badge badge-v2">new</span>
-        <div class="wn-title">build-to-release</div>
-        <div class="wn-desc">The engineering-product spine now includes design handoff, QA verification, release readiness, and post-ship review — not just implementation planning.</div>
-      </div>
-      <div class="wn-item wn-v2 wn-wide">
-        <span class="wn-badge badge-v2">live</span>
-        <div class="wn-title">install/export flows</div>
-        <div class="wn-desc">Generated bundles are no longer trapped in <code>generated/</code>. The repo now exports them into real host locations for pi, Claude Code, Codex, OpenCode, OpenClaw, and Hermes.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SKILLS -->
-<div class="container" id="skills">
-  <div class="skills-section reveal">
-    <div class="sec-eyebrow">All skills</div>
-    <div class="sec-title">Every phase. Every skill.</div>
-    <p class="sec-sub">Start where you are. Filter by phase or scroll through all 27.</p>
-
-    <div class="phase-nav">
-      <button class="phase-pill pill-all active" onclick="filterPhase('all', this)">All <span class="count">27</span></button>
-      <button class="phase-pill pill-strategy" onclick="filterPhase('strategy', this)">Strategy <span class="count">6</span></button>
-      <button class="phase-pill pill-design" onclick="filterPhase('design', this)">Design <span class="count">3</span></button>
-      <button class="phase-pill pill-build" onclick="filterPhase('build', this)">Build <span class="count">4</span></button>
-      <button class="phase-pill pill-launch" onclick="filterPhase('launch', this)">Launch <span class="count">4</span></button>
-      <button class="phase-pill pill-compound" onclick="filterPhase('compound', this)">Compound <span class="count">3</span></button>
-      <button class="phase-pill pill-pmf" onclick="filterPhase('pmf', this)">PMF <span class="count">5</span></button>
-      <button class="phase-pill pill-scale" onclick="filterPhase('scale', this)">Scale <span class="count">1</span></button>
-      <button class="phase-pill pill-partner" onclick="filterPhase('partner', this)">Partner <span class="count">1</span></button>
-    </div>
-
-    <!-- Strategy -->
-    <div class="phase-group" data-phase="strategy">
-      <div class="phase-group-header">
-        <span class="phase-group-name">strategy</span>
-        <span class="phase-group-desc">Validate before you build</span>
-        <span class="phase-group-count">6 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">mvp-scoper</div><div class="skill-artifact">→ <code>mvp-brief.md</code></div><div class="skill-invoke">"Scope my MVP"</div></div>
-        <div class="skill-card"><div class="skill-name">problem-validator</div><div class="skill-artifact">→ <code>problem-validation-report.md</code></div><div class="skill-invoke">"Validate my problem"</div></div>
-        <div class="skill-card"><div class="skill-name">customer-hypothesis</div><div class="skill-artifact">→ <code>customer-profile.md</code></div><div class="skill-invoke">"Define my customer"</div></div>
-        <div class="skill-card"><div class="skill-name">assumption-mapper</div><div class="skill-artifact">→ <code>assumptions-map.md</code></div><div class="skill-invoke">"Map my assumptions"</div></div>
-        <div class="skill-card"><div class="skill-name">user-interview-guide</div><div class="skill-artifact">→ <code>research-report.md</code></div><div class="skill-invoke">"Run user interviews"</div></div>
-        <div class="skill-card"><div class="skill-name">competitor-mapper</div><div class="skill-artifact">→ <code>competitor-map.md</code></div><div class="skill-invoke">"Map my competition"</div></div>
-      </div>
-    </div>
-
-    <!-- Design -->
-    <div class="phase-group" data-phase="design">
-      <div class="phase-group-header">
-        <span class="phase-group-name">design</span>
-        <span class="phase-group-desc">UX before UI</span>
-        <span class="phase-group-count">3 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">ux-flow-designer</div><div class="skill-artifact">→ <code>user-flows.md</code></div><div class="skill-invoke">"Design my user flows"</div></div>
-        <div class="skill-card"><div class="skill-name">design-direction-setter</div><div class="skill-artifact">→ <code>design-brief.md</code></div><div class="skill-invoke">"Set my design direction"</div></div>
-        <div class="skill-card"><div class="skill-name">ux-heuristics-reviewer</div><div class="skill-artifact">→ <code>ux-review.md</code></div><div class="skill-invoke">"Review my UX"</div></div>
-      </div>
-    </div>
-
-    <!-- Build -->
-    <div class="phase-group" data-phase="build">
-      <div class="phase-group-header">
-        <span class="phase-group-name">build</span>
-        <span class="phase-group-desc">Decisions, not debates</span>
-        <span class="phase-group-count">4 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">stack-selector</div><div class="skill-artifact">→ <code>stack-decision.md</code></div><div class="skill-invoke">"Pick my stack"</div></div>
-        <div class="skill-card"><div class="skill-name">feature-sequencer</div><div class="skill-artifact">→ <code>build-sequence.md</code></div><div class="skill-invoke">"Sequence my features"</div></div>
-        <div class="skill-card"><div class="skill-name">integration-picker</div><div class="skill-artifact">→ <code>integrations-plan.md</code></div><div class="skill-invoke">"Pick my integrations"</div></div>
-        <div class="skill-card"><div class="skill-name">architecture-explainer</div><div class="skill-artifact">→ <code>architecture-overview.md</code></div><div class="skill-invoke">"Explain my architecture"</div></div>
-      </div>
-    </div>
-
-    <!-- Launch -->
-    <div class="phase-group" data-phase="launch">
-      <div class="phase-group-header">
-        <span class="phase-group-name">launch</span>
-        <span class="phase-group-desc">Ship with confidence</span>
-        <span class="phase-group-count">4 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">positioning-writer</div><div class="skill-artifact">→ <code>positioning.md</code></div><div class="skill-invoke">"Write my positioning"</div></div>
-        <div class="skill-card"><div class="skill-name">landing-page-copywriter</div><div class="skill-artifact">→ <code>landing-page-copy.md</code></div><div class="skill-invoke">"Write my landing page"</div></div>
-        <div class="skill-card"><div class="skill-name">launch-plan-builder</div><div class="skill-artifact">→ <code>launch-plan.md</code></div><div class="skill-invoke">"Build my launch plan"</div></div>
-        <div class="skill-card"><div class="skill-name">pricing-model-framer</div><div class="skill-artifact">→ <code>pricing-model.md</code></div><div class="skill-invoke">"Frame my pricing"</div></div>
-      </div>
-    </div>
-
-    <!-- Compound -->
-    <div class="phase-group" data-phase="compound">
-      <div class="phase-group-header">
-        <span class="phase-group-name">compound</span>
-        <span class="phase-group-desc">The recurring ritual — run every 1–2 weeks</span>
-        <span class="phase-group-count">3 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">build-cycle</div><div class="skill-artifact">→ <code>cycles/YYYY-MM-DD.md</code></div><div class="skill-invoke">"Start a build cycle"</div></div>
-        <div class="skill-card"><div class="skill-name">mpp-evaluator</div><div class="skill-artifact">→ <code>mpp-scorecard.md</code></div><div class="skill-invoke">"Evaluate my MPP"</div></div>
-        <div class="skill-card"><div class="skill-name">failure-navigator</div><div class="skill-artifact">→ <code>diagnosis.md</code></div><div class="skill-invoke">"Help me through a failure"</div></div>
-      </div>
-    </div>
-
-    <!-- PMF -->
-    <div class="phase-group" data-phase="pmf">
-      <div class="phase-group-header">
-        <span class="phase-group-name">pmf</span>
-        <span class="phase-group-desc">Find and amplify what's working</span>
-        <span class="phase-group-count">5 skills</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-name">pmf-signal-reader</div><div class="skill-artifact">→ <code>pmf-assessment.md</code></div><div class="skill-invoke">"Read my PMF signals"</div></div>
-        <div class="skill-card"><div class="skill-name">north-star-definer</div><div class="skill-artifact">→ <code>north-star.md</code></div><div class="skill-invoke">"Define my north star"</div></div>
-        <div class="skill-card"><div class="skill-name">retention-loop-designer</div><div class="skill-artifact">→ <code>retention-loop.md</code></div><div class="skill-invoke">"Design my retention loop"</div></div>
-        <div class="skill-card"><div class="skill-name">growth-loop-builder</div><div class="skill-artifact">→ <code>growth-loop.md</code></div><div class="skill-invoke">"Build my growth loop"</div></div>
-        <div class="skill-card"><div class="skill-name">churn-diagnostician</div><div class="skill-artifact">→ <code>churn-diagnosis.md</code></div><div class="skill-invoke">"Diagnose my churn"</div></div>
-      </div>
-    </div>
-
-    <!-- Scale -->
-    <div class="phase-group" data-phase="scale">
-      <div class="phase-group-header">
-        <span class="phase-group-name">scale</span>
-        <span class="phase-group-desc">Your first hires — human and AI</span>
-        <span class="phase-group-count">1 skill</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-name">first-hire-brief</div>
-          <div class="skill-artifact">→ <code>human-hire-brief.md</code> or <code>agent-hire-brief.md</code></div>
-          <div class="skill-invoke">"Help me make my first hire"</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Partner -->
-    <div class="phase-group" data-phase="partner">
-      <div class="phase-group-header">
-        <span class="phase-group-name">partner</span>
-        <span class="phase-group-desc">Your co-founder in a skill</span>
-        <span class="phase-group-count">1 skill</span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-name">founder-partner</div>
-          <div class="skill-artifact">→ <code>founder-context.md</code> (updated every session)</div>
-          <div class="skill-invoke">"Partner" or "Check in with my partner"</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- PARTNER FEATURE -->
-<div class="container">
-  <div class="partner-section reveal">
-    <div class="partner-card">
-      <div class="partner-left">
-        <div class="sec-eyebrow">The partner skill</div>
-        <div class="sec-title">Reads everything<br>before it speaks.</div>
-        <p class="sec-sub">The only proactive skill. It reads your full product history, then tells you what it sees — before you ask anything. Use it when you don't know where to start.</p>
-        <div class="partner-feats">
-          <div class="partner-feat">
-            <div class="feat-dot">✓</div>
-            <span>Reads <code>founder-context.md</code> + last 5 build cycles before saying anything</span>
+        <section class="section connect-agent" id="connect">
+          <div class="connect-copy">
+            <div class="section-label">For agents</div>
+            <h2 class="section-title">Paste this into your agent once.</h2>
+            <p>One setup prompt. Better defaults.</p>
+            <button class="hero-btn hero-btn-primary" id="copy-agent-btn">Copy for agent</button>
+            <div class="connect-note">Works in pi, Claude Code, Codex, OpenCode, OpenClaw, Hermes, ChatGPT, and Claude.</div>
           </div>
-          <div class="partner-feat">
-            <div class="feat-dot">✓</div>
-            <span>Surfaces the thing you've been avoiding — across cycles, with evidence</span>
-          </div>
-          <div class="partner-feat">
-            <div class="feat-dot">✓</div>
-            <span>Routes you to the exact right skill for the moment</span>
-          </div>
-          <div class="partner-feat">
-            <div class="feat-dot">✓</div>
-            <span>Adapts to you — pushes technical founders on distribution, non-technical on scope</span>
-          </div>
-          <div class="partner-feat">
-            <div class="feat-dot">✓</div>
-            <span>Tracks 13 milestones from first user to PMF Clear</span>
-          </div>
-        </div>
-      </div>
-      <div class="partner-right">
-        <div class="mode-tabs">
-          <button class="mode-tab active" onclick="switchMode('technical', this)">Technical founder</button>
-          <button class="mode-tab" onclick="switchMode('nontechnical', this)">Non-technical founder</button>
-        </div>
-        <div class="mode-panel active" id="mode-technical">
-          <div class="obs-card">
-            <div class="obs-label">Opening observation</div>
-            <div class="obs-text">"You've shipped 3 features this cycle. I want to know how many customer conversations you had. Your PMF signal is still Faint — that's a distribution problem, not a product problem."</div>
-            <div class="obs-then">
-              → Recommended skill:
-              <span class="next-skill">positioning-writer</span>
+
+          <div class="connect-preview">
+            <div class="connect-panel">
+              <div class="connect-panel-label">Install once</div>
+              <h3 class="connect-panel-title">Small prompt. Better defaults.</h3>
+              <div class="connect-code-wrap">
+                <div class="connect-code-head">
+                  <span>Setup prompt</span>
+                  <button class="connect-inline-copy" id="copy-agent-inline-btn">Copy</button>
+                </div>
+                <pre id="agent-paste-text">Use Founder Skills in this conversation.
+
+First, read https://fskills.xyz/llms.txt.
+If this is a startup repo, also read founder-context.md, truth-memo.md, recommended-next-step.md, and .fs/ state files when they exist.
+Start with /founder-partner if the bottleneck is unclear.
+Prefer one clear verdict, one concrete artifact, and one next move.
+Stay in this same thread and keep the company context alive.</pre>
+              </div>
+              <div class="connect-preview-footer">Paste once. Then keep working in the same conversation.</div>
             </div>
           </div>
-          <div class="obs-card">
-            <div class="obs-label">Default challenge</div>
-            <div class="obs-text">"When did you last talk to someone who found you without a warm intro?"</div>
-          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div class="footer-left">
+          <a class="footer-logo-link" href="/" aria-label="Founder Skills">
+            <img class="footer-invader" src="/favicon.svg" alt="Founder Skills invader icon" />
+          </a>
+          <a class="footer-logo-link" href="https://khoslalab.com" target="_blank" rel="noopener noreferrer" aria-label="khosla lab">
+            <img class="footer-khosla-logo" src="/assets/khosla-lab-logo.png" alt="khosla lab logo" />
+          </a>
         </div>
-        <div class="mode-panel" id="mode-nontechnical">
-          <div class="obs-card">
-            <div class="obs-label">Opening observation</div>
-            <div class="obs-text">"You've run 5 customer interviews this cycle. Good. Now I want to know: what specifically changed in the product as a result? And can you describe what 'done' looks like for onboarding — specifically enough that someone could build it?"</div>
-            <div class="obs-then">
-              → Recommended skill:
-              <span class="next-skill">mvp-scoper</span>
-            </div>
-          </div>
-          <div class="obs-card">
-            <div class="obs-label">Default challenge</div>
-            <div class="obs-text">"Is this on the list because users asked for it, or because it feels right to you?"</div>
-          </div>
-        </div>
+        <div class="footer-copy">made by <a href="https://khoslalab.com" target="_blank" rel="noopener noreferrer">khosla lab</a></div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="start-modal" id="start-modal" hidden>
+    <div class="start-modal-backdrop" data-close-modal></div>
+    <div class="start-modal-card" role="dialog" aria-modal="true" aria-labelledby="start-modal-title">
+      <button class="start-modal-close" id="start-modal-close" aria-label="Close">×</button>
+      <div class="start-modal-badge">works with coding and chat agents</div>
+      <h3 id="start-modal-title">Copy the prompt</h3>
+      <p>Paste this once. It sets the default behavior.</p>
+      <pre id="start-modal-prompt">Use Founder Skills in this conversation.
+
+First, read https://fskills.xyz/llms.txt.
+If this is a startup repo, also read founder-context.md, truth-memo.md, recommended-next-step.md, and .fs/ state files when they exist.
+Start with /founder-partner if the bottleneck is unclear.
+Prefer one clear verdict, one concrete artifact, and one next move.
+Stay in this same thread and keep the company context alive.</pre>
+      <div class="start-modal-actions">
+        <button class="hero-btn hero-btn-primary" id="start-modal-copy-btn">Copy for agent</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- INSTALL -->
-<div class="container" id="install">
-  <div class="install-section reveal">
-    <div class="sec-eyebrow">Install</div>
-    <div class="sec-title">Legacy pack + OS beta.</div>
-    <p class="sec-sub">The published pack still installs with <code>npx founder-skills</code>. The new Founder Skills OS beta adds generated coding-host bundles and install/export commands for local repo workflows.</p>
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const copyBtn = document.getElementById('copy-btn');
+    const getStartedBtn = document.getElementById('get-started-btn');
+    const copyAgentBtn = document.getElementById('copy-agent-btn');
+    const copyAgentInlineBtn = document.getElementById('copy-agent-inline-btn');
+    const connectSection = document.getElementById('connect');
+    const agentPasteText = document.getElementById('agent-paste-text');
+    const startModal = document.getElementById('start-modal');
+    const startModalClose = document.getElementById('start-modal-close');
+    const startModalCopyBtn = document.getElementById('start-modal-copy-btn');
+    const startModalPrompt = document.getElementById('start-modal-prompt');
+    const installCommand = document.getElementById('install-command');
+    const installAgentButtons = Array.from(document.querySelectorAll('[data-install-agent]'));
+    const installOptions = {
+      pi: {
+        command: 'npx founder-skills install --agent pi'
+      },
+      'claude-code': {
+        command: 'npx founder-skills install --agent claude --scope project'
+      },
+      codex: {
+        command: 'npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md'
+      },
+      opencode: {
+        command: 'git clone https://github.com/gvkhosla/founder-skills.git && cd founder-skills && npm install && npm run os:gen && npm run os:install -- --host opencode --project /path/to/startup'
+      },
+      openclaw: {
+        command: 'git clone https://github.com/gvkhosla/founder-skills.git && cd founder-skills && npm install && npm run os:gen && npm run os:install -- --host openclaw --project /path/to/startup'
+      },
+      hermes: {
+        command: 'git clone https://github.com/gvkhosla/founder-skills.git && cd founder-skills && npm install && npm run os:gen && npm run os:install -- --host hermes --project /path/to/startup'
+      }
+    };
+    let currentInstallAgent = 'pi';
+    const storedTheme = localStorage.getItem('founder-skills-theme');
+    const storedInstallAgent = localStorage.getItem('founder-skills-install-agent');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    <div class="install-card">
-      <div class="install-header">
-        <button class="itab active" onclick="switchTab('legacy', this)">Legacy pack</button>
-        <button class="itab" onclick="switchTab('pi-os', this)">pi OS</button>
-        <button class="itab" onclick="switchTab('claude-os', this)">Claude OS</button>
-        <button class="itab" onclick="switchTab('codex-os', this)">Codex OS</button>
-        <button class="itab" onclick="switchTab('opencode-os', this)">OpenCode OS</button>
-        <button class="itab" onclick="switchTab('openclaw-os', this)">OpenClaw OS</button>
-        <button class="itab" onclick="switchTab('hermes-os', this)">Hermes OS</button>
-      </div>
-      <div class="install-body">
-        <div class="ipanel active" id="itab-legacy">
-          <pre><span class="c"># Published legacy pack</span>
-<span class="cmd">npx founder-skills install --agent pi</span>
-<span class="cmd">npx founder-skills install --agent claude</span>
-<span class="cmd">npx founder-skills install --agent codex --out ./AGENTS.founder-skills.md</span></pre>
-          <div class="install-note">This is the existing package install path for the original 27-skill pack.</div>
-        </div>
-        <div class="ipanel" id="itab-pi-os">
-          <pre><span class="c"># Founder Skills OS beta for pi</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host pi</span></pre>
-          <div class="install-note">Exports to <code>~/.pi/agent/skills/founder-skills-os/</code>.</div>
-        </div>
-        <div class="ipanel" id="itab-claude-os">
-          <pre><span class="c"># Founder Skills OS beta for Claude Code</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host claude-code --scope project</span></pre>
-          <div class="install-note">Exports to <code>.claude/skills/founder-skills-os/</code> and updates a managed section in <code>CLAUDE.md</code>.</div>
-        </div>
-        <div class="ipanel" id="itab-codex-os">
-          <pre><span class="c"># Founder Skills OS beta for Codex</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host codex</span></pre>
-          <div class="install-note">Exports to <code>.codex/founder-skills-os/</code> and updates a managed section in <code>AGENTS.md</code>.</div>
-        </div>
-        <div class="ipanel" id="itab-opencode-os">
-          <pre><span class="c"># Founder Skills OS beta for OpenCode</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host opencode</span></pre>
-          <div class="install-note">Exports to <code>.opencode/founder-skills-os/</code> and updates a managed section in <code>AGENTS.md</code>.</div>
-        </div>
-        <div class="ipanel" id="itab-openclaw-os">
-          <pre><span class="c"># Founder Skills OS beta for OpenClaw</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host openclaw</span></pre>
-          <div class="install-note">Exports to <code>.openclaw/founder-skills-os/</code> and updates a managed section in <code>AGENTS.md</code> with lite/full OpenClaw prompts.</div>
-        </div>
-        <div class="ipanel" id="itab-hermes-os">
-          <pre><span class="c"># Founder Skills OS beta for Hermes</span>
-<span class="cmd">npm install</span>
-<span class="cmd">npm run os:gen</span>
-<span class="cmd">npm run os:install -- --host hermes</span></pre>
-          <div class="install-note">Exports to <code>~/.hermes/skills/founder-skills-os/</code>. Verify with <code>hermes skills list</code>.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('founder-skills-theme', theme);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#fffdfa' : '#09090b');
+    }
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="/favicon.svg" alt="FS" />
-        founder skills
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/gvkhosla/founder-skills" target="_blank">GitHub</a>
-        <a href="/llms.txt">for agents</a>
-        <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/PHILOSOPHY.md" target="_blank">philosophy</a>
-        <a href="https://github.com/gvkhosla/founder-skills/blob/main/docs/AUTHORING.md" target="_blank">contribute</a>
-      </div>
-      <div class="footer-meta">MIT · 27 legacy skills · 6 coding hosts</div>
-    </div>
-  </div>
-</footer>
+    function setInstallAgent(agentId) {
+      const option = installOptions[agentId];
+      if (!option || !installCommand) return;
 
-<script>
-  /* ── install copy ── */
-  function copyInstall(el) {
-    navigator.clipboard.writeText('npx founder-skills install --agent pi').then(() => {
-      const h = el.querySelector('.hint');
-      h.textContent = 'copied ✓';
-      setTimeout(() => h.textContent = 'click to copy', 2000);
+      currentInstallAgent = agentId;
+      installCommand.innerHTML = `<span class="install-prefix">$</span>${option.command}`;
+      localStorage.setItem('founder-skills-install-agent', agentId);
+
+      installAgentButtons.forEach((button) => {
+        const isActive = button.getAttribute('data-install-agent') === agentId;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    setTheme(storedTheme || (prefersDark ? 'dark' : 'light'));
+    setInstallAgent(installOptions[storedInstallAgent] ? storedInstallAgent : 'pi');
+
+    if (startModalPrompt && agentPasteText) {
+      startModalPrompt.textContent = agentPasteText.textContent.trim();
+    }
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+    }
+
+    installAgentButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const agentId = button.getAttribute('data-install-agent');
+        if (!agentId) return;
+        setInstallAgent(agentId);
+      });
     });
-  }
 
-  /* ── install tabs ── */
-  function switchTab(name, btn) {
-    document.querySelectorAll('.ipanel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
-    document.getElementById('itab-' + name).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  /* ── phase filter ── */
-  function filterPhase(phase, btn) {
-    document.querySelectorAll('.phase-pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.phase-group').forEach(g => {
-      g.hidden = phase !== 'all' && g.dataset.phase !== phase;
+    copyBtn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(installOptions[currentInstallAgent].command);
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Copied';
+      setTimeout(() => copyBtn.textContent = original, 1200);
     });
-  }
 
-  /* ── partner mode ── */
-  function switchMode(mode, btn) {
-    document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('mode-' + mode).classList.add('active');
-  }
+    function openStartModal() {
+      if (!startModal) return;
+      startModal.hidden = false;
+      document.body.classList.add('modal-open');
+      startModalCopyBtn?.focus();
+    }
 
-  /* ── scroll reveal ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+    function closeStartModal() {
+      if (!startModal) return;
+      startModal.hidden = true;
+      document.body.classList.remove('modal-open');
+      getStartedBtn?.focus();
+    }
+
+    async function copyAgentPrompt(button, label = 'Copied for agent', source = agentPasteText) {
+      if (!button || !source) return;
+      await navigator.clipboard.writeText(source.textContent.trim());
+      const original = button.textContent;
+      button.textContent = label;
+      setTimeout(() => button.textContent = original, 1200);
+    }
+
+    if (getStartedBtn) {
+      getStartedBtn.addEventListener('click', () => {
+        openStartModal();
+      });
+    }
+
+    if (copyAgentBtn) {
+      copyAgentBtn.addEventListener('click', async () => {
+        await copyAgentPrompt(copyAgentBtn, 'Copied!');
+      });
+    }
+
+    if (copyAgentInlineBtn) {
+      copyAgentInlineBtn.addEventListener('click', async () => {
+        await copyAgentPrompt(copyAgentInlineBtn, 'Copied');
+      });
+    }
+
+    if (startModalCopyBtn) {
+      startModalCopyBtn.addEventListener('click', async () => {
+        await copyAgentPrompt(startModalCopyBtn, 'Copied!', startModalPrompt);
+      });
+    }
+
+    startModalClose?.addEventListener('click', closeStartModal);
+    startModal?.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLElement && event.target.hasAttribute('data-close-modal')) {
+        closeStartModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && startModal && !startModal.hidden) {
+        closeStartModal();
+      }
+    });
+  </script>
 </body>
 </html>

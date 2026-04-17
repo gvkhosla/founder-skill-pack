@@ -1,0 +1,18 @@
+name: growth-loop-builder
+description: Designs the strongest self-reinforcing growth loop for the product. Use when the founder wants compounding growth instead of one-off acquisition tactics. Produces growth-loop.md.
+invocations:
+  - Build my growth loop
+  - How do we grow without ads?
+outputs:
+  - growth-loop.md
+depends_on:
+  - pmf-assessment.md
+  - positioning.md
+  - customer-profile.md
+feeds_into:
+  - experiment-plan.md
+  - pipeline-review.md
+checks:
+  - specific_recommendation
+  - loop_defined
+  - next_step_present

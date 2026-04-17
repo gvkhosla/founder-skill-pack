@@ -5,12 +5,24 @@ description: Reviews what changed after shipping and identifies the highest-leve
 
 # post-ship-review
 
-## Invocation
+## When to invoke
 - Review what changed after shipping
 - Run a post-ship review
 
 ## Outputs
 - post-ship-review.md
+
+## Depends on
+- qa-report.md
+- release-readiness.md
+
+## Feeds into
+- weekly-review.md
+- experiment-plan.md
+
+## Quality checks
+- outcomes_present
+- next_move_present
 
 ## Prompt
 # Post Ship Review

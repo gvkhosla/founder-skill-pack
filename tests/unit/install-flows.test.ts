@@ -36,6 +36,8 @@ test("codex install exports bundle and updates AGENTS.md", () => {
   const agentsFile = path.join(tempDir, "AGENTS.md");
   assert.equal(result.bundlePath, bundleDir);
   assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "project-instructions.md")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", ".fs", "company-state.json")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", "truth-memo.md")));
   assert.ok(fs.existsSync(path.join(bundleDir, "strategy", "problem-validator", "SKILL.md")));
   assert.ok(fs.readFileSync(agentsFile, "utf8").includes("Founder Skills OS for Codex"));
 });
@@ -54,8 +56,10 @@ test("claude project install exports bundle and updates CLAUDE.md", () => {
 
   const claudeFile = path.join(tempDir, "CLAUDE.md");
   assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "project-instructions.md")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", ".fs", "artifact-index.json")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", "truth-memo.md")));
   assert.ok(fs.readFileSync(claudeFile, "utf8").includes("Founder Skills OS"));
-  assert.ok(fs.readFileSync(claudeFile, "utf8").includes("build-to-release"));
+  assert.ok(fs.readFileSync(claudeFile, "utf8").includes("build-to-launch"));
 });
 
 test("openclaw install exports bundle and updates AGENTS.md", () => {
@@ -71,6 +75,8 @@ test("openclaw install exports bundle and updates AGENTS.md", () => {
 
   const agentsFile = path.join(tempDir, "AGENTS.md");
   assert.ok(fs.existsSync(path.join(bundleDir, "founder-skills-lite-CLAUDE.md")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", ".fs", "sequence-state.json")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", "truth-memo.md")));
   assert.ok(fs.readFileSync(agentsFile, "utf8").includes("Founder Skills OS for OpenClaw"));
   assert.ok(fs.readFileSync(agentsFile, "utf8").includes("agents-founder-skills-section.md"));
 });
@@ -87,5 +93,7 @@ test("hermes install exports a bundle without touching project files", () => {
 
   assert.equal(result.updatedFiles.length, 0);
   assert.ok(fs.existsSync(path.join(bundleDir, "partner", "founder-partner", "SKILL.md")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", "founder-context.md")));
+  assert.ok(fs.existsSync(path.join(bundleDir, "workspace", "starter", "truth-memo.md")));
   assert.ok(fs.existsSync(path.join(bundleDir, "install.md")));
 });

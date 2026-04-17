@@ -41,6 +41,11 @@ export abstract class ChatHostAdapter implements HostAdapter {
         kind: "workspace-doc",
         content: input.recommendedInstructions,
       },
+      ...input.starterFiles.map((file) => ({
+        path: `generated/${this.id}/${file.path}`,
+        kind: "workspace-doc" as const,
+        content: file.content,
+      })),
     ];
   }
 
@@ -63,15 +68,66 @@ export abstract class ChatHostAdapter implements HostAdapter {
   }
 
   protected renderSystemPrompt(skill: CanonicalSkill): string {
-    return `You are running the ${skill.name} workflow.\n\nGoal: ${skill.description}\n\nOutputs:\n${skill.outputs.map((o) => `- ${o}`).join("\n")}\n\nInstructions:\n${skill.prompt.trim()}\n`;
+    const sections = [
+      `You are running the ${skill.name} workflow.`,
+      `Goal: ${skill.description}`,
+      `When to invoke:\n${skill.invocations.map((invocation) => `- ${invocation}`).join("\n")}`,
+      `Outputs:\n${skill.outputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (skill.dependsOn.length > 0) {
+      sections.push(`Read first when available:\n${skill.dependsOn.map((dependency) => `- ${dependency}`).join("\n")}`);
+    }
+
+    if (skill.feedsInto.length > 0) {
+      sections.push(`Likely next artifacts:\n${skill.feedsInto.map((output) => `- ${output}`).join("\n")}`);
+    }
+
+    if (skill.checks.length > 0) {
+      sections.push(`Quality checks:\n${skill.checks.map((check) => `- ${check}`).join("\n")}`);
+    }
+
+    sections.push(`Instructions:\n${skill.prompt.trim()}`);
+
+    if (skill.reference?.trim()) {
+      sections.push(`Reference:\n${skill.reference.trim()}`);
+    }
+
+    return `${sections.join("\n\n")}\n`;
   }
 
   protected renderConversationStarter(skill: CanonicalSkill): string {
     const invocation = skill.invocations[0] ?? `Help me with ${skill.name}`;
-    return `Use the ${skill.name} workflow.\n\nStart with: \"${invocation}\"\n\nExpected outputs:\n${skill.outputs.map((o) => `- ${o}`).join("\n")}`;
+    const lines = [
+      `Use the ${skill.name} workflow.`,
+      `Start with: \"${invocation}\"`,
+      `Expected outputs:\n${skill.outputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (skill.dependsOn.length > 0) {
+      lines.push(`Bring this context if you have it:\n${skill.dependsOn.map((dependency) => `- ${dependency}`).join("\n")}`);
+    }
+
+    return lines.join("\n\n");
   }
 
   protected renderSequencePrompt(sequence: CanonicalSequence): string {
-    return `You are running the ${sequence.name} sequence.\n\n${sequence.description}\n\nSteps:\n${sequence.steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}`;
+    const sections = [
+      `You are running the ${sequence.name} sequence.`,
+      sequence.description,
+      `Entrypoint:\n- ${sequence.entrypoint}`,
+      `Steps:\n${sequence.steps.map((step, index) => `${index + 1}. ${step}`).join("\n")}`,
+      `Primary outputs:\n${sequence.primaryOutputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (sequence.successSignal.length > 0) {
+      sections.push(`Success signals:\n${sequence.successSignal.map((signal) => `- ${signal}`).join("\n")}`);
+    }
+
+    if (sequence.prompt.trim()) {
+      sections.push(`Operating notes:\n${sequence.prompt.trim()}`);
+    }
+
+    return sections.join("\n\n");
   }
 }

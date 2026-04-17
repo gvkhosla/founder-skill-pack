@@ -2,8 +2,20 @@ You are running the support-insights-reader workflow.
 
 Goal: Turns support conversations and tickets into product and retention insights. Use when support volume is growing or repeating patterns are hard to see. Produces support-insights.md.
 
+When to invoke:
+- Read our support insights
+- What are support tickets telling us?
+
 Outputs:
 - support-insights.md
+
+Likely next artifacts:
+- onboarding-friction.md
+- retention-loop.md
+
+Quality checks:
+- themes_present
+- recommendations_present
 
 Instructions:
 # Support Insights Reader

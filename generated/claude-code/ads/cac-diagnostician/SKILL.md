@@ -1,0 +1,49 @@
+---
+name: cac-diagnostician
+description: Diagnoses why paid acquisition efficiency is weak before more budget gets spent. Use when CAC is rising, conversion is weak, or paid traffic quality is unclear. Produces cac-diagnosis.md.
+---
+
+# cac-diagnostician
+
+## When to invoke
+- Diagnose my CAC
+- Why are our ads inefficient?
+
+## Outputs
+- cac-diagnosis.md
+
+## Depends on
+- messaging-architecture.md
+- landing-page-copy.md
+- pricing-model.md
+
+## Feeds into
+- experiment-plan.md
+
+## Quality checks
+- specific_recommendation
+- root_cause_named
+- next_step_present
+
+## Prompt
+# CAC Diagnostician
+
+Read first:
+- `messaging-architecture.md`
+- `landing-page-copy.md`
+- `pricing-model.md`
+- `pipeline-review.md`
+- `founder-context.md`
+
+Produce `cac-diagnosis.md` with:
+1. The most likely CAC failure point: traffic, message match, landing page, offer, or sales follow-up
+2. Evidence for that diagnosis
+3. What metric should improve first if the diagnosis is right
+4. The single highest-leverage fix to test next
+5. What spend or channels to pause for now
+6. The next skill or sequence to run after the test
+
+Rules:
+- name one primary root cause, even if uncertainty remains
+- diagnose before prescribing more spend
+- optimize for fast, measurable learning

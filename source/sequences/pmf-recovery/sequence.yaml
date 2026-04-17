@@ -1,0 +1,23 @@
+name: pmf-recovery
+description: Runs a PMF recovery loop across measurement, support signal, churn diagnosis, retention, growth, and experiments.
+entrypoint: founder-partner
+steps:
+  - north-star-definer
+  - pmf-signal-reader
+  - support-insights-reader
+  - churn-diagnostician
+  - retention-loop-designer
+  - growth-loop-builder
+  - experiment-planner
+  - weekly-founder-review
+primary_outputs:
+  - north-star.md
+  - pmf-assessment.md
+  - support-insights.md
+  - churn-diagnosis.md
+  - retention-loop.md
+  - growth-loop.md
+  - experiment-plan.md
+  - weekly-review.md
+success_signal:
+  - founder_has_a_clear_pmf_recovery_plan

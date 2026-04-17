@@ -5,12 +5,26 @@ description: Turns a scoped MVP into a concrete, founder-readable implementation
 
 # implementation-planner
 
-## Invocation
+## When to invoke
 - Help me plan the build
 - How should we implement this?
 
 ## Outputs
 - implementation-plan.md
+
+## Depends on
+- mvp-brief.md
+- positioning.md
+
+## Feeds into
+- architecture-overview.md
+- qa-report.md
+- release-readiness.md
+
+## Quality checks
+- specific_recommendation
+- concrete_output
+- next_step_present
 
 ## Prompt
 # Implementation Planner

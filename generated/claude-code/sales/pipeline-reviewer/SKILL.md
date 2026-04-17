@@ -5,12 +5,23 @@ description: Diagnoses pipeline weakness and identifies the highest-leverage fix
 
 # pipeline-reviewer
 
-## Invocation
+## When to invoke
 - Review my pipeline
 - Why are our deals not closing?
 
 ## Outputs
 - pipeline-review.md
+
+## Depends on
+- positioning.md
+
+## Feeds into
+- objection-map.md
+- outbound-sequences.md
+
+## Quality checks
+- specific_recommendation
+- concrete_output
 
 ## Prompt
 # Pipeline Reviewer

@@ -5,12 +5,20 @@ description: Defines the first customer with enough specificity to guide product
 
 # customer-hypothesis
 
-## Invocation
+## When to invoke
 - Define my customer
 - Who is my first customer?
 
 ## Outputs
 - customer-profile.md
+
+## Feeds into
+- mvp-brief.md
+- positioning.md
+
+## Quality checks
+- specificity_present
+- recommendation_present
 
 ## Prompt
 # Customer Hypothesis

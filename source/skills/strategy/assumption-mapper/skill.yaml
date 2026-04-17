@@ -1,0 +1,17 @@
+name: assumption-mapper
+description: Maps the riskiest product, customer, and GTM assumptions into a ranked test plan. Use when scope exists but the founder needs to know which bets could break the company fastest. Produces assumptions-map.md.
+invocations:
+  - Map my assumptions
+  - What are the riskiest bets here?
+outputs:
+  - assumptions-map.md
+depends_on:
+  - problem-validation-report.md
+  - customer-profile.md
+  - mvp-brief.md
+feeds_into:
+  - experiment-plan.md
+checks:
+  - specific_recommendation
+  - ranked_output
+  - next_step_present

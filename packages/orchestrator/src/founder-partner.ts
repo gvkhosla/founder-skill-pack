@@ -1,9 +1,26 @@
-import type { CompanyState, Bottleneck } from "../../core/src/types/state.js";
+import type { ArtifactIndex } from "../../core/src/types/artifact.js";
+import type { CanonicalSequence, SequenceState } from "../../core/src/types/sequence.js";
+import type { CanonicalSkill } from "../../core/src/types/skill.js";
+import type { Bottleneck, CompanyState } from "../../core/src/types/state.js";
+import { hasArtifact } from "../../graph/src/artifact-index.js";
 
-const bottleneckToRecommendation: Record<
-  Bottleneck,
-  { type: "skill" | "sequence"; name: string; reason: string }
-> = {
+export interface FounderCatalog {
+  skills: CanonicalSkill[];
+  sequences: CanonicalSequence[];
+}
+
+export interface FounderRecommendation {
+  type: "skill" | "sequence";
+  name: string;
+  reason: string;
+  bottleneck: Bottleneck;
+  source: "explicit" | "sequence" | "gate" | "bottleneck";
+  activeSequence?: string;
+  missingArtifacts?: string[];
+  expectedOutputs?: string[];
+}
+
+const bottleneckDefaults: Record<Bottleneck, { type: "skill" | "sequence"; name: string; reason: string }> = {
   "problem-clarity": {
     type: "skill",
     name: "problem-validator",
@@ -62,7 +79,7 @@ const bottleneckToRecommendation: Record<
   "activation-weakness": {
     type: "sequence",
     name: "pmf-recovery",
-    reason: "Activation issues should be handled as a coordinated PMF sequence.",
+    reason: "Activation issues should be handled as a coordinated PMF recovery sequence.",
   },
   "retention-weakness": {
     type: "skill",
@@ -75,9 +92,9 @@ const bottleneckToRecommendation: Record<
     reason: "PMF signal quality should be clarified before compounding effort elsewhere.",
   },
   "sales-motion-weakness": {
-    type: "skill",
-    name: "pipeline-reviewer",
-    reason: "There is not yet a strong or repeatable sales motion.",
+    type: "sequence",
+    name: "gtm-engine",
+    reason: "The sales and GTM motion should be rebuilt as one coherent system.",
   },
   "pipeline-weakness": {
     type: "skill",
@@ -121,6 +138,173 @@ const bottleneckToRecommendation: Record<
   },
 };
 
-export function recommendNextMove(state: CompanyState) {
-  return bottleneckToRecommendation[state.company.currentBottleneck];
+const readinessGates: Record<string, string[]> = {
+  "build-readiness": [
+    "problem-validation-report.md",
+    "customer-profile.md",
+    "mvp-brief.md",
+    "implementation-plan.md",
+    "architecture-overview.md",
+  ],
+  "launch-readiness": [
+    "positioning.md",
+    "pricing-model.md",
+    "landing-page-copy.md",
+    "launch-plan.md",
+    "release-readiness.md",
+  ],
+  "pmf-review-readiness": [
+    "north-star.md",
+    "pmf-assessment.md",
+    "support-insights.md",
+    "churn-diagnosis.md",
+  ],
+};
+
+export function detectPrimaryBottleneck(state: CompanyState): Bottleneck {
+  if (state.execution.releaseReadiness === "at-risk") return "release-risk";
+  if (state.company.currentBottleneck === "qa-risk") return "qa-risk";
+  if (state.execution.implementationConfidence === "low" && state.company.stage === "building") return "build-confidence";
+  if (state.execution.architectureConfidence === "low" && state.execution.implementationConfidence !== "low") {
+    return "architecture-risk";
+  }
+  if (state.metrics.retentionHealth === "weak") return "retention-weakness";
+  if (state.metrics.activationHealth === "weak") return "activation-weakness";
+  if (state.metrics.pipelineHealth === "weak") return "pipeline-weakness";
+  if (state.metrics.cacHealth === "weak") return "ads-efficiency";
+  if ((state.focus.openQuestions?.length ?? 0) >= 5 && !state.focus.thisWeek) return "founder-focus";
+  return state.company.currentBottleneck;
+}
+
+export function recommendNextMove(
+  state: CompanyState,
+  options: {
+    artifactIndex?: ArtifactIndex;
+    sequenceState?: SequenceState;
+    catalog?: FounderCatalog;
+    explicitName?: string;
+  } = {},
+): FounderRecommendation {
+  const catalog = options.catalog;
+  const bottleneck = detectPrimaryBottleneck(state);
+
+  if (options.explicitName) {
+    return {
+      type: findSequence(catalog, options.explicitName) ? "sequence" : "skill",
+      name: options.explicitName,
+      reason: "The founder explicitly asked for this workflow.",
+      bottleneck,
+      source: "explicit",
+      expectedOutputs: findSkill(catalog, options.explicitName)?.outputs,
+    };
+  }
+
+  const sequenceRecommendation = recommendFromActiveSequence(bottleneck, options.sequenceState, options.artifactIndex, catalog);
+  if (sequenceRecommendation) return sequenceRecommendation;
+
+  const gateRecommendation = recommendFromReadinessGate(bottleneck, options.artifactIndex, catalog);
+  if (gateRecommendation) return gateRecommendation;
+
+  const base = bottleneckDefaults[bottleneck];
+  const skill = base.type === "skill" ? findSkill(catalog, base.name) : undefined;
+
+  return {
+    ...base,
+    bottleneck,
+    source: "bottleneck",
+    expectedOutputs: skill?.outputs,
+  };
+}
+
+function recommendFromActiveSequence(
+  bottleneck: Bottleneck,
+  sequenceState: SequenceState | undefined,
+  artifactIndex: ArtifactIndex | undefined,
+  catalog: FounderCatalog | undefined,
+): FounderRecommendation | null {
+  if (!sequenceState?.activeSequence || !catalog || !artifactIndex) return null;
+  const sequence = findSequence(catalog, sequenceState.activeSequence);
+  if (!sequence) return null;
+
+  const nextStepName =
+    sequenceState.steps?.find((step) => step.status === "current")?.name ??
+    determineNextSequenceStep(sequence, catalog.skills, artifactIndex, sequenceState.blockedBy ?? []);
+
+  if (!nextStepName) return null;
+  const skill = findSkill(catalog, nextStepName);
+
+  return {
+    type: "skill",
+    name: nextStepName,
+    reason: `Continue ${sequence.name}: ${nextStepName} is the next unresolved step in the active company workflow.`,
+    bottleneck,
+    source: "sequence",
+    activeSequence: sequence.name,
+    expectedOutputs: skill?.outputs,
+  };
+}
+
+function recommendFromReadinessGate(
+  bottleneck: Bottleneck,
+  artifactIndex: ArtifactIndex | undefined,
+  catalog: FounderCatalog | undefined,
+): FounderRecommendation | null {
+  if (!artifactIndex || !catalog) return null;
+  const gateName = gateForBottleneck(bottleneck);
+  if (!gateName) return null;
+
+  const missingArtifacts = readinessGates[gateName].filter((artifact) => !hasArtifact(artifactIndex, artifact));
+  if (missingArtifacts.length === 0) return null;
+
+  const nextArtifact = missingArtifacts[0];
+  const nextSkill = catalog.skills.find((skill) => skill.outputs.includes(nextArtifact));
+  if (!nextSkill) return null;
+
+  return {
+    type: "skill",
+    name: nextSkill.name,
+    reason: `${gateName} is blocked because ${nextArtifact} is missing or stale. Produce it before branching into lower-leverage work.`,
+    bottleneck,
+    source: "gate",
+    missingArtifacts,
+    expectedOutputs: nextSkill.outputs,
+  };
+}
+
+function gateForBottleneck(bottleneck: Bottleneck): string | null {
+  if (["build-confidence", "architecture-risk", "design-implementation-gap", "qa-risk", "release-risk"].includes(bottleneck)) {
+    return "build-readiness";
+  }
+  if (["positioning-weakness", "launch-readiness", "sales-motion-weakness", "pipeline-weakness", "marketing-clarity", "seo-geo-gap", "ads-efficiency"].includes(bottleneck)) {
+    return "launch-readiness";
+  }
+  if (["activation-weakness", "retention-weakness", "pmf-uncertainty", "support-friction"].includes(bottleneck)) {
+    return "pmf-review-readiness";
+  }
+  return null;
+}
+
+function determineNextSequenceStep(
+  sequence: CanonicalSequence,
+  skills: CanonicalSkill[],
+  artifactIndex: ArtifactIndex,
+  blockedBy: string[],
+): string | undefined {
+  const blocked = new Set(blockedBy);
+  for (const stepName of sequence.steps) {
+    if (blocked.has(stepName)) continue;
+    const skill = skills.find((candidate) => candidate.name === stepName);
+    if (!skill) return stepName;
+    const isDone = skill.outputs.length > 0 && skill.outputs.every((output) => hasArtifact(artifactIndex, output));
+    if (!isDone) return stepName;
+  }
+  return undefined;
+}
+
+function findSkill(catalog: FounderCatalog | undefined, name: string): CanonicalSkill | undefined {
+  return catalog?.skills.find((skill) => skill.name === name);
+}
+
+function findSequence(catalog: FounderCatalog | undefined, name: string): CanonicalSequence | undefined {
+  return catalog?.sequences.find((sequence) => sequence.name === name);
 }

@@ -2,8 +2,16 @@ You are running the focus-planner workflow.
 
 Goal: Locks the one focus that matters most for the next working cycle. Use when priorities are scattered or after a weekly review. Produces focus-plan.md.
 
+When to invoke:
+- Help me focus
+- Plan next week's focus
+
 Outputs:
 - focus-plan.md
+
+Quality checks:
+- one_focus_present
+- tradeoffs_present
 
 Instructions:
 # Focus Planner

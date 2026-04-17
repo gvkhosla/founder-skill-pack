@@ -1,0 +1,17 @@
+name: pricing-model-framer
+description: Frames a pricing model that matches value, buyer psychology, and stage. Use when the founder needs a concrete offer instead of vague pricing debates. Produces pricing-model.md.
+invocations:
+  - Frame my pricing
+  - Help me price this
+outputs:
+  - pricing-model.md
+depends_on:
+  - positioning.md
+  - customer-profile.md
+feeds_into:
+  - landing-page-copy.md
+  - launch-plan.md
+checks:
+  - specific_recommendation
+  - decision_made
+  - next_step_present

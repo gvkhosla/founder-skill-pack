@@ -8,6 +8,7 @@ export type CompanyStage =
 
 export type ConfidenceLevel = "low" | "medium" | "high";
 export type FreshnessLevel = "fresh" | "aging" | "stale";
+export type TrendDirection = "up" | "down" | "flat" | "unknown";
 
 export type Bottleneck =
   | "problem-clarity"
@@ -43,7 +44,33 @@ export interface CompanyState {
     teamShape?: string;
     currentBottleneck: Bottleneck;
   };
+  founders?: {
+    primaryFounderMode?: string;
+    riskTolerance?: string;
+    timeHorizon?: string;
+    keyConstraints?: string[];
+  };
+  product?: {
+    coreJob?: string;
+    primaryUser?: string;
+    productScopeState?: string;
+    buildState?: string;
+    launchState?: string;
+    pmfState?: string;
+  };
+  goToMarket?: {
+    positioningState?: string;
+    salesMotion?: string;
+    marketingState?: string;
+    seoGeoState?: string;
+    adsState?: string;
+  };
   metrics: {
+    northStar?: {
+      name: string;
+      value?: number;
+      trend?: TrendDirection;
+    };
     pmfSignal?: string;
     revenueMrr?: number;
     pipelineHealth?: string;
@@ -55,11 +82,23 @@ export interface CompanyState {
     implementationConfidence?: ConfidenceLevel;
     architectureConfidence?: ConfidenceLevel;
     qaConfidence?: ConfidenceLevel;
+    reviewState?: "not-started" | "in-review" | "approved";
+    designToCodeReady?: boolean;
     releaseReadiness?: "not-ready" | "at-risk" | "ready";
+  };
+  support?: {
+    topTicketThemes?: string[];
+    onboardingFrictionKnown?: boolean;
+    churnThemeKnown?: boolean;
+  };
+  hiring?: {
+    nextHireNeeded?: string;
+    capacityPressure?: string;
   };
   focus: {
     thisWeek?: string;
     activeSequence?: string;
+    activeExperiments?: string[];
     openQuestions?: string[];
     recommendedNext?: {
       type: "skill" | "sequence";
@@ -70,6 +109,7 @@ export interface CompanyState {
   stateMeta: {
     version: number;
     lastUpdated: string;
+    lastReviewed?: string;
     confidence?: ConfidenceLevel;
   };
 }

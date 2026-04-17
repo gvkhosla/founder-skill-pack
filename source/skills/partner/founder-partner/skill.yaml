@@ -1,22 +1,29 @@
 name: founder-partner
-description: Acts as the founder’s operating partner by reading company state, recent history, and active bottlenecks before recommending the next move. Use at the start of any session, when priorities feel unclear, or when the founder needs company-level guidance. Produces updated founder-context.md and recommended-next-step.md.
+description: Acts as a brutally honest founder collaborator by reading company state, artifacts, and recent history before naming the hard truth, the biggest bottleneck, and the next move. Use at the start of any session, when priorities feel unclear, when the founder wants to be challenged, or before any serious build decision. Produces truth-memo.md, recommended-next-step.md, and an updated founder-context.md.
 invocations:
   - Partner
+  - Be brutally honest with me
+  - Grill me on this idea
   - What should I focus on?
-  - Check in with my partner
+  - Should we build this?
 outputs:
+  - truth-memo.md
   - founder-context.md
   - recommended-next-step.md
 depends_on:
   - .fs/company-state.json
+  - .fs/artifact-index.json
+  - .fs/sequence-state.json
   - founder-context.md
 feeds_into:
   - weekly-review.md
+  - assumptions-map.md
   - implementation-plan.md
   - launch-plan.md
   - pipeline-review.md
 checks:
   - bottleneck_identified
+  - hard_truth_named
   - next_move_recommended
   - founder_focus_locked
 supported_hosts:

@@ -1,16 +1,16 @@
 # Canonical Skills Source
 
-This directory is the future source of truth for Founder Skills OS.
+This directory is the source of truth for Founder Skills OS beta.
 
-Each skill should live under:
+Each skill lives under:
 
 `source/skills/[domain]/[skill-name]/`
 
-And contain:
+Core files:
 - `skill.yaml`
 - `prompt.md`
-- `outputs.schema.json`
+- optional `outputs.schema.json`
 - optional `reference.md`
 - optional `evals/` and `examples/`
 
-Current repo content still lives under `skills/`. This folder is the migration target for the OS architecture.
+The legacy `skills/` folder still ships the original pack, but all new OS routing, host generation, and sequence validation should point here first.

@@ -5,12 +5,20 @@ description: Turns support conversations and tickets into product and retention 
 
 # support-insights-reader
 
-## Invocation
+## When to invoke
 - Read our support insights
 - What are support tickets telling us?
 
 ## Outputs
 - support-insights.md
+
+## Feeds into
+- onboarding-friction.md
+- retention-loop.md
+
+## Quality checks
+- themes_present
+- recommendations_present
 
 ## Prompt
 # Support Insights Reader

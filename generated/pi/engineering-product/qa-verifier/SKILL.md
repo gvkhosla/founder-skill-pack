@@ -5,12 +5,23 @@ description: Checks whether the product actually works across critical flows bef
 
 # qa-verifier
 
-## Invocation
+## When to invoke
 - Run QA verification
 - Check whether this actually works
 
 ## Outputs
 - qa-report.md
+
+## Depends on
+- implementation-plan.md
+- architecture-overview.md
+
+## Feeds into
+- release-readiness.md
+
+## Quality checks
+- critical_flows_present
+- blockers_present
 
 ## Prompt
 # QA Verifier

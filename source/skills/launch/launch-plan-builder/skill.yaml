@@ -1,0 +1,18 @@
+name: launch-plan-builder
+description: Builds a concrete launch plan across owned, rented, and borrowed channels. Use when the product and message are defined and the founder needs a realistic launch motion. Produces launch-plan.md.
+invocations:
+  - Build my launch plan
+  - Help me plan the launch
+outputs:
+  - launch-plan.md
+depends_on:
+  - positioning.md
+  - landing-page-copy.md
+  - pricing-model.md
+feeds_into:
+  - weekly-review.md
+  - pipeline-review.md
+checks:
+  - specific_recommendation
+  - staged_plan
+  - next_step_present

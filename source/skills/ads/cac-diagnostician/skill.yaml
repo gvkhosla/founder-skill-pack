@@ -1,0 +1,17 @@
+name: cac-diagnostician
+description: Diagnoses why paid acquisition efficiency is weak before more budget gets spent. Use when CAC is rising, conversion is weak, or paid traffic quality is unclear. Produces cac-diagnosis.md.
+invocations:
+  - Diagnose my CAC
+  - Why are our ads inefficient?
+outputs:
+  - cac-diagnosis.md
+depends_on:
+  - messaging-architecture.md
+  - landing-page-copy.md
+  - pricing-model.md
+feeds_into:
+  - experiment-plan.md
+checks:
+  - specific_recommendation
+  - root_cause_named
+  - next_step_present

@@ -9,8 +9,44 @@ Use this when the user clearly wants the design-to-code-brief workflow.
 
 OpenClaw behavior:
 - If coding work is required, spawn a coding session with the current repo context.
-- Pass in the relevant Founder Skills OS artifacts before implementation.
-- Return with the produced artifacts and next recommended move.
+- Read the relevant Founder Skills OS artifacts before implementation.
+- Return with the produced artifacts and the next recommended move.
 
-Expected outputs:
+## When to invoke
+- Turn this design into a build brief
+- Help me hand this off to build
+
+## Expected outputs
 - design-build-brief.md
+
+## Read first when available
+- implementation-plan.md
+- positioning.md
+
+## Feeds into
+- qa-report.md
+
+## Quality checks
+- handoff_clarity_present
+- states_and_interactions_present
+
+## Workflow
+# Design to Code Brief
+
+Read available context:
+- `implementation-plan.md`
+- `positioning.md`
+- any design notes or screenshots if available
+
+Produce `design-build-brief.md` with:
+1. Product intent for the screen or flow
+2. Core components and states
+3. Interaction expectations
+4. Copy and messaging constraints
+5. Edge states and failure states
+6. What good looks like when implemented
+
+Rules:
+- optimize for implementation clarity, not visual poetry
+- write for builders and founders to understand equally well
+- include states, interactions, and acceptance criteria

@@ -22,11 +22,24 @@ for (const host of hosts) {
   const hasSequence = files.some((file) => file.includes(`${path.sep}sequences${path.sep}`));
   const hasSkill = files.some((file) => file.endsWith("SKILL.md"));
   const hasWorkspace = files.some((file) => file.includes(`${path.sep}workspace${path.sep}`));
+  const starterStatePaths = [
+    path.join("workspace", "starter", ".fs", "company-state.json"),
+    path.join("workspace", "starter", ".fs", "artifact-index.json"),
+    path.join("workspace", "starter", ".fs", "sequence-state.json"),
+    path.join("workspace", "starter", "founder-context.md"),
+    path.join("workspace", "starter", "truth-memo.md"),
+    path.join("workspace", "starter", "recommended-next-step.md"),
+  ];
 
   if (!hasInstall) errors.push(`${host}: install.md missing`);
   if (!hasSequence) errors.push(`${host}: no sequences generated`);
   if (!hasSkill) errors.push(`${host}: no skill files generated`);
   if (!hasWorkspace) errors.push(`${host}: no workspace instructions generated`);
+  for (const starterPath of starterStatePaths) {
+    if (!files.some((file) => file.includes(starterPath))) {
+      errors.push(`${host}: starter file missing (${starterPath})`);
+    }
+  }
 
   if (host === "openclaw") {
     const required = [

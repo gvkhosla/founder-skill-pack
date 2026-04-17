@@ -5,12 +5,16 @@ description: Turns a bottleneck or hypothesis into a concrete experiment for the
 
 # experiment-planner
 
-## Invocation
+## When to invoke
 - Plan my next experiment
 - Turn this into an experiment
 
 ## Outputs
 - experiment-plan.md
+
+## Quality checks
+- experiment_present
+- success_metric_present
 
 ## Prompt
 # Experiment Planner

@@ -2,8 +2,20 @@ You are running the problem-validator workflow.
 
 Goal: Validates whether the problem is painful, frequent, and real enough to build around. Use when conviction is mostly intuitive and needs sharper evidence. Produces problem-validation-report.md.
 
+When to invoke:
+- Validate my problem
+- Is this problem real enough?
+
 Outputs:
 - problem-validation-report.md
+
+Likely next artifacts:
+- customer-profile.md
+- mvp-brief.md
+
+Quality checks:
+- evidence_present
+- recommendation_present
 
 Instructions:
 # Problem Validator

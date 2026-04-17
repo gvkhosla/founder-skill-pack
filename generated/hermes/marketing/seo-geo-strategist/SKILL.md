@@ -5,12 +5,22 @@ description: Designs a practical SEO and GEO strategy so the product can compoun
 
 # seo-geo-strategist
 
-## Invocation
+## When to invoke
 - Build our SEO strategy
 - Help with SEO and GEO
 
 ## Outputs
 - seo-geo-plan.md
+
+## Depends on
+- positioning.md
+
+## Feeds into
+- content-engine.md
+
+## Quality checks
+- channel_recommendation_present
+- execution_plan_present
 
 ## Prompt
 # SEO GEO Strategist

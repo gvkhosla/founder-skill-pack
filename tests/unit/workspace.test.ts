@@ -1,0 +1,90 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { loadAllCanonicalSequences, loadAllCanonicalSkills } from "../../packages/core/src/loaders/index.js";
+import {
+  ARTIFACT_INDEX_FILE,
+  COMPANY_STATE_FILE,
+  FOUNDER_CONTEXT_FILE,
+  RECOMMENDED_NEXT_FILE,
+  SEQUENCE_STATE_FILE,
+  TRUTH_MEMO_FILE,
+  ensureFounderWorkspace,
+  renderRecommendedNextStep,
+  startSequence,
+  syncSequenceState,
+  writeArtifactIndex,
+  readArtifactIndex,
+  readSequenceState,
+} from "../../packages/state/src/workspace.js";
+
+const root = process.cwd();
+const catalog = {
+  skills: loadAllCanonicalSkills(root),
+  sequences: loadAllCanonicalSequences(root),
+};
+
+test("ensureFounderWorkspace creates stateful operating files", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "founder-skills-workspace-"));
+  const result = ensureFounderWorkspace(tempDir, catalog, {
+    companyName: "Acme",
+    stage: "building",
+    activeSequence: "validate-to-build",
+  });
+
+  assert.equal(result.companyState.company.name, "Acme");
+  assert.equal(result.companyState.company.stage, "building");
+  assert.ok(fs.existsSync(path.join(tempDir, COMPANY_STATE_FILE)));
+  assert.ok(fs.existsSync(path.join(tempDir, ARTIFACT_INDEX_FILE)));
+  assert.ok(fs.existsSync(path.join(tempDir, SEQUENCE_STATE_FILE)));
+  assert.ok(fs.existsSync(path.join(tempDir, FOUNDER_CONTEXT_FILE)));
+  assert.ok(fs.existsSync(path.join(tempDir, TRUTH_MEMO_FILE)));
+  assert.ok(fs.existsSync(path.join(tempDir, RECOMMENDED_NEXT_FILE)));
+  assert.equal(result.sequenceState.activeSequence, "validate-to-build");
+});
+
+test("startSequence and syncSequenceState track the current lifecycle step", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "founder-skills-sequence-"));
+  ensureFounderWorkspace(tempDir, catalog, { stage: "building" });
+
+  const initial = startSequence(tempDir, catalog, "validate-to-build");
+  assert.equal(initial.currentStep, "problem-validator");
+
+  writeArtifactIndex(tempDir, {
+    artifacts: [
+      {
+        path: "problem-validation-report.md",
+        createdBy: "problem-validator",
+        createdAt: "2026-04-16",
+        dependsOn: [],
+        feedsInto: [],
+        confidence: "high",
+        freshness: "fresh",
+        supersededBy: null,
+        recommendedNext: [],
+      },
+    ],
+  });
+
+  const synced = syncSequenceState(readSequenceState(tempDir), catalog, readArtifactIndex(tempDir));
+  assert.equal(synced.currentStep, "customer-hypothesis");
+  assert.equal(synced.steps?.find((step) => step.name === "problem-validator")?.status, "done");
+});
+
+test("renderRecommendedNextStep produces a founder-readable routing note", () => {
+  const markdown = renderRecommendedNextStep({
+    type: "sequence",
+    name: "gtm-engine",
+    reason: "Message clarity is the bottleneck.",
+    bottleneck: "marketing-clarity",
+    source: "bottleneck",
+    expectedOutputs: ["messaging-architecture.md", "landing-page-copy.md"],
+    missingArtifacts: ["positioning.md"],
+  });
+
+  assert.ok(markdown.includes("marketing-clarity"));
+  assert.ok(markdown.includes("gtm-engine"));
+  assert.ok(markdown.includes("positioning.md"));
+});

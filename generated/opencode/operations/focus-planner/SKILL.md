@@ -5,12 +5,16 @@ description: Locks the one focus that matters most for the next working cycle. U
 
 # focus-planner
 
-## Invocation
+## When to invoke
 - Help me focus
 - Plan next week's focus
 
 ## Outputs
 - focus-plan.md
+
+## Quality checks
+- one_focus_present
+- tradeoffs_present
 
 ## Prompt
 # Focus Planner

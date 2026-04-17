@@ -1,0 +1,17 @@
+name: retention-loop-designer
+description: Designs the habit and return loop that makes users come back without constant prompting. Use when retention is weak or engagement needs to compound. Produces retention-loop.md.
+invocations:
+  - Design my retention loop
+  - Why aren't users coming back?
+outputs:
+  - retention-loop.md
+depends_on:
+  - pmf-assessment.md
+  - customer-profile.md
+  - support-insights.md
+feeds_into:
+  - experiment-plan.md
+checks:
+  - specific_recommendation
+  - loop_defined
+  - next_step_present

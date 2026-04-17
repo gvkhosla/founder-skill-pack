@@ -5,12 +5,20 @@ description: Validates whether the problem is painful, frequent, and real enough
 
 # problem-validator
 
-## Invocation
+## When to invoke
 - Validate my problem
 - Is this problem real enough?
 
 ## Outputs
 - problem-validation-report.md
+
+## Feeds into
+- customer-profile.md
+- mvp-brief.md
+
+## Quality checks
+- evidence_present
+- recommendation_present
 
 ## Prompt
 # Problem Validator

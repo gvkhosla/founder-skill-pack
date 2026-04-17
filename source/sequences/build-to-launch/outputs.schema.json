@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["primary_outputs"],
+  "properties": {
+    "primary_outputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 8
+    }
+  },
+  "additionalProperties": false
+}

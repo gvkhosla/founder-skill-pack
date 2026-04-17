@@ -5,12 +5,20 @@ description: Runs a weekly founder operating review across wins, misses, bottlen
 
 # weekly-founder-review
 
-## Invocation
+## When to invoke
 - Run my weekly review
 - Review this week
 
 ## Outputs
 - weekly-review.md
+
+## Feeds into
+- focus-plan.md
+- experiment-plan.md
+
+## Quality checks
+- bottleneck_identified
+- focus_locked
 
 ## Prompt
 # Weekly Founder Review

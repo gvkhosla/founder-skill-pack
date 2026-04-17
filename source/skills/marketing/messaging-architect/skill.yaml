@@ -1,0 +1,19 @@
+name: messaging-architect
+description: Builds the core message architecture that ties positioning, sales, SEO/GEO, and launch copy together. Use when the founder has positioning but needs a repeatable message system. Produces messaging-architecture.md.
+invocations:
+  - Build my messaging architecture
+  - Tighten our messaging
+outputs:
+  - messaging-architecture.md
+depends_on:
+  - positioning.md
+  - customer-profile.md
+  - problem-validation-report.md
+feeds_into:
+  - landing-page-copy.md
+  - pipeline-review.md
+  - seo-geo-plan.md
+checks:
+  - specific_recommendation
+  - message_hierarchy_present
+  - next_step_present

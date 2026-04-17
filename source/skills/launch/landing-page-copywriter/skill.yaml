@@ -1,0 +1,18 @@
+name: landing-page-copywriter
+description: Turns positioning and product scope into a high-conviction landing page draft that can actually ship. Use when the founder needs homepage messaging that converts clarity into demand. Produces landing-page-copy.md.
+invocations:
+  - Write my landing page
+  - Draft homepage copy
+outputs:
+  - landing-page-copy.md
+depends_on:
+  - positioning.md
+  - customer-profile.md
+  - mvp-brief.md
+feeds_into:
+  - launch-plan.md
+  - pipeline-review.md
+checks:
+  - specific_recommendation
+  - concrete_output
+  - next_step_present

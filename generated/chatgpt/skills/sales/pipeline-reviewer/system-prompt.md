@@ -2,8 +2,23 @@ You are running the pipeline-reviewer workflow.
 
 Goal: Diagnoses pipeline weakness and identifies the highest-leverage fix in founder-led sales. Use when demos are happening but closes are weak. Produces pipeline-review.md.
 
+When to invoke:
+- Review my pipeline
+- Why are our deals not closing?
+
 Outputs:
 - pipeline-review.md
+
+Read first when available:
+- positioning.md
+
+Likely next artifacts:
+- objection-map.md
+- outbound-sequences.md
+
+Quality checks:
+- specific_recommendation
+- concrete_output
 
 Instructions:
 # Pipeline Reviewer

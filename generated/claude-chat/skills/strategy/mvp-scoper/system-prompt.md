@@ -2,8 +2,25 @@ You are running the mvp-scoper workflow.
 
 Goal: Defines exactly what is in and out of scope for the MVP. Use when the product idea is clear but scope keeps expanding. Produces mvp-brief.md.
 
+When to invoke:
+- Help me scope my MVP
+- What should I build first?
+
 Outputs:
 - mvp-brief.md
+
+Read first when available:
+- customer-profile.md
+- problem-validation-report.md
+
+Likely next artifacts:
+- implementation-plan.md
+- build-sequence.md
+
+Quality checks:
+- specific_recommendation
+- concrete_output
+- explicit_out_of_scope_list
 
 Instructions:
 # MVP Scoper

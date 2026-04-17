@@ -146,8 +146,9 @@ function renderClaudeProjectSection(bundlePath: string): string {
     "## Founder Skills OS",
     `Load Founder Skills OS from \`${toPosix(bundlePath)}\`.`,
     `Read \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/project-instructions.md"))}\` before broad planning or implementation.`,
+    `Use the starter files in \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/starter"))}\` or run \`npm run os:init -- --project .\` from the Founder Skills repo to seed .fs state files.`,
     "Start with `founder-partner` when the bottleneck is unclear.",
-    "Continue active sequences like `validate-to-build`, `build-to-release`, and `weekly-operating-rhythm` before branching into ad hoc work.",
+    "Continue active sequences like `validate-to-build`, `build-to-launch`, `gtm-engine`, `pmf-recovery`, and `weekly-operating-rhythm` before branching into ad hoc work.",
   ].join("\n\n");
 }
 
@@ -156,6 +157,7 @@ function renderCodexSection(bundlePath: string): string {
     "## Founder Skills OS for Codex",
     `Use the generated Founder Skills OS bundle at \`${toPosix(bundlePath)}\`.`,
     `Primary workspace instructions: \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/project-instructions.md"))}\`.`,
+    `Starter state files live under \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/starter"))}\`.`,
     `Skills live under \`${toPosix(bundlePath)}/<domain>/<skill>/SKILL.md\` and sequences under \`${toPosix(bundlePath)}/sequences/\`.`,
     "Route uncertain requests through `founder-partner`, identify the current bottleneck explicitly, and keep build work tied to launch and GTM context.",
   ].join("\n\n");
@@ -166,8 +168,9 @@ function renderOpenCodeSection(bundlePath: string): string {
     "## Founder Skills OS for OpenCode",
     `Use the generated Founder Skills OS bundle at \`${toPosix(bundlePath)}\`.`,
     `Project instructions: \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/project-instructions.md"))}\`.`,
+    `Starter files: \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/starter"))}\`.`,
     "Treat `founder-partner` as the default router when the next move is unclear.",
-    "Prefer the generated sequences for validate → build, build → release, and the weekly operating rhythm.",
+    "Prefer the generated sequences for validate → build, build → launch, GTM, PMF recovery, and the weekly operating rhythm.",
   ].join("\n\n");
 }
 
@@ -178,6 +181,7 @@ function renderOpenClawSection(bundlePath: string, sectionBody: string): string 
     `AGENTS section source: \`${toPosix(path.posix.join(toPosix(bundlePath), "agents-founder-skills-section.md"))}\`.`,
     `Lite prompt: \`${toPosix(path.posix.join(toPosix(bundlePath), "founder-skills-lite-CLAUDE.md"))}\`.`,
     `Full prompt: \`${toPosix(path.posix.join(toPosix(bundlePath), "founder-skills-full-CLAUDE.md"))}\`.`,
+    `Starter files: \`${toPosix(path.posix.join(toPosix(bundlePath), "workspace/starter"))}\`.`,
     sectionBody,
   ].join("\n\n");
 }

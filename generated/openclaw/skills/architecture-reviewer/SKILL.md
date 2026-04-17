@@ -9,8 +9,41 @@ Use this when the user clearly wants the architecture-reviewer workflow.
 
 OpenClaw behavior:
 - If coding work is required, spawn a coding session with the current repo context.
-- Pass in the relevant Founder Skills OS artifacts before implementation.
-- Return with the produced artifacts and next recommended move.
+- Read the relevant Founder Skills OS artifacts before implementation.
+- Return with the produced artifacts and the next recommended move.
 
-Expected outputs:
+## When to invoke
+- Review the architecture
+- What architecture should we use?
+
+## Expected outputs
 - architecture-overview.md
+
+## Read first when available
+- implementation-plan.md
+
+## Feeds into
+- qa-report.md
+- release-readiness.md
+
+## Quality checks
+- recommendation_present
+- risks_present
+
+## Workflow
+# Architecture Reviewer
+
+Read `implementation-plan.md` first if it exists.
+
+Produce `architecture-overview.md` with:
+1. Recommended architecture
+2. Key components and responsibilities
+3. Main technical risks
+4. What can be deferred safely
+5. Build-order implications
+6. QA implications
+
+Rules:
+- prefer the simplest architecture that clears the current stage
+- optimize for learning speed and reliability
+- explain technical choices in founder-readable language

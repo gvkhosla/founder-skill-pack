@@ -5,12 +5,27 @@ description: Crafts the clearest positioning for the product and chooses the str
 
 # positioning-writer
 
-## Invocation
+## When to invoke
 - Write my positioning
 - Help me explain what I do
 
 ## Outputs
 - positioning.md
+
+## Depends on
+- customer-profile.md
+- problem-validation-report.md
+- mvp-brief.md
+
+## Feeds into
+- landing-page-copy.md
+- outbound-sequences.md
+- ad-test-matrix.md
+
+## Quality checks
+- specific_recommendation
+- concrete_output
+- objection_handling_present
 
 ## Prompt
 # Positioning Writer

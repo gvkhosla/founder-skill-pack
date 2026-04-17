@@ -1,0 +1,23 @@
+name: gtm-engine
+description: Builds the company's core GTM system from positioning through messaging, SEO/GEO, pipeline, and CAC diagnosis.
+entrypoint: founder-partner
+steps:
+  - customer-hypothesis
+  - positioning-writer
+  - messaging-architect
+  - pricing-model-framer
+  - landing-page-copywriter
+  - pipeline-reviewer
+  - seo-geo-strategist
+  - cac-diagnostician
+primary_outputs:
+  - customer-profile.md
+  - positioning.md
+  - messaging-architecture.md
+  - pricing-model.md
+  - landing-page-copy.md
+  - pipeline-review.md
+  - seo-geo-plan.md
+  - cac-diagnosis.md
+success_signal:
+  - founder_has_one_clear_message_and_channel_system

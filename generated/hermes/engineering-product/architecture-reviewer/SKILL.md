@@ -5,12 +5,23 @@ description: Reviews the implementation plan and identifies the simplest archite
 
 # architecture-reviewer
 
-## Invocation
+## When to invoke
 - Review the architecture
 - What architecture should we use?
 
 ## Outputs
 - architecture-overview.md
+
+## Depends on
+- implementation-plan.md
+
+## Feeds into
+- qa-report.md
+- release-readiness.md
+
+## Quality checks
+- recommendation_present
+- risks_present
 
 ## Prompt
 # Architecture Reviewer

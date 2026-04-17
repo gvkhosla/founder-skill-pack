@@ -2,8 +2,23 @@ You are running the architecture-reviewer workflow.
 
 Goal: Reviews the implementation plan and identifies the simplest architecture that can safely support the product. Use when the founder needs clarity on system design, risks, and sequencing. Produces architecture-overview.md.
 
+When to invoke:
+- Review the architecture
+- What architecture should we use?
+
 Outputs:
 - architecture-overview.md
+
+Read first when available:
+- implementation-plan.md
+
+Likely next artifacts:
+- qa-report.md
+- release-readiness.md
+
+Quality checks:
+- recommendation_present
+- risks_present
 
 Instructions:
 # Architecture Reviewer

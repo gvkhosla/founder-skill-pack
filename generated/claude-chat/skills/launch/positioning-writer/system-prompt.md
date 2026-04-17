@@ -2,8 +2,27 @@ You are running the positioning-writer workflow.
 
 Goal: Crafts the clearest positioning for the product and chooses the strongest framing direction. Use when people do not quickly understand what the product is or why it matters. Produces positioning.md.
 
+When to invoke:
+- Write my positioning
+- Help me explain what I do
+
 Outputs:
 - positioning.md
+
+Read first when available:
+- customer-profile.md
+- problem-validation-report.md
+- mvp-brief.md
+
+Likely next artifacts:
+- landing-page-copy.md
+- outbound-sequences.md
+- ad-test-matrix.md
+
+Quality checks:
+- specific_recommendation
+- concrete_output
+- objection_handling_present
 
 Instructions:
 # Positioning Writer

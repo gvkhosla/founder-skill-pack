@@ -38,8 +38,9 @@ export class OpenClawAdapter implements HostAdapter {
         content: [
           "## Founder Skills OS routing",
           "When the user's request matches a Founder Skills OS workflow, spawn a coding session and inject the appropriate Founder Skills OS instructions.",
+          "Read founder-context.md, truth-memo.md, recommended-next-step.md, and .fs state files before routing when they exist.",
           "Use founder-partner for routing when the next move is unclear.",
-          "Prefer validate-to-build for pre-launch product work and weekly-operating-rhythm for operating cadence.",
+          "Prefer validate-to-build for pre-launch product work, gtm-engine for distribution bottlenecks, pmf-recovery for weak retention or activation, and weekly-operating-rhythm for operating cadence.",
         ].join("\n\n"),
       },
       {
@@ -47,10 +48,10 @@ export class OpenClawAdapter implements HostAdapter {
         kind: "project-instructions",
         content: [
           "# Founder Skills OS Lite",
-          "1. Read project instructions and available artifacts before editing.",
-          "2. Identify the current bottleneck and state it explicitly.",
+          "1. Read project instructions, .fs state files, founder-context.md, truth-memo.md, and recent artifacts before editing.",
+          "2. Identify the current bottleneck and separate what is known, believed, and hoped.",
           "3. Produce the expected artifact before making broad implementation changes.",
-          "4. Keep build work tied to launch, PMF, and GTM context.",
+          "4. Keep build work tied to validation, launch, PMF, and GTM context.",
         ].join("\n"),
       },
       {
@@ -59,10 +60,11 @@ export class OpenClawAdapter implements HostAdapter {
         content: [
           "# Founder Skills OS Full",
           "1. Run founder-partner logic first to identify bottleneck and next move.",
-          "2. Continue the active sequence if one is in progress.",
-          "3. For build work: implementation-plan → architecture-review → QA → release readiness.",
-          "4. For GTM work: positioning → launch or sales/SEO/ads flow depending on bottleneck.",
-          "5. Report back with artifact paths, key decisions, and the next recommended move.",
+          "2. Read .fs/company-state.json, .fs/artifact-index.json, .fs/sequence-state.json, founder-context.md, truth-memo.md, and recommended-next-step.md when present.",
+          "3. Continue the active sequence if one is in progress and update recommended-next-step.md.",
+          "4. For build work: implementation-plan → architecture-review → QA → release readiness.",
+          "5. For GTM work: customer clarity → positioning → messaging → launch / SEO / ads depending on the bottleneck.",
+          "6. Report back with artifact paths, key decisions, and the next recommended move.",
         ].join("\n"),
       },
       {
@@ -70,6 +72,11 @@ export class OpenClawAdapter implements HostAdapter {
         kind: "workspace-doc",
         content: input.recommendedInstructions,
       },
+      ...input.starterFiles.map((file) => ({
+        path: `generated/openclaw/${file.path}`,
+        kind: "workspace-doc" as const,
+        content: file.content,
+      })),
     ];
   }
 
@@ -95,10 +102,59 @@ export class OpenClawAdapter implements HostAdapter {
   }
 
   private renderNativeSkill(skill: CanonicalSkill): string {
-    return `---\nname: ${skill.name}\ndescription: ${skill.description}\n---\n\n# ${skill.name}\n\nUse this when the user clearly wants the ${skill.name} workflow.\n\nOpenClaw behavior:\n- If coding work is required, spawn a coding session with the current repo context.\n- Pass in the relevant Founder Skills OS artifacts before implementation.\n- Return with the produced artifacts and next recommended move.\n\nExpected outputs:\n${skill.outputs.map((o) => `- ${o}`).join("\n")}`;
+    const sections = [
+      `---\nname: ${skill.name}\ndescription: ${skill.description}\n---`,
+      `# ${skill.name}`,
+      `Use this when the user clearly wants the ${skill.name} workflow.`,
+      [
+        "OpenClaw behavior:",
+        "- If coding work is required, spawn a coding session with the current repo context.",
+        "- Read the relevant Founder Skills OS artifacts before implementation.",
+        "- Return with the produced artifacts and the next recommended move.",
+      ].join("\n"),
+      `## When to invoke\n${skill.invocations.map((invocation) => `- ${invocation}`).join("\n")}`,
+      `## Expected outputs\n${skill.outputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (skill.dependsOn.length > 0) {
+      sections.push(`## Read first when available\n${skill.dependsOn.map((dependency) => `- ${dependency}`).join("\n")}`);
+    }
+
+    if (skill.feedsInto.length > 0) {
+      sections.push(`## Feeds into\n${skill.feedsInto.map((output) => `- ${output}`).join("\n")}`);
+    }
+
+    if (skill.checks.length > 0) {
+      sections.push(`## Quality checks\n${skill.checks.map((check) => `- ${check}`).join("\n")}`);
+    }
+
+    sections.push(`## Workflow\n${skill.prompt.trim()}`);
+
+    if (skill.reference?.trim()) {
+      sections.push(`## Reference\n${skill.reference.trim()}`);
+    }
+
+    return `${sections.join("\n\n")}\n`;
   }
 
   private renderSequence(sequence: CanonicalSequence): string {
-    return `# ${sequence.name}\n\n${sequence.description}\n\nOpenClaw should use this sequence as a staged spawn workflow.\n\nSteps:\n${sequence.steps.map((step, i) => `${i + 1}. ${step}`).join("\n")}`;
+    const sections = [
+      `# ${sequence.name}`,
+      sequence.description,
+      "OpenClaw should use this sequence as a staged spawn workflow.",
+      `## Entrypoint\n- ${sequence.entrypoint}`,
+      `## Steps\n${sequence.steps.map((step, index) => `${index + 1}. ${step}`).join("\n")}`,
+      `## Primary outputs\n${sequence.primaryOutputs.map((output) => `- ${output}`).join("\n")}`,
+    ];
+
+    if (sequence.successSignal.length > 0) {
+      sections.push(`## Success signals\n${sequence.successSignal.map((signal) => `- ${signal}`).join("\n")}`);
+    }
+
+    if (sequence.prompt.trim()) {
+      sections.push(`## Operating notes\n${sequence.prompt.trim()}`);
+    }
+
+    return `${sections.join("\n\n")}\n`;
   }
 }

@@ -9,8 +9,51 @@ Use this when the user clearly wants the implementation-planner workflow.
 
 OpenClaw behavior:
 - If coding work is required, spawn a coding session with the current repo context.
-- Pass in the relevant Founder Skills OS artifacts before implementation.
-- Return with the produced artifacts and next recommended move.
+- Read the relevant Founder Skills OS artifacts before implementation.
+- Return with the produced artifacts and the next recommended move.
 
-Expected outputs:
+## When to invoke
+- Help me plan the build
+- How should we implement this?
+
+## Expected outputs
 - implementation-plan.md
+
+## Read first when available
+- mvp-brief.md
+- positioning.md
+
+## Feeds into
+- architecture-overview.md
+- qa-report.md
+- release-readiness.md
+
+## Quality checks
+- specific_recommendation
+- concrete_output
+- next_step_present
+
+## Workflow
+# Implementation Planner
+
+Read available product context first:
+- `mvp-brief.md`
+- `positioning.md`
+- `customer-profile.md`
+- `founder-context.md`
+
+Then produce a founder-readable `implementation-plan.md` with:
+
+1. What we are building now
+2. What we are explicitly not building now
+3. Major workstreams
+4. Technical risks and unknowns
+5. Recommended milestone order
+6. What to verify before shipping
+7. The next skill to run after this plan
+
+Rules:
+- make specific recommendations, not option lists
+- optimize for speed-to-learning and launch readiness
+- explain tradeoffs in plain English
+- if key context is missing, state assumptions explicitly
