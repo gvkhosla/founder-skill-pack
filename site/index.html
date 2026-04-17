@@ -753,50 +753,14 @@
       padding-top: 1.5rem;
       border-top: 1px solid var(--border);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      color: var(--muted);
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-    }
-
-    .footer-left {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    .footer-logo-link {
-      display: inline-flex;
-      align-items: center;
       justify-content: center;
-      text-decoration: none;
-      opacity: 0.92;
-      transition: opacity .15s ease, transform .15s ease;
-    }
-
-    .footer-logo-link:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    .footer-invader,
-    .footer-khosla-logo {
-      width: 32px;
-      height: 32px;
-      display: block;
-      border-radius: 7px;
-    }
-
-    .footer-invader {
-      image-rendering: pixelated;
+      color: var(--soft);
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
     }
 
     .footer-copy {
-      color: var(--soft);
-      font-size: 0.86rem;
-      text-align: right;
+      text-align: center;
     }
 
     .footer-copy a {
@@ -849,24 +813,12 @@
       .connect-code-head { align-items: stretch; flex-direction: column; }
       .connect-inline-copy,
       #copy-agent-btn { width: 100%; }
-      .footer-invader,
-      .footer-khosla-logo {
-        width: 30px;
-        height: 30px;
-      }
       .footer-copy {
         font-size: 0.82rem;
       }
     }
 
     @media (max-width: 520px) {
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-copy {
-        text-align: left;
-      }
       .start-modal {
         padding: 14px;
       }
@@ -1127,15 +1079,7 @@ Stay in this same thread and keep the company context alive.</pre>
       </div>
 
       <footer>
-        <div class="footer-left">
-          <a class="footer-logo-link" href="/" aria-label="Founder Skills">
-            <img class="footer-invader" src="/favicon.svg" alt="Founder Skills invader icon" />
-          </a>
-          <a class="footer-logo-link" href="https://khoslalab.com" target="_blank" rel="noopener noreferrer" aria-label="khosla lab">
-            <img class="footer-khosla-logo" src="/assets/khosla-lab-logo.png" alt="khosla lab logo" />
-          </a>
-        </div>
-        <div class="footer-copy">made by <a href="https://khoslalab.com" target="_blank" rel="noopener noreferrer">khosla lab</a></div>
+        <div class="footer-copy"><a href="https://khoslalab.com" target="_blank" rel="noopener noreferrer">made by khosla lab</a></div>
       </footer>
     </div>
   </main>
