@@ -12,6 +12,13 @@ import {
 export function startSequenceCommand(rootDir: string, projectDir: string, sequenceName: string) {
   const resolvedProjectDir = path.resolve(projectDir);
   const catalog = loadCatalog(rootDir);
+
+  if (!catalog.sequences.some((sequence) => sequence.name === sequenceName)) {
+    throw new Error(
+      `Unknown sequence '${sequenceName}'. Valid sequences: ${catalog.sequences.map((sequence) => sequence.name).join(", ")}`,
+    );
+  }
+
   ensureFounderWorkspace(resolvedProjectDir, catalog, { activeSequence: sequenceName });
   return startSequence(resolvedProjectDir, catalog, sequenceName);
 }

@@ -11,8 +11,12 @@ import {
   type EnsureWorkspaceOptions,
 } from "../../../../packages/state/src/workspace.js";
 
+const VALID_STAGES = ["idea", "validating", "building", "launched", "revenue", "growing"] as const;
+
 export function initStateCommand(rootDir: string, projectDir: string, options: EnsureWorkspaceOptions = {}) {
-  return ensureFounderWorkspace(path.resolve(projectDir), loadCatalog(rootDir), options);
+  const catalog = loadCatalog(rootDir);
+  validateEnsureWorkspaceOptions(options, catalog);
+  return ensureFounderWorkspace(path.resolve(projectDir), catalog, options);
 }
 
 export function recommendStateCommand(rootDir: string, projectDir: string) {
@@ -56,4 +60,16 @@ function loadCatalog(rootDir: string) {
     skills: loadAllCanonicalSkills(rootDir),
     sequences: loadAllCanonicalSequences(rootDir),
   };
+}
+
+function validateEnsureWorkspaceOptions(options: EnsureWorkspaceOptions, catalog: ReturnType<typeof loadCatalog>) {
+  if (options.stage && !VALID_STAGES.includes(options.stage)) {
+    throw new Error(`Unknown stage '${options.stage}'. Valid stages: ${VALID_STAGES.join(", ")}`);
+  }
+
+  if (options.activeSequence && !catalog.sequences.some((sequence) => sequence.name === options.activeSequence)) {
+    throw new Error(
+      `Unknown sequence '${options.activeSequence}'. Valid sequences: ${catalog.sequences.map((sequence) => sequence.name).join(", ")}`,
+    );
+  }
 }

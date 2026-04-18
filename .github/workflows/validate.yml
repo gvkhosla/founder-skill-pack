@@ -18,8 +18,24 @@ jobs:
         with:
           node-version: 20
 
-      - name: Validate skill pack
-        run: npm run check
+      - name: Run full test suite
+        run: npm test
+
+      - name: Regenerate host outputs
+        run: npm run os:gen:all
+
+      - name: Smoke legacy CLI install
+        run: |
+          tmp="$(mktemp -d)"
+          HOME="$tmp" npx --yes "file:$PWD" install --agent pi
+          test -f "$tmp/.pi/agent/skills/founder-partner/SKILL.md"
+
+      - name: Smoke OS host install
+        run: |
+          tmp="$(mktemp -d)"
+          npm run os:install -- --host codex --project "$tmp"
+          test -f "$tmp/.codex/founder-skills-os/workspace/project-instructions.md"
+          test -f "$tmp/AGENTS.md"
 
       - name: Verify npm package contents
         run: npm run pack:dry-run

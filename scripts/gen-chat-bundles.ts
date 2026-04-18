@@ -16,6 +16,8 @@ function writeArtifact(rootDir: string, relPath: string, content: string) {
 }
 
 for (const adapter of hostAdapters) {
+  fs.rmSync(path.join(root, "generated", adapter.id), { recursive: true, force: true });
+
   for (const skill of skills) {
     if (skill.supportedHosts && !skill.supportedHosts.includes(adapter.id)) continue;
     for (const artifact of adapter.generateSkill(skill)) {
