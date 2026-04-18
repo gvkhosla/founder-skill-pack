@@ -13,4 +13,4 @@ Core files:
 - optional `reference.md`
 - optional `evals/` and `examples/`
 
-The legacy `skills/` folder still ships the original pack, but all new OS routing, host generation, and sequence validation should point here first.
+The legacy compatibility pack now lives in `legacy/skills/`, but all new OS routing, host generation, and sequence validation should point here first.

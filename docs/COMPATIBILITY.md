@@ -1,6 +1,8 @@
-# Agent Compatibility Guide
+# Legacy Compatibility Guide
 
-Skills in this pack are designed to work across **pi**, **Claude**, and **Codex** without modification. This document explains how, and what to expect from each agent.
+The original Founder Skills pack now lives under `legacy/skills/`.
+
+These legacy skills are designed to work across **pi**, **Claude**, and **Codex** without modification. This document explains how, and what to expect from each agent.
 
 ---
 
@@ -66,7 +68,7 @@ Generates `AGENTS.founder-skills.md` (or your custom `--out` path). Add its cont
 
 **Note:** Codex runs parallel phases sequentially. Same output, ~2–3× longer time.
 
-Legacy clone-based installer remains available as `bash scripts/install.sh ...` for fully offline/manual workflows.
+Legacy clone-based installer remains available as `bash scripts/install.sh ...` for fully offline/manual workflows. The command stays the same; the implementation now lives under `legacy/`.
 
 ---
 
@@ -76,7 +78,7 @@ The `founder-partner` skill reads `founder-context.md` from the project root. Th
 
 **Location:** `[your-project-root]/founder-context.md`
 
-Copy `skills/partner/founder-partner/context-template.md` to your project root as `founder-context.md` to start. The partner skill will update it at the end of every session.
+Copy `legacy/skills/partner/founder-partner/context-template.md` to your project root as `founder-context.md` to start. The partner skill will update it at the end of every session.
 
 ---
 

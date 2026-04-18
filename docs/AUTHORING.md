@@ -1,5 +1,7 @@
 # How to Write a Founder Skill
 
+> This document describes the archived legacy pack in `legacy/skills/`. For Founder Skills OS work, start in `source/skills/`.
+
 This guide is for anyone contributing a new skill to Founder Skills. Read it completely before writing your first skill.
 
 ---
@@ -17,7 +19,7 @@ The test: if the skill output sounds like something a great founder advisor woul
 ## Skill File Structure
 
 ```
-skills/[phase]/[skill-name]/
+legacy/skills/[phase]/[skill-name]/
 ├── SKILL.md          # Required. The skill itself. Under 350 lines.
 └── reference.md      # Optional. Detailed frameworks, long reference lists, examples.
 ```

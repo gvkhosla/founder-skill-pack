@@ -30,22 +30,18 @@ Founder Skills helps your agent:
 
 ## What ships today
 
-Founder Skills currently has **two layers**:
+Founder Skills is now organized around **one primary product**:
 
-### 1. Founder Skills OS beta
-The new system in this repo.
-
-It includes:
+- **Founder Skills OS** in `source/`, `generated/`, `packages/`, and `scripts/*.ts`
 - **29 canonical skills** in `source/skills/`
 - **6 lifecycle sequences** in `source/sequences/`
 - workspace memory in `.fs/`
 - recommendation routing
 - multi-host generation and install/export flows
 
-### 2. Legacy pack
-The repo still ships the original **27-skill pack**.
+The original 27-skill pack still ships as a **legacy compatibility layer** under `legacy/` so existing install commands keep working.
 
-It is not published on npm right now, so the quick install runs directly from GitHub:
+Quick install still runs directly from GitHub:
 ```bash
 npx --yes github:gvkhosla/founder-skills install --agent pi
 ```
@@ -82,7 +78,7 @@ If the bottleneck is unclear, start with **`founder-partner`**.
 
 ## Install by host
 
-### Legacy install
+### Legacy compatibility install
 
 ```bash
 # pi
@@ -100,7 +96,7 @@ Verify:
 - Claude Code → `.claude/skills/founder-partner/SKILL.md`
 - Codex → `AGENTS.founder-skills.md`
 
-### OS beta install
+### Founder Skills OS install
 
 Run these from this repo:
 
@@ -126,7 +122,7 @@ Verify OS installs with:
 - Hermes → `~/.hermes/skills/founder-skills-os/workspace/project-instructions.md`
 - any initialized repo → `npm run os:doctor -- --project /path/to/startup`
 
-## OS beta quickstart
+## Founder Skills OS quickstart
 
 ```bash
 npm install
@@ -163,9 +159,7 @@ In practice that means:
 - [Founder Partner manifesto](docs/founder-partner-manifesto.md)
 - [OS install/export flows](docs/founder-skills-os-install-export-flows.md)
 - [OS repo architecture](docs/founder-skills-os-repo-architecture.md)
-- [AUTHORING.md](docs/AUTHORING.md)
-- [COMPATIBILITY.md](docs/COMPATIBILITY.md)
-- [MULTI-AGENT.md](docs/MULTI-AGENT.md)
+- [Legacy compatibility layer](legacy/README.md)
 
 ## Development
 

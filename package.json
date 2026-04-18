@@ -10,7 +10,7 @@
     "docs",
     "scripts/install.sh",
     "scripts/validate-skill-pack.js",
-    "skills",
+    "legacy",
     "README.md",
     "LICENSE",
     "generated",
@@ -58,7 +58,7 @@
   },
   "homepage": "https://fskills.xyz",
   "license": "MIT",
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "npm@11.11.1",
   "engines": {
     "node": ">=20"
   },
