@@ -1,4 +1,4 @@
-# Truth Memo — 2026-04-17
+# Truth Memo — YYYY-MM-DD
 
 ## Situation
 - The workspace has been initialized, but the company truth has not been stress-tested yet.

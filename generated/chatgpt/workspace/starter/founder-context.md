@@ -1,5 +1,5 @@
 # Founder Context
-Last updated: 2026-04-17
+Last updated: YYYY-MM-DD
 
 ## The Product
 **What:** 
@@ -58,5 +58,5 @@ Last updated: 2026-04-17
 ## Partner Session History
 | Date | Key Observation | One Thing Committed To |
 |------|-----------------|------------------------|
-| 2026-04-17 | Workspace initialized | Define the bottleneck honestly |
+| YYYY-MM-DD | Workspace initialized | Define the bottleneck honestly |
 

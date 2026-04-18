@@ -10,8 +10,10 @@ import {
   FOUNDER_CONTEXT_FILE,
   RECOMMENDED_NEXT_FILE,
   SEQUENCE_STATE_FILE,
+  STARTER_TEMPLATE_DATE,
   TRUTH_MEMO_FILE,
   ensureFounderWorkspace,
+  getStarterWorkspaceFiles,
   renderRecommendedNextStep,
   startSequence,
   syncSequenceState,
@@ -43,6 +45,17 @@ test("ensureFounderWorkspace creates stateful operating files", () => {
   assert.ok(fs.existsSync(path.join(tempDir, TRUTH_MEMO_FILE)));
   assert.ok(fs.existsSync(path.join(tempDir, RECOMMENDED_NEXT_FILE)));
   assert.equal(result.sequenceState.activeSequence, "validate-to-build");
+});
+
+test("generated starter workspace files are deterministic", () => {
+  const starterFiles = getStarterWorkspaceFiles();
+  const founderContext = starterFiles.find((file) => file.path.endsWith("founder-context.md"));
+  const truthMemo = starterFiles.find((file) => file.path.endsWith("truth-memo.md"));
+  const weeklyReview = starterFiles.find((file) => file.path.endsWith("weekly-review.json"));
+
+  assert.ok(founderContext?.content.includes(`Last updated: ${STARTER_TEMPLATE_DATE}`));
+  assert.ok(truthMemo?.content.includes(`# Truth Memo — ${STARTER_TEMPLATE_DATE}`));
+  assert.equal(JSON.parse(weeklyReview?.content || "{}").weekOf, STARTER_TEMPLATE_DATE);
 });
 
 test("startSequence and syncSequenceState track the current lifecycle step", () => {

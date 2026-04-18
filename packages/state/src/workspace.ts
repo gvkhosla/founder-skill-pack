@@ -55,6 +55,8 @@ function today(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+export const STARTER_TEMPLATE_DATE = "YYYY-MM-DD";
+
 function defaultBottleneckForStage(stage: CompanyStage, activeSequence?: string): CompanyState["company"]["currentBottleneck"] {
   if (activeSequence === "gtm-engine") return "marketing-clarity";
   if (activeSequence === "pmf-recovery") return "pmf-uncertainty";
@@ -94,9 +96,9 @@ export function defaultSequenceState(): SequenceState {
   };
 }
 
-export function defaultWeeklyReviewState() {
+export function defaultWeeklyReviewState(seedDate: string = today()) {
   return {
-    weekOf: today(),
+    weekOf: seedDate,
     focus: "",
     wins: [],
     misses: [],
@@ -107,8 +109,9 @@ export function defaultWeeklyReviewState() {
   };
 }
 
-export const starterFounderContext = `# Founder Context
-Last updated: ${today()}
+export function renderStarterFounderContext(seedDate: string = today()): string {
+  return `# Founder Context
+Last updated: ${seedDate}
 
 ## The Product
 **What:** 
@@ -167,10 +170,12 @@ Last updated: ${today()}
 ## Partner Session History
 | Date | Key Observation | One Thing Committed To |
 |------|-----------------|------------------------|
-| ${today()} | Workspace initialized | Define the bottleneck honestly |
+| ${seedDate} | Workspace initialized | Define the bottleneck honestly |
 `;
+}
 
-export const starterTruthMemo = `# Truth Memo — ${today()}
+export function renderStarterTruthMemo(seedDate: string = today()): string {
+  return `# Truth Memo — ${seedDate}
 
 ## Situation
 - The workspace has been initialized, but the company truth has not been stress-tested yet.
@@ -202,8 +207,10 @@ export const starterTruthMemo = `# Truth Memo — ${today()}
 ## What Would Change My Mind
 - Specific customer evidence, sharper bottleneck diagnosis, or a validated wedge.
 `;
+}
 
-export const starterRecommendedNextStep = `# Recommended Next Step
+export function renderStarterRecommendedNextStep(): string {
+  return `# Recommended Next Step
 
 ## Bottleneck
 - unknown
@@ -214,8 +221,11 @@ export const starterRecommendedNextStep = `# Recommended Next Step
 ## Why this matters now
 - Clarify the current bottleneck before branching into more work.
 `;
+}
 
-export function getStarterWorkspaceFiles(): Array<{ path: string; content: string }> {
+export function getStarterWorkspaceFiles(options: { date?: string } = {}): Array<{ path: string; content: string }> {
+  const seedDate = options.date ?? STARTER_TEMPLATE_DATE;
+
   return [
     {
       path: path.posix.join("workspace", "starter", ".fs", "company-state.json"),
@@ -231,19 +241,19 @@ export function getStarterWorkspaceFiles(): Array<{ path: string; content: strin
     },
     {
       path: path.posix.join("workspace", "starter", ".fs", "weekly-review.json"),
-      content: `${JSON.stringify(defaultWeeklyReviewState(), null, 2)}\n`,
+      content: `${JSON.stringify(defaultWeeklyReviewState(seedDate), null, 2)}\n`,
     },
     {
       path: path.posix.join("workspace", "starter", FOUNDER_CONTEXT_FILE),
-      content: `${starterFounderContext}\n`,
+      content: `${renderStarterFounderContext(seedDate)}\n`,
     },
     {
       path: path.posix.join("workspace", "starter", TRUTH_MEMO_FILE),
-      content: `${starterTruthMemo}\n`,
+      content: `${renderStarterTruthMemo(seedDate)}\n`,
     },
     {
       path: path.posix.join("workspace", "starter", RECOMMENDED_NEXT_FILE),
-      content: `${starterRecommendedNextStep}\n`,
+      content: `${renderStarterRecommendedNextStep()}\n`,
     },
   ];
 }
@@ -401,19 +411,19 @@ export function ensureFounderWorkspace(
 
   const founderContextPath = path.join(projectDir, FOUNDER_CONTEXT_FILE);
   if (!fs.existsSync(founderContextPath)) {
-    fs.writeFileSync(founderContextPath, `${starterFounderContext}\n`, "utf8");
+    fs.writeFileSync(founderContextPath, `${renderStarterFounderContext()}\n`, "utf8");
     createdFiles.push(FOUNDER_CONTEXT_FILE);
   }
 
   const truthMemoPath = path.join(projectDir, TRUTH_MEMO_FILE);
   if (!fs.existsSync(truthMemoPath)) {
-    fs.writeFileSync(truthMemoPath, `${starterTruthMemo}\n`, "utf8");
+    fs.writeFileSync(truthMemoPath, `${renderStarterTruthMemo()}\n`, "utf8");
     createdFiles.push(TRUTH_MEMO_FILE);
   }
 
   const recommendedNextPath = path.join(projectDir, RECOMMENDED_NEXT_FILE);
   if (!fs.existsSync(recommendedNextPath)) {
-    fs.writeFileSync(recommendedNextPath, `${starterRecommendedNextStep}\n`, "utf8");
+    fs.writeFileSync(recommendedNextPath, `${renderStarterRecommendedNextStep()}\n`, "utf8");
     createdFiles.push(RECOMMENDED_NEXT_FILE);
   }
 
